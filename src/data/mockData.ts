@@ -31,12 +31,12 @@ export interface TestimonialItem {
 export const statsData: StatItem[] = [
   {
     icon: 'GraduationCap',
-    value: '5000+',
+    value: '500+',
     label: 'Students Trained',
   },
   {
     icon: 'BookOpen',
-    value: '35+',
+    value: '15+',
     label: 'Courses Offered',
   },
   {
@@ -46,7 +46,7 @@ export const statsData: StatItem[] = [
   },
   {
     icon: 'TrendingUp',
-    value: '94%',
+    value: '80%',
     label: 'Placement Success',
   },
 ];
