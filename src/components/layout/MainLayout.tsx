@@ -13,7 +13,10 @@ interface MainLayoutProps {
 
 export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   const location = useLocation();
-  const isReplicaPage = location.pathname === '/' || location.pathname === '/courses';
+  const isReplicaPage =
+    location.pathname === '/' ||
+    location.pathname === '/courses' ||
+    location.pathname.startsWith('/course');
 
   if (isReplicaPage) {
     return (

@@ -1,375 +1,626 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { coursesData } from '../data/courses';
-import { FormatBadge, CategoryBadge, CertificateBadge } from '../components/ui/Badge';
-import { Button } from '../components/ui/Button';
-import { CurriculumAccordion } from '../components/course/CurriculumAccordion';
-import { useAcademyStore } from '../store/useAcademyStore';
-import { CourseFormat } from '../types/course';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Calendar,
   Clock,
   MapPin,
+  Wifi,
   Award,
-  Users,
-  Star,
-  CheckCircle2,
-  Bookmark,
-  Share2,
-  Radio,
-  Monitor,
-  Shuffle,
   Play,
+  Check,
+  ChevronRight,
+  Phone,
+  Radio,
+  Mic2,
+  Presentation,
+  Tv,
+  TrendingUp,
+  GraduationCap,
+  Building,
+  FileText,
+  Grid,
+  Users,
+  MessageSquare,
+  Search,
+  CheckCircle2,
+  Lock,
   Sparkles,
-  BookOpen,
-  ArrowRight,
-  ShieldAlert,
+  ChevronDown,
 } from 'lucide-react';
+import { coursesData } from '../data/courses';
+import { mentorsData } from '../data/mockData';
+import { CmaLogo } from '../components/ui/CmaLogo';
+import { useAcademyStore } from '../store/useAcademyStore';
 
 export const CourseDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const course = coursesData.find((c) => c.slug === slug) || coursesData[0];
+  const { openWaitlistModal, openPreviewModal } = useAcademyStore();
 
-  const [activeTab, setActiveTab] = useState<'overview' | 'curriculum' | 'instructors' | 'schedule' | 'reviews'>('overview');
-  const [selectedFormat, setSelectedFormat] = useState<CourseFormat>('Hybrid');
-
-  const { savedCourseIds, toggleSaveCourse, openWaitlistModal, openPreviewModal, addToast } = useAcademyStore();
-  const isSaved = savedCourseIds.includes(course.id);
-
-  const getPriceForFormat = (fmt: CourseFormat) => {
-    switch (fmt) {
-      case 'Physical':
-        return { formatted: '₦180,000', raw: 180000 };
-      case 'Online':
-        return { formatted: '₦120,000', raw: 120000 };
-      case 'Hybrid':
-      default:
-        return { formatted: '₦220,000', raw: 220000 };
-    }
-  };
-
-  const handleShare = () => {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(window.location.href);
-      addToast('Link Copied!', 'Course URL copied to clipboard', 'info');
-    }
-  };
-
-  const currentPrice = getPriceForFormat(selectedFormat);
+  const [activeTab, setActiveTab] = useState<'overview' | 'pillars' | 'schedule' | 'mentors' | 'reviews'>('overview');
+  const [expandedPillar, setExpandedPillar] = useState<string | null>('pillar-1');
 
   return (
-    <>
+    <div className="min-h-screen bg-black text-white font-sans selection:bg-[#FF6B00] selection:text-white">
       <Helmet>
-        <title>{`${course.title} | City Media Academy`}</title>
-        <meta name="description" content={course.shortDescription} />
+        <title>{course.title} | City Media Academy</title>
+        <meta name="description" content={course.description} />
       </Helmet>
 
-      <div className="py-8 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-xs text-slate-500 mb-6">
-          <Link to="/" className="hover:text-slate-900 dark:hover:text-white">
-            Home
+      {/* 1. NAVBAR - Matching reference */}
+      <header className="sticky top-0 z-50 bg-black/85 backdrop-blur-md border-b border-[#1A1A1A]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
+          {/* Logo */}
+          <Link to="/" className="flex items-center group select-none">
+            <CmaLogo size="lg" showText={true} />
           </Link>
-          <span>/</span>
-          <Link to="/courses" className="hover:text-slate-900 dark:hover:text-white">
-            Courses
-          </Link>
-          <span>/</span>
-          <span className="text-[#FF6B00] font-bold truncate max-w-xs">{course.title}</span>
+
+          {/* Nav Links */}
+          <nav className="hidden md:flex items-center gap-8 text-[13px] font-medium tracking-wide">
+            <Link to="/" className="text-[#A0A0A0] hover:text-white transition-colors">
+              Home
+            </Link>
+            <Link
+              to="/courses"
+              className="text-[#FF6B00] font-bold relative py-1 border-b-2 border-[#FF6B00]"
+            >
+              Courses
+            </Link>
+            <Link to="/instructors" className="text-[#A0A0A0] hover:text-white transition-colors">
+              Mentors
+            </Link>
+            <Link to="/about" className="text-[#A0A0A0] hover:text-white transition-colors">
+              About Us
+            </Link>
+            <Link to="/courses" className="text-[#A0A0A0] hover:text-white transition-colors">
+              Events
+            </Link>
+            <Link to="/contact" className="text-[#A0A0A0] hover:text-white transition-colors">
+              Contact
+            </Link>
+          </nav>
+
+          {/* Right Search Button */}
+          <div className="flex items-center gap-3">
+            <Link
+              to="/courses"
+              className="w-9 h-9 rounded-full bg-[#0A0A0A] border border-[#1A1A1A] hover:border-[#FF6B00] text-[#A0A0A0] hover:text-white flex items-center justify-center transition-colors cursor-pointer"
+              aria-label="Search Courses"
+            >
+              <Search className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
+      </header>
 
-        {/* Top Hero Banner */}
-        <div className="rounded-3xl bg-white dark:bg-[#131722] border border-slate-200 dark:border-white/10 p-6 sm:p-10 shadow-xl mb-10 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-[#FF6B00]/10 rounded-full blur-[100px] pointer-events-none -z-10" />
+      {/* 2. BREADCRUMBS */}
+      <div className="border-b border-[#1A1A1A]/80 bg-black/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center gap-2 text-xs text-[#A0A0A0]">
+          <Link to="/" className="hover:text-[#FF6B00] transition-colors">Home</Link>
+          <ChevronRight className="w-3.5 h-3.5 text-[#444]" />
+          <Link to="/courses" className="hover:text-[#FF6B00] transition-colors">Courses</Link>
+          <ChevronRight className="w-3.5 h-3.5 text-[#444]" />
+          <span className="text-white font-medium truncate">{course.title}</span>
+        </div>
+      </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            <div className="lg:col-span-8 space-y-4">
-              <div className="flex flex-wrap items-center gap-2.5">
-                <CategoryBadge label={course.category} />
-                <FormatBadge format={course.format} />
-                <CertificateBadge text="Certificate + 3-Week Internship" />
+      {/* 3. MAIN PAGE CONTAINER (2 Columns) */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* ================= LEFT MAIN CONTENT (8 Cols) ================= */}
+          <div className="lg:col-span-8 space-y-8">
+            {/* HERO CARD WITH STUDIO BACKGROUND */}
+            <div className="relative rounded-3xl bg-[#0A0A0A] border border-[#1A1A1A] p-6 sm:p-8 overflow-hidden shadow-2xl space-y-6">
+              {/* Broadcast Studio Ambient Image */}
+              <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2000&auto=format&fit=crop"
+                  alt="Studio Mixer"
+                  className="w-full h-full object-cover object-right opacity-25 filter brightness-50 contrast-125"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/90 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent" />
+
+                {/* Glowing Red ON AIR Sign */}
+                <div className="absolute top-6 right-6 px-3 py-1 rounded-md border-2 border-red-600 bg-red-950/80 shadow-[0_0_20px_rgba(220,38,38,0.7)] hidden sm:flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                  <span className="text-[11px] font-black tracking-widest text-red-500 font-mono">
+                    ON AIR
+                  </span>
+                </div>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black font-display text-slate-900 dark:text-white tracking-tight leading-tight">
-                {course.title}
-              </h1>
+              <div className="relative z-10 space-y-5">
+                {/* Course Main Title */}
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black font-display text-white tracking-tight leading-[1.1]">
+                  {course.title}
+                </h1>
 
-              <p className="text-base sm:text-lg font-medium text-[#FFA048]">
-                {course.tagline}
-              </p>
+                {/* 4 Pill Badges in a Row */}
+                <div className="flex flex-wrap items-center gap-2 pt-1">
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-black/60 border border-white/10 text-xs font-medium text-white backdrop-blur-md">
+                    <Calendar className="w-3.5 h-3.5 text-[#FF6B00]" />
+                    <span>5-Week Intensive Programme</span>
+                  </div>
 
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl">
-                {course.description}
-              </p>
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-black/60 border border-white/10 text-xs font-medium text-white backdrop-blur-md">
+                    <Calendar className="w-3.5 h-3.5 text-[#FF6B00]" />
+                    <span>Starts July 06, 2026</span>
+                  </div>
 
-              {/* Meta pills */}
-              <div className="flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-slate-600 dark:text-slate-300 pt-2 border-t border-slate-100 dark:border-white/10">
-                <div className="flex items-center gap-1.5 font-bold text-[#FF6B00]">
-                  <Calendar className="w-4 h-4" />
-                  <span>Next Cohort: {course.schedule.startDate}</span>
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-black/60 border border-white/10 text-xs font-medium text-white backdrop-blur-md">
+                    <Clock className="w-3.5 h-3.5 text-[#FF6B00]" />
+                    <span>9am - 2pm Daily</span>
+                  </div>
+
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-black/60 border border-white/10 text-xs font-medium text-white backdrop-blur-md">
+                    <Wifi className="w-3.5 h-3.5 text-[#FF6B00]" />
+                    <span>Hybrid</span>
+                  </div>
                 </div>
 
-                <div className="flex items-center gap-1.5">
-                  <Clock className="w-4 h-4 text-cyan-400" />
-                  <span>{course.schedule.dailyHours}</span>
-                </div>
-
-                <div className="flex items-center gap-1.5">
-                  <Star className="w-4 h-4 text-[#FFA048] fill-current" />
-                  <span>
-                    <strong>{course.rating.toFixed(2)}</strong> ({course.reviewCount} reviews)
+                {/* Registration Closed Badge */}
+                <div>
+                  <span className="inline-flex items-center px-3 py-1 rounded-md bg-[#380b0f] border border-red-900/60 text-[#ff6b6b] text-[10px] font-black tracking-wider uppercase">
+                    REGISTRATION CLOSED
                   </span>
                 </div>
 
-                <div className="flex items-center gap-1.5">
-                  <Users className="w-4 h-4 text-emerald-400" />
-                  <span>{course.studentsCount.toLocaleString()}+ Enrolled</span>
+                {/* Main Paragraph Description */}
+                <p className="text-xs sm:text-sm text-[#A0A0A0] leading-relaxed font-normal max-w-2xl">
+                  Kickstart your career in broadcast media, public speaking, voiceover and content creation in just 5 weeks! Learn how to build a lucrative on-air presentation, event hosting, voiceover and digital media business with the Broadcast Media Pro Course.
+                </p>
+
+                {/* 4-Item Feature Container Bar */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-3.5 sm:p-4 rounded-2xl bg-[#0F0F0F] border border-[#1E1E1E]">
+                  <div className="flex items-center gap-2.5">
+                    <div className="text-[#FF6B00] p-2 rounded-xl bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex-shrink-0">
+                      <Building className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <div className="text-[10px] text-[#A0A0A0] leading-tight">Physical Campus</div>
+                      <div className="text-xs font-bold text-white">Ikeja Studio</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2.5">
+                    <div className="text-[#FF6B00] p-2 rounded-xl bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex-shrink-0">
+                      <Wifi className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <div className="text-[10px] text-[#A0A0A0] leading-tight">Online Access</div>
+                      <div className="text-xs font-bold text-white">Live Classes</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2.5">
+                    <div className="text-[#FF6B00] p-2 rounded-xl bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex-shrink-0">
+                      <Clock className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <div className="text-[10px] text-[#A0A0A0] leading-tight">Structure</div>
+                      <div className="text-xs font-bold text-white leading-tight">2 Wks Class + 3 Wks Internship</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2.5">
+                    <div className="text-[#FF6B00] p-2 rounded-xl bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex-shrink-0">
+                      <Award className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <div className="text-[10px] text-[#A0A0A0] leading-tight">Certificate</div>
+                      <div className="text-xs font-bold text-white">Upon Completion</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Quick Actions in Banner */}
-            <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-end lg:items-end w-full">
-              <Button
-                variant="primary"
-                size="lg"
-                icon="arrow-up-right"
-                onClick={() => openWaitlistModal(course.id)}
-                className="w-full sm:w-auto lg:w-full"
+            {/* INTERACTIVE NAVIGATION TABS */}
+            <div className="border-b border-[#1A1A1A] flex items-center gap-2 sm:gap-6 overflow-x-auto pb-0.5">
+              <button
+                onClick={() => setActiveTab('overview')}
+                className={`flex items-center gap-2 py-3 px-2 text-xs sm:text-sm font-bold border-b-2 transition-all cursor-pointer whitespace-nowrap ${
+                  activeTab === 'overview'
+                    ? 'border-[#FF6B00] text-[#FF6B00]'
+                    : 'border-transparent text-[#A0A0A0] hover:text-white'
+                }`}
               >
-                Join Waitlist for July 2026
-              </Button>
+                <FileText className="w-4 h-4" />
+                <span>Overview</span>
+              </button>
 
-              <div className="flex items-center gap-2 w-full sm:w-auto lg:w-full">
-                <button
-                  onClick={() => toggleSaveCourse(course.id)}
-                  className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-bold border transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
-                    isSaved
-                      ? 'bg-[#FF6B00]/15 text-[#FF6B00] border-[#FF6B00]'
-                      : 'bg-slate-100 dark:bg-white/5 border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:border-slate-300'
-                  }`}
-                >
-                  <Bookmark className={`w-3.5 h-3.5 ${isSaved ? 'fill-current' : ''}`} />
-                  <span>{isSaved ? 'Saved in Wishlist' : 'Save Course'}</span>
-                </button>
+              <button
+                onClick={() => setActiveTab('pillars')}
+                className={`flex items-center gap-2 py-3 px-2 text-xs sm:text-sm font-bold border-b-2 transition-all cursor-pointer whitespace-nowrap ${
+                  activeTab === 'pillars'
+                    ? 'border-[#FF6B00] text-[#FF6B00]'
+                    : 'border-transparent text-[#A0A0A0] hover:text-white'
+                }`}
+              >
+                <Grid className="w-4 h-4" />
+                <span>8 Pillars</span>
+              </button>
 
-                <button
-                  onClick={handleShare}
-                  className="p-2.5 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
-                  title="Share Course"
-                >
-                  <Share2 className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+              <button
+                onClick={() => setActiveTab('schedule')}
+                className={`flex items-center gap-2 py-3 px-2 text-xs sm:text-sm font-bold border-b-2 transition-all cursor-pointer whitespace-nowrap ${
+                  activeTab === 'schedule'
+                    ? 'border-[#FF6B00] text-[#FF6B00]'
+                    : 'border-transparent text-[#A0A0A0] hover:text-white'
+                }`}
+              >
+                <Calendar className="w-4 h-4" />
+                <span>Schedule</span>
+              </button>
 
-        {/* Main Content Layout (Tabs on Left + Sticky Pricing Sidebar on Right) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Column: LMS Tabs */}
-          <div className="lg:col-span-8 space-y-6">
-            {/* Tabs Navigation */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-2 border-b border-slate-200 dark:border-white/10 scrollbar-none">
-              {[
-                { id: 'overview', label: 'Overview' },
-                { id: 'curriculum', label: `Curriculum (${course.pillars.length} Pillars)` },
-                { id: 'instructors', label: `Instructors (${course.instructors.length})` },
-                { id: 'schedule', label: 'Schedule & Internship' },
-                { id: 'reviews', label: `Reviews (${course.reviewCount})` },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id as any)}
-                  className={`px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all cursor-pointer ${
-                    activeTab === tab.id
-                      ? 'bg-[#FF6B00] text-white shadow-md shadow-[#FF6B00]/25'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
+              <button
+                onClick={() => setActiveTab('mentors')}
+                className={`flex items-center gap-2 py-3 px-2 text-xs sm:text-sm font-bold border-b-2 transition-all cursor-pointer whitespace-nowrap ${
+                  activeTab === 'mentors'
+                    ? 'border-[#FF6B00] text-[#FF6B00]'
+                    : 'border-transparent text-[#A0A0A0] hover:text-white'
+                }`}
+              >
+                <Users className="w-4 h-4" />
+                <span>Mentors</span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab('reviews')}
+                className={`flex items-center gap-2 py-3 px-2 text-xs sm:text-sm font-bold border-b-2 transition-all cursor-pointer whitespace-nowrap ${
+                  activeTab === 'reviews'
+                    ? 'border-[#FF6B00] text-[#FF6B00]'
+                    : 'border-transparent text-[#A0A0A0] hover:text-white'
+                }`}
+              >
+                <MessageSquare className="w-4 h-4" />
+                <span>Reviews</span>
+              </button>
             </div>
 
             {/* TAB 1: OVERVIEW */}
             {activeTab === 'overview' && (
-              <div className="space-y-8 animate-fadeIn">
-                {/* What You'll Get */}
-                <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-[#131722] border border-slate-200 dark:border-white/10 space-y-4 shadow-sm">
-                  <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#FF6B00]">
-                    <Sparkles className="w-4 h-4" />
-                    <span>Course Inclusions</span>
-                  </div>
-                  <h3 className="text-xl font-bold font-display text-slate-900 dark:text-white">
-                    What You'll Gain from This Course
-                  </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
-                    {course.whatYouWillGet.map((item, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
-                        <CheckCircle2 className="w-4 h-4 text-[#FF6B00] mt-0.5 flex-shrink-0" />
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="space-y-8"
+              >
+                {/* Overview Card */}
+                <div className="rounded-3xl bg-[#0A0A0A] border border-[#1A1A1A] p-6 sm:p-8 space-y-6 shadow-xl">
+                  <h2 className="text-xl sm:text-2xl font-bold font-display text-white">
+                    Overview
+                  </h2>
 
-                {/* Target Audience */}
-                <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-[#131722] border border-slate-200 dark:border-white/10 space-y-4 shadow-sm">
-                  <h3 className="text-xl font-bold font-display text-slate-900 dark:text-white">
-                    Who Is This Course For?
-                  </h3>
-                  <div className="space-y-2.5">
-                    {course.targetAudience.map((aud, idx) => (
-                      <div key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B00]" />
-                        <span>{aud}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                  <p className="text-xs sm:text-sm text-[#A0A0A0] leading-relaxed">
+                    This 5-week intensive program is structured to equip you with the practical skills, industry knowledge and real-world experience you need to thrive in the broadcast and digital media industry.
+                  </p>
 
-                {/* Prerequisites */}
-                <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-[#131722] border border-slate-200 dark:border-white/10 space-y-4 shadow-sm">
-                  <h3 className="text-xl font-bold font-display text-slate-900 dark:text-white">
-                    Requirements
-                  </h3>
-                  <div className="space-y-2.5">
-                    {course.requirements.map((req, idx) => (
-                      <div key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
-                        <span className="w-1.5 h-1.5 rounded-full bg-slate-400" />
-                        <span>{req}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* TAB 2: CURRICULUM */}
-            {activeTab === 'curriculum' && (
-              <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-[#131722] border border-slate-200 dark:border-white/10 shadow-sm animate-fadeIn">
-                <CurriculumAccordion pillars={course.pillars} allowCompletionToggle={false} />
-              </div>
-            )}
-
-            {/* TAB 3: INSTRUCTORS */}
-            {activeTab === 'instructors' && (
-              <div className="space-y-6 animate-fadeIn">
-                <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-[#131722] border border-slate-200 dark:border-white/10 shadow-sm space-y-6">
-                  <h3 className="text-xl font-bold font-display text-slate-900 dark:text-white">
-                    Your Faculty & Lead Mentors
-                  </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    {course.instructors.map((inst) => (
-                      <div
-                        key={inst.id}
-                        className="p-4 rounded-2xl bg-slate-50 dark:bg-[#0E1017] border border-slate-200/80 dark:border-white/5 space-y-3"
-                      >
-                        <div className="flex items-center gap-3">
-                          <img
-                            src={inst.avatar}
-                            alt={inst.name}
-                            className="w-12 h-12 rounded-full object-cover border-2 border-[#FF6B00]"
-                          />
-                          <div>
-                            <h4 className="font-bold text-sm text-slate-900 dark:text-white">
-                              {inst.name}
-                            </h4>
-                            <p className="text-[11px] text-[#FFA048]">{inst.role}</p>
-                          </div>
+                  <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                    {/* Left: 4 Checkmark Bullets */}
+                    <div className="md:col-span-7 space-y-3.5">
+                      <div className="flex items-start gap-3">
+                        <div className="w-5 h-5 rounded-full bg-[#FF6B00]/15 text-[#FF6B00] flex items-center justify-center flex-shrink-0 mt-0.5 border border-[#FF6B00]/30">
+                          <Check className="w-3.5 h-3.5 stroke-[3]" />
                         </div>
-                        <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                          {inst.bio}
-                        </p>
-                        <div className="text-[11px] text-slate-500 flex items-center gap-1 font-medium">
-                          <Radio className="w-3 h-3 text-[#FF6B00]" />
-                          <span>{inst.stationAffiliation}</span>
-                        </div>
+                        <span className="text-xs sm:text-sm text-white/90 leading-snug">
+                          5 hour classes a day for 2 weeks at our state-of-the-art studio in Ikeja.
+                        </span>
                       </div>
-                    ))}
+
+                      <div className="flex items-start gap-3">
+                        <div className="w-5 h-5 rounded-full bg-[#FF6B00]/15 text-[#FF6B00] flex items-center justify-center flex-shrink-0 mt-0.5 border border-[#FF6B00]/30">
+                          <Check className="w-3.5 h-3.5 stroke-[3]" />
+                        </div>
+                        <span className="text-xs sm:text-sm text-white/90 leading-snug">
+                          3 weeks internship at City FM — a leading urban contemporary radio station.
+                        </span>
+                      </div>
+
+                      <div className="flex items-start gap-3">
+                        <div className="w-5 h-5 rounded-full bg-[#FF6B00]/15 text-[#FF6B00] flex items-center justify-center flex-shrink-0 mt-0.5 border border-[#FF6B00]/30">
+                          <Check className="w-3.5 h-3.5 stroke-[3]" />
+                        </div>
+                        <span className="text-xs sm:text-sm text-white/90 leading-snug">
+                          Blend of theoretical knowledge, practical training and on-air experience.
+                        </span>
+                      </div>
+
+                      <div className="flex items-start gap-3">
+                        <div className="w-5 h-5 rounded-full bg-[#FF6B00]/15 text-[#FF6B00] flex items-center justify-center flex-shrink-0 mt-0.5 border border-[#FF6B00]/30">
+                          <Check className="w-3.5 h-3.5 stroke-[3]" />
+                        </div>
+                        <span className="text-xs sm:text-sm text-white/90 leading-snug">
+                          Hands-on projects, assignments and real industry exposure.
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Right: Quote Box */}
+                    <div className="md:col-span-5 p-6 rounded-2xl bg-[#0F0F0F] border border-[#1A1A1A] relative shadow-inner">
+                      <div className="text-4xl font-serif text-[#FF6B00] leading-none mb-2 font-black select-none">
+                        “
+                      </div>
+                      <p className="text-xs sm:text-sm font-medium text-white leading-relaxed mb-4">
+                        We don't just teach, we transform talents into media professionals.
+                      </p>
+                      <div className="text-xs font-bold text-[#FF6B00]">
+                        — City Media Academy
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+
+                {/* Who This Course Is For */}
+                <div className="rounded-3xl bg-[#0A0A0A] border border-[#1A1A1A] p-6 sm:p-8 space-y-6 shadow-xl">
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-bold font-display text-white">
+                      Who This Course Is For
+                    </h3>
+                    <p className="text-xs text-[#A0A0A0] mt-1">
+                      Aspiring and emerging professionals who want to build a career in:
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+                    <div className="p-3.5 rounded-xl bg-[#0F0F0F] border border-[#1A1A1A] flex flex-col items-center text-center space-y-2 group hover:border-[#FF6B00]/50 transition-all">
+                      <div className="text-[#FF6B00] p-2 rounded-lg bg-[#FF6B00]/10 border border-[#FF6B00]/20">
+                        <Radio className="w-5 h-5" />
+                      </div>
+                      <span className="text-[11px] font-bold text-white/90 leading-tight">
+                        Radio & TV Presentation
+                      </span>
+                    </div>
+
+                    <div className="p-3.5 rounded-xl bg-[#0F0F0F] border border-[#1A1A1A] flex flex-col items-center text-center space-y-2 group hover:border-[#FF6B00]/50 transition-all">
+                      <div className="text-[#FF6B00] p-2 rounded-lg bg-[#FF6B00]/10 border border-[#FF6B00]/20">
+                        <Mic2 className="w-5 h-5" />
+                      </div>
+                      <span className="text-[11px] font-bold text-white/90 leading-tight">
+                        Voiceover & Audio Production
+                      </span>
+                    </div>
+
+                    <div className="p-3.5 rounded-xl bg-[#0F0F0F] border border-[#1A1A1A] flex flex-col items-center text-center space-y-2 group hover:border-[#FF6B00]/50 transition-all">
+                      <div className="text-[#FF6B00] p-2 rounded-lg bg-[#FF6B00]/10 border border-[#FF6B00]/20">
+                        <Presentation className="w-5 h-5" />
+                      </div>
+                      <span className="text-[11px] font-bold text-white/90 leading-tight">
+                        Event Hosting & Public Speaking
+                      </span>
+                    </div>
+
+                    <div className="p-3.5 rounded-xl bg-[#0F0F0F] border border-[#1A1A1A] flex flex-col items-center text-center space-y-2 group hover:border-[#FF6B00]/50 transition-all">
+                      <div className="text-[#FF6B00] p-2 rounded-lg bg-[#FF6B00]/10 border border-[#FF6B00]/20">
+                        <Tv className="w-5 h-5" />
+                      </div>
+                      <span className="text-[11px] font-bold text-white/90 leading-tight">
+                        Digital Media & Content Creation
+                      </span>
+                    </div>
+
+                    <div className="p-3.5 rounded-xl bg-[#0F0F0F] border border-[#1A1A1A] flex flex-col items-center text-center space-y-2 group hover:border-[#FF6B00]/50 transition-all">
+                      <div className="text-[#FF6B00] p-2 rounded-lg bg-[#FF6B00]/10 border border-[#FF6B00]/20">
+                        <TrendingUp className="w-5 h-5" />
+                      </div>
+                      <span className="text-[11px] font-bold text-white/90 leading-tight">
+                        Media & Brand Management
+                      </span>
+                    </div>
+
+                    <div className="p-3.5 rounded-xl bg-[#0F0F0F] border border-[#1A1A1A] flex flex-col items-center text-center space-y-2 group hover:border-[#FF6B00]/50 transition-all">
+                      <div className="text-[#FF6B00] p-2 rounded-lg bg-[#FF6B00]/10 border border-[#FF6B00]/20">
+                        <GraduationCap className="w-5 h-5" />
+                      </div>
+                      <span className="text-[11px] font-bold text-white/90 leading-tight">
+                        Students & Graduates
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
             )}
 
-            {/* TAB 4: SCHEDULE */}
+            {/* TAB 2: 8 PILLARS */}
+            {activeTab === 'pillars' && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="space-y-4"
+              >
+                <div className="rounded-3xl bg-[#0A0A0A] border border-[#1A1A1A] p-6 sm:p-8 space-y-6 shadow-xl">
+                  <div className="space-y-1">
+                    <h2 className="text-xl sm:text-2xl font-bold font-display text-white">
+                      8 Comprehensive Programme Pillars
+                    </h2>
+                    <p className="text-xs text-[#A0A0A0]">
+                      Master every facet of modern broadcasting, voice artistry, elocution, and creator monetisation.
+                    </p>
+                  </div>
+
+                  <div className="space-y-3">
+                    {course.pillars.map((pillar) => {
+                      const isExpanded = expandedPillar === pillar.id;
+                      return (
+                        <div
+                          key={pillar.id}
+                          className="rounded-2xl bg-[#0F0F0F] border border-[#1A1A1A] overflow-hidden transition-all"
+                        >
+                          <button
+                            onClick={() => setExpandedPillar(isExpanded ? null : pillar.id)}
+                            className="w-full p-4 flex items-center justify-between text-left hover:bg-white/[0.02] cursor-pointer"
+                          >
+                            <div className="flex items-center gap-3">
+                              <span className="w-8 h-8 rounded-xl bg-[#FF6B00]/10 border border-[#FF6B00]/30 text-[#FF6B00] font-bold text-xs flex items-center justify-center">
+                                {pillar.number}
+                              </span>
+                              <div>
+                                <h4 className="text-sm font-bold text-white font-display">
+                                  {pillar.title}
+                                </h4>
+                                <span className="text-[10px] text-[#A0A0A0]">
+                                  {pillar.duration}
+                                </span>
+                              </div>
+                            </div>
+
+                            <ChevronDown
+                              className={`w-4 h-4 text-[#A0A0A0] transition-transform duration-200 ${
+                                isExpanded ? 'rotate-180 text-[#FF6B00]' : ''
+                              }`}
+                            />
+                          </button>
+
+                          {isExpanded && (
+                            <div className="p-4 pt-0 border-t border-[#181818] space-y-3 mt-2">
+                              <p className="text-xs text-[#A0A0A0] leading-relaxed">
+                                {pillar.description}
+                              </p>
+
+                              <div className="space-y-2 pt-2">
+                                {pillar.lessons.map((lesson) => (
+                                  <div
+                                    key={lesson.id}
+                                    className="flex items-center justify-between p-3 rounded-xl bg-black/40 border border-[#1A1A1A] text-xs"
+                                  >
+                                    <div className="flex items-center gap-2.5 min-w-0">
+                                      {lesson.isPreview ? (
+                                        <button
+                                          onClick={() =>
+                                            openPreviewModal(lesson)
+                                          }
+                                          className="text-[#FF6B00] hover:scale-110 transition-transform cursor-pointer"
+                                        >
+                                          <Play className="w-4 h-4 fill-current" />
+                                        </button>
+                                      ) : (
+                                        <Lock className="w-4 h-4 text-[#555]" />
+                                      )}
+                                      <div className="min-w-0">
+                                        <div className="text-white font-medium truncate">
+                                          {lesson.title}
+                                        </div>
+                                        {lesson.facilitatorName && (
+                                          <div className="text-[10px] text-[#A0A0A0]">
+                                            Facilitator: {lesson.facilitatorName}
+                                          </div>
+                                        )}
+                                      </div>
+                                    </div>
+
+                                    <div className="flex items-center gap-2 flex-shrink-0">
+                                      <span className="px-2 py-0.5 rounded-md bg-white/5 text-[10px] text-[#A0A0A0]">
+                                        {lesson.mode}
+                                      </span>
+                                      <span className="text-[10px] text-[#FF6B00] font-semibold">
+                                        {lesson.duration}
+                                      </span>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {/* TAB 3: SCHEDULE */}
             {activeTab === 'schedule' && (
-              <div className="space-y-6 animate-fadeIn">
-                <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-[#131722] border border-slate-200 dark:border-white/10 shadow-sm space-y-6">
-                  <h3 className="text-xl font-bold font-display text-slate-900 dark:text-white">
-                    5-Week Intensive Cohort Breakdown
-                  </h3>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="rounded-3xl bg-[#0A0A0A] border border-[#1A1A1A] p-6 sm:p-8 space-y-6 shadow-xl"
+              >
+                <h2 className="text-xl sm:text-2xl font-bold font-display text-white">
+                  5-Week Intensive Roadmap
+                </h2>
 
-                  {/* Schedule Cards */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="p-5 rounded-2xl bg-amber-500/10 border border-amber-500/20 space-y-2">
-                      <div className="text-xs font-bold uppercase tracking-wider text-amber-500">
-                        Phase 1: Classes & Studio Drills (Weeks 1 – 2)
-                      </div>
-                      <h4 className="text-base font-bold text-slate-900 dark:text-white">
-                        5 Hours Daily Live Instruction
-                      </h4>
-                      <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                        Monday through Friday, 9:00 AM – 2:00 PM. Covers all 8 core pillars with live microphone and camera console drills.
-                      </p>
-                      <div className="text-xs font-semibold text-amber-600 dark:text-amber-400 pt-1">
-                        📍 Studio Campus: Plot 11 Lateef Jakande Road, Ikeja, Lagos
-                      </div>
+                <div className="space-y-6">
+                  <div className="p-5 rounded-2xl bg-[#0F0F0F] border border-[#1A1A1A] space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="px-3 py-1 rounded-md bg-[#FF6B00]/15 text-[#FF6B00] text-xs font-bold">
+                        Weeks 1 & 2: Classroom & Studio Bootcamps
+                      </span>
+                      <span className="text-xs text-[#A0A0A0]">9:00 AM – 2:00 PM Daily</span>
                     </div>
-
-                    <div className="p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 space-y-2">
-                      <div className="text-xs font-bold uppercase tracking-wider text-emerald-500">
-                        Phase 2: Live Radio Internship (Weeks 3 – 5)
-                      </div>
-                      <h4 className="text-base font-bold text-slate-900 dark:text-white">
-                        3 Weeks Hands-On Station Placement
-                      </h4>
-                      <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                        Co-host live radio programmes, shadow sound engineers, edit news bulletins, and produce real commercial jingles on City 105.1 FM & 93.5 Area FM.
-                      </p>
-                      <div className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 pt-1">
-                        📻 Live On-Air Broadcast Experience
-                      </div>
-                    </div>
+                    <p className="text-xs sm:text-sm text-[#A0A0A0] leading-relaxed pt-1">
+                      Intensive masterclasses in Ikeja Studios and HD live online stream. Covers on-air presentation, diction drills, voice acting, interview architecture, and digital creator monetization.
+                    </p>
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/5 text-xs text-slate-600 dark:text-slate-300 space-y-2">
-                    <div>
-                      <strong>Online LMS Stream:</strong> Live HD audio/video broadcast feed with live chat, break-out rooms, and cloud session recordings available within 2 hours of class conclusion.
+                  <div className="p-5 rounded-2xl bg-[#0F0F0F] border border-[#1A1A1A] space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="px-3 py-1 rounded-md bg-emerald-500/15 text-emerald-400 text-xs font-bold">
+                        Weeks 3, 4 & 5: Live City 105.1 FM Internship
+                      </span>
+                      <span className="text-xs text-[#A0A0A0]">Rotational Shifts</span>
                     </div>
+                    <p className="text-xs sm:text-sm text-[#A0A0A0] leading-relaxed pt-1">
+                      Hands-on studio console operation, shadow veteran on-air presenters, produce live radio shows, voice commercials, record news bulletins, and graduate with a verified industry portfolio.
+                    </p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
+            )}
+
+            {/* TAB 4: MENTORS */}
+            {activeTab === 'mentors' && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="rounded-3xl bg-[#0A0A0A] border border-[#1A1A1A] p-6 sm:p-8 space-y-6 shadow-xl"
+              >
+                <h2 className="text-xl sm:text-2xl font-bold font-display text-white">
+                  Meet Your Industry Mentors
+                </h2>
+
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                  {mentorsData.map((mentor) => (
+                    <div
+                      key={mentor.id}
+                      className="p-4 rounded-2xl bg-[#0F0F0F] border border-[#1A1A1A] text-center space-y-3 group hover:border-[#FF6B00]/40 transition-all"
+                    >
+                      <div className="w-16 h-16 rounded-full overflow-hidden mx-auto mentor-avatar-ring">
+                        <img
+                          src={mentor.avatar}
+                          alt={mentor.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div>
+                        <div className="text-xs sm:text-sm font-bold text-white font-display leading-tight">
+                          {mentor.name}
+                        </div>
+                        <div className="text-[10px] text-[#FF6B00] font-medium mt-0.5">
+                          {mentor.role}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
             )}
 
             {/* TAB 5: REVIEWS */}
             {activeTab === 'reviews' && (
-              <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-[#131722] border border-slate-200 dark:border-white/10 shadow-sm space-y-6 animate-fadeIn">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100 dark:border-white/10">
-                  <div>
-                    <h3 className="text-xl font-bold font-display text-slate-900 dark:text-white">
-                      Student Reviews & Feedback
-                    </h3>
-                    <p className="text-xs text-slate-500">
-                      Based on {course.reviewCount} verified graduate evaluations
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="text-3xl font-black text-slate-900 dark:text-white font-display">
-                      {course.rating.toFixed(2)}
-                    </div>
-                    <div className="space-y-0.5">
-                      <div className="flex text-[#FFA048]">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-3.5 h-3.5 fill-current" />
-                        ))}
-                      </div>
-                      <span className="text-[10px] text-slate-400 font-bold uppercase">
-                        Exceptional
-                      </span>
-                    </div>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="rounded-3xl bg-[#0A0A0A] border border-[#1A1A1A] p-6 sm:p-8 space-y-6 shadow-xl"
+              >
+                <div className="flex items-center justify-between">
+                  <h2 className="text-xl sm:text-2xl font-bold font-display text-white">
+                    Graduate Reviews & Outcomes
+                  </h2>
+                  <div className="flex items-center gap-1 text-[#FF6B00] text-sm font-bold">
+                    ★ 4.96 <span className="text-[#A0A0A0] text-xs font-normal">(480+ Alumni)</span>
                   </div>
                 </div>
 
@@ -377,165 +628,275 @@ export const CourseDetailPage: React.FC = () => {
                   {course.reviews.map((rev) => (
                     <div
                       key={rev.id}
-                      className="p-4 rounded-2xl bg-slate-50 dark:bg-[#0E1017] border border-slate-200/80 dark:border-white/5 space-y-2"
+                      className="p-5 rounded-2xl bg-[#0F0F0F] border border-[#1A1A1A] space-y-3"
                     >
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2.5">
+                        <div className="flex items-center gap-3">
                           <img
                             src={rev.avatar}
                             alt={rev.author}
-                            className="w-8 h-8 rounded-full object-cover"
+                            className="w-9 h-9 rounded-full object-cover border border-[#333]"
                           />
                           <div>
-                            <div className="font-bold text-xs text-slate-900 dark:text-white">
+                            <div className="text-xs font-bold text-white font-display">
                               {rev.author}
                             </div>
-                            <div className="text-[10px] text-[#FFA048]">{rev.role}</div>
+                            <div className="text-[10px] text-[#FF6B00]">
+                              {rev.role}
+                            </div>
                           </div>
                         </div>
-                        <span className="text-[11px] text-slate-400">{rev.date}</span>
+                        <span className="text-[10px] text-[#A0A0A0]">{rev.date}</span>
                       </div>
-                      <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+                      <p className="text-xs text-[#A0A0A0] leading-relaxed">
                         "{rev.comment}"
                       </p>
-                      <div className="text-[10px] text-slate-400 font-semibold">
-                        Format Taken: {rev.courseFormatTaken}
-                      </div>
                     </div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             )}
           </div>
 
-          {/* Right Column: Sticky Pricing & Enrollment Widget */}
-          <div className="lg:col-span-4 sticky top-28 space-y-5">
-            <div className="rounded-3xl bg-white dark:bg-[#131722] border border-slate-200 dark:border-white/10 p-6 shadow-2xl space-y-5 overflow-hidden relative">
-              {/* Top Video Preview Thumbnail */}
-              <div className="relative aspect-video rounded-2xl overflow-hidden bg-slate-900 border border-white/10 group">
-                <img
-                  src={course.thumbnail}
-                  alt={course.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                  <button
-                    onClick={() =>
-                      openPreviewModal({
-                        id: 'p1-l1',
-                        title: 'Anatomy of a Broadcast Studio: Microphones & Consoles',
-                        duration: '90 mins',
-                        mode: 'Hybrid',
-                        isLocked: false,
-                        isPreview: true,
-                        facilitatorName: 'Shola Thompson',
-                        videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-                      })
-                    }
-                    className="w-12 h-12 rounded-full bg-[#FF6B00] text-white flex items-center justify-center shadow-lg shadow-[#FF6B00]/40 hover:scale-110 active:scale-95 transition-all cursor-pointer"
-                  >
-                    <Play className="w-5 h-5 fill-current ml-0.5" />
-                  </button>
-                </div>
-                <div className="absolute bottom-2 left-2 right-2 text-center text-[10px] text-white bg-black/70 backdrop-blur-xs py-1 rounded-lg">
-                  Click to watch free curriculum preview
-                </div>
-              </div>
-
-              {/* Format Selection Toggle */}
-              <div className="space-y-2">
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500">
-                  Select Your Learning Track:
-                </label>
-                <div className="grid grid-cols-3 gap-1.5 p-1 bg-slate-100 dark:bg-white/5 rounded-2xl border border-slate-200 dark:border-white/10">
-                  {(['Physical', 'Online', 'Hybrid'] as CourseFormat[]).map((fmt) => (
-                    <button
-                      key={fmt}
-                      onClick={() => setSelectedFormat(fmt)}
-                      className={`py-2 px-2 rounded-xl text-xs font-bold flex flex-col items-center gap-0.5 transition-all cursor-pointer ${
-                        selectedFormat === fmt
-                          ? 'bg-[#FF6B00] text-white shadow-xs'
-                          : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                      }`}
-                    >
-                      {fmt === 'Physical' && <Radio className="w-3.5 h-3.5" />}
-                      {fmt === 'Online' && <Monitor className="w-3.5 h-3.5" />}
-                      {fmt === 'Hybrid' && <Shuffle className="w-3.5 h-3.5" />}
-                      <span>{fmt}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Price Display */}
-              <div className="space-y-1 pt-2 border-t border-slate-100 dark:border-white/10">
-                <div className="text-xs text-slate-500 uppercase font-bold">
-                  Tuition ({selectedFormat} Mode)
-                </div>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-3xl font-black text-slate-900 dark:text-white font-display">
-                    {currentPrice.formatted}
-                  </span>
-                  {course.price.originalPrice && (
-                    <span className="text-sm text-slate-400 line-through">
-                      ₦{(currentPrice.raw * 1.35).toLocaleString()}
-                    </span>
-                  )}
-                </div>
-                <div className="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold">
-                  ✓ Installment payment plan available upon request
-                </div>
-              </div>
-
-              {/* Primary Enrollment CTA */}
-              <Button
-                variant="primary"
-                size="lg"
-                className="w-full text-center"
-                icon="arrow-up-right"
-                onClick={() => openWaitlistModal(course.id)}
+          {/* ================= RIGHT SIDEBAR (4 Cols) ================= */}
+          <div className="lg:col-span-4 space-y-5">
+            {/* Card 1: Video Preview & CTA */}
+            <div className="rounded-3xl bg-[#0A0A0A] border border-[#1A1A1A] p-4 sm:p-5 shadow-2xl space-y-4">
+              {/* Video Preview Box */}
+              <div
+                onClick={() =>
+                  openPreviewModal({
+                    id: 'course-preview',
+                    title: course.title,
+                    duration: '2 mins',
+                    mode: 'Hybrid',
+                    isLocked: false,
+                    videoUrl:
+                      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+                    description: course.description,
+                  })
+                }
+                className="relative rounded-2xl overflow-hidden aspect-[16/10] bg-black/80 border border-[#1A1A1A] group cursor-pointer shadow-inner"
               >
-                Join Waitlist for July 2026
-              </Button>
-
-              {/* Inclusions Checklist */}
-              <div className="space-y-2.5 pt-3 border-t border-slate-100 dark:border-white/10 text-xs text-slate-600 dark:text-slate-300">
-                <div className="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider mb-2">
-                  What's Included:
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#FF6B00] flex-shrink-0" />
-                  <span>2 Weeks 5-Hour Daily Studio Classes</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                  <span>3 Weeks Guaranteed Live Radio Internship</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#FF6B00] flex-shrink-0" />
-                  <span>Personal Broadcast Demo Reel Produced</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#FF6B00] flex-shrink-0" />
-                  <span>Verified CMA Certificate of Competency</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#FF6B00] flex-shrink-0" />
-                  <span>1-on-1 Mentorship with On-Air Hosts</span>
+                <img
+                  src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=800&auto=format&fit=crop"
+                  alt="Video Preview"
+                  className="w-full h-full object-cover grayscale-[20%] group-hover:scale-105 transition-all duration-500"
+                />
+                <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-colors flex flex-col items-center justify-center gap-2">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#FF6B00] text-white flex items-center justify-center shadow-[0_0_25px_rgba(255,107,0,0.5)] group-hover:scale-110 transition-transform">
+                    <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-current ml-0.5" />
+                  </div>
+                  <span className="text-xs font-bold text-white drop-shadow-md">
+                    Watch Course Preview
+                  </span>
                 </div>
               </div>
 
-              {/* Campus Studio Address Box */}
-              <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-[#0E1017] border border-slate-200 dark:border-white/10 text-[11px] text-slate-500 space-y-1">
-                <div className="font-bold text-slate-800 dark:text-slate-200">
-                  📍 Physical Campus Studio
+              {/* Registration Closed Full-Width Bar */}
+              <div className="w-full py-2.5 rounded-xl bg-[#380b0f] border border-red-900/60 text-[#ff6b6b] text-xs font-black text-center tracking-wider uppercase">
+                REGISTRATION CLOSED
+              </div>
+
+              {/* Join Waitlist CTA Button */}
+              <button
+                onClick={() => openWaitlistModal(course.id)}
+                className="w-full py-3.5 rounded-xl border border-[#FF6B00] bg-transparent hover:bg-[#FF6B00] text-[#FF6B00] hover:text-white font-bold text-xs sm:text-sm tracking-wide transition-all duration-200 cursor-pointer text-center shadow-md"
+              >
+                Join Waitlist
+              </button>
+
+              <p className="text-center text-[11px] text-[#A0A0A0]">
+                Be the first to know when next batch opens.
+              </p>
+            </div>
+
+            {/* Card 2: What You'll Get */}
+            <div className="rounded-3xl bg-[#0A0A0A] border border-[#1A1A1A] p-5 sm:p-6 space-y-4 shadow-xl">
+              <h3 className="text-sm font-bold text-white font-display">
+                What You'll Get
+              </h3>
+
+              <div className="grid grid-cols-2 gap-3 text-[11px] text-[#A0A0A0]">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#FF6B00] flex-shrink-0" />
+                  <span className="text-white/90">Certificate of Participation</span>
                 </div>
-                <div>Plot 11 Lateef Jakande Road, Agidingbi, Ikeja, Lagos (City 105.1 FM)</div>
+
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#FF6B00] flex-shrink-0" />
+                  <span className="text-white/90">Diction & Public Speaking</span>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#FF6B00] flex-shrink-0" />
+                  <span className="text-white/90">Art of Radio Presentation</span>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#FF6B00] flex-shrink-0" />
+                  <span className="text-white/90">Social Media Management</span>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#FF6B00] flex-shrink-0" />
+                  <span className="text-white/90">Interviewing Skills</span>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#FF6B00] flex-shrink-0" />
+                  <span className="text-white/90">Journalism & Newscasting</span>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#FF6B00] flex-shrink-0" />
+                  <span className="text-white/90">Voiceover Production</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3: Location & Access */}
+            <div className="rounded-3xl bg-[#0A0A0A] border border-[#1A1A1A] p-5 sm:p-6 space-y-4 shadow-xl">
+              <h3 className="text-sm font-bold text-white font-display">
+                Location & Access
+              </h3>
+
+              <div className="space-y-3 text-xs text-[#A0A0A0]">
+                <div className="flex items-start gap-2.5">
+                  <MapPin className="w-4 h-4 text-[#FF6B00] flex-shrink-0 mt-0.5" />
+                  <div>
+                    <strong className="text-white font-semibold block">Physical Campus:</strong>
+                    Plot 11 Lateef Jakande Road, Agidingbi, Ikeja, Lagos.
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-2.5">
+                  <Wifi className="w-4 h-4 text-[#FF6B00] flex-shrink-0 mt-0.5" />
+                  <div>
+                    <strong className="text-white font-semibold block">Online Access:</strong>
+                    Live classes via Zoom
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-2.5">
+                  <Phone className="w-4 h-4 text-[#FF6B00] flex-shrink-0 mt-0.5" />
+                  <div>
+                    <strong className="text-white font-semibold block">Phone:</strong>
+                    0810 968 8638
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 4: Course Highlights */}
+            <div className="rounded-3xl bg-[#0A0A0A] border border-[#1A1A1A] p-5 sm:p-6 space-y-4 shadow-xl">
+              <h3 className="text-sm font-bold text-white font-display">
+                Course Highlights
+              </h3>
+
+              <div className="grid grid-cols-4 gap-2 text-center">
+                <div className="p-2.5 rounded-xl bg-[#0F0F0F] border border-[#1A1A1A] space-y-1">
+                  <Calendar className="w-4 h-4 text-[#FF6B00] mx-auto" />
+                  <div className="text-sm font-extrabold text-white">5</div>
+                  <div className="text-[10px] text-[#A0A0A0]">Weeks</div>
+                </div>
+
+                <div className="p-2.5 rounded-xl bg-[#0F0F0F] border border-[#1A1A1A] space-y-1">
+                  <Clock className="w-4 h-4 text-[#FF6B00] mx-auto" />
+                  <div className="text-sm font-extrabold text-white">40+</div>
+                  <div className="text-[10px] text-[#A0A0A0]">Hours</div>
+                </div>
+
+                <div className="p-2.5 rounded-xl bg-[#0F0F0F] border border-[#1A1A1A] space-y-1">
+                  <Grid className="w-4 h-4 text-[#FF6B00] mx-auto" />
+                  <div className="text-sm font-extrabold text-white">8</div>
+                  <div className="text-[10px] text-[#A0A0A0]">Pillars</div>
+                </div>
+
+                <div className="p-2.5 rounded-xl bg-[#0F0F0F] border border-[#1A1A1A] space-y-1">
+                  <Award className="w-4 h-4 text-[#FF6B00] mx-auto" />
+                  <div className="text-sm font-extrabold text-white">100%</div>
+                  <div className="text-[10px] text-[#A0A0A0]">Practical</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </>
+
+      {/* 4. FOOTER */}
+      <footer className="border-t border-[#1A1A1A] bg-black text-xs text-[#A0A0A0] pt-12 pb-8 mt-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-8 border-b border-[#1A1A1A]">
+            <div className="space-y-1">
+              <div className="font-bold text-white">Physical Campus</div>
+              <div className="leading-relaxed">
+                Plot 11 Lateef Jakande Road, Agidingbi, Ikeja, Lagos
+              </div>
+            </div>
+
+            <div className="space-y-1">
+              <div className="font-bold text-white">Phone</div>
+              <div>0810 968 8638</div>
+            </div>
+
+            <div className="space-y-1">
+              <div className="font-bold text-white">Email</div>
+              <div>academy@city1051fm.com</div>
+            </div>
+
+            <div className="space-y-2">
+              <div className="font-bold text-white">Follow Us</div>
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-7 h-7 rounded-full bg-[#0A0A0A] border border-[#1A1A1A] hover:border-[#FF6B00] text-white flex items-center justify-center transition-colors"
+                >
+                  <span className="font-bold text-xs">f</span>
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-7 h-7 rounded-full bg-[#0A0A0A] border border-[#1A1A1A] hover:border-[#FF6B00] text-white flex items-center justify-center transition-colors"
+                >
+                  <span className="font-bold text-xs">ig</span>
+                </a>
+                <a
+                  href="https://x.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-7 h-7 rounded-full bg-[#0A0A0A] border border-[#1A1A1A] hover:border-[#FF6B00] text-white flex items-center justify-center transition-colors"
+                >
+                  <span className="font-bold text-xs">𝕏</span>
+                </a>
+                <a
+                  href="https://youtube.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-7 h-7 rounded-full bg-[#0A0A0A] border border-[#1A1A1A] hover:border-[#FF6B00] text-white flex items-center justify-center transition-colors"
+                >
+                  <span className="font-bold text-xs">yt</span>
+                </a>
+                <a
+                  href="https://tiktok.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-7 h-7 rounded-full bg-[#0A0A0A] border border-[#1A1A1A] hover:border-[#FF6B00] text-white flex items-center justify-center transition-colors"
+                >
+                  <span className="font-bold text-xs">tk</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center text-[#A0A0A0] text-xs">
+            © 2026 City Media Academy. All Rights Reserved.
+          </div>
+        </div>
+      </footer>
+    </div>
   );
 };
