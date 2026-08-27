@@ -21,8 +21,8 @@ import {
   Mail,
   Send,
 } from 'lucide-react';
-import { CmaLogo } from '../components/ui/CmaLogo';
 import { CmaFooter } from '../components/ui/CmaFooter';
+import { CmaNavbar } from '../components/ui/CmaNavbar';
 import { useAcademyStore } from '../store/useAcademyStore';
 
 interface EventItem {
@@ -122,50 +122,7 @@ export const EventsPage: React.FC = () => {
       </Helmet>
 
       {/* 1. TOP NAVBAR - Matching reference */}
-      <header className="sticky top-0 z-50 bg-black/85 backdrop-blur-md border-b border-[#1A1A1A]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex items-center group select-none">
-            <CmaLogo size="lg" showText={true} />
-          </Link>
-
-          {/* Centered Nav Links */}
-          <nav className="hidden md:flex items-center gap-8 text-[13px] font-medium tracking-wide">
-            <Link to="/" className="text-[#A0A0A0] hover:text-white transition-colors">
-              Home
-            </Link>
-            <Link to="/courses" className="text-[#A0A0A0] hover:text-white transition-colors">
-              Courses
-            </Link>
-            <Link to="/instructors" className="text-[#A0A0A0] hover:text-white transition-colors">
-              Mentors
-            </Link>
-            <Link to="/about" className="text-[#A0A0A0] hover:text-white transition-colors">
-              About Us
-            </Link>
-            <Link
-              to="/events"
-              className="text-[#FF6B00] font-bold relative py-1 border-b-2 border-[#FF6B00]"
-            >
-              Events
-            </Link>
-            <Link to="/contact" className="text-[#A0A0A0] hover:text-white transition-colors">
-              Contact
-            </Link>
-          </nav>
-
-          {/* Right Badge / Pill */}
-          <div className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#0A0A0A] border border-[#1A1A1A] text-xs font-semibold text-white shadow-xs">
-            <div className="w-5 h-5 rounded-full bg-[#FF6B00]/15 text-[#FF6B00] flex items-center justify-center">
-              <GraduationCap className="w-3 h-3" />
-            </div>
-            <div className="flex flex-col text-left leading-none">
-              <span className="text-[10px] font-bold text-white uppercase tracking-wider">CMA</span>
-              <span className="text-[9px] text-[#A0A0A0]">Experience Excellence</span>
-            </div>
-          </div>
-        </div>
-      </header>
+      <CmaNavbar />
 
       {/* 2. HERO SECTION */}
       <section className="relative pt-12 pb-14 lg:pt-16 lg:pb-20 overflow-hidden border-b border-[#1A1A1A]">

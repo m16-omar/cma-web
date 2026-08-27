@@ -19,8 +19,8 @@ import {
 } from 'lucide-react';
 import { replicaCoursesData, ReplicaCourse } from '../data/replicaCourses';
 import { CourseCard } from '../components/course/CourseCard';
-import { CmaLogo } from '../components/ui/CmaLogo';
 import { CmaFooter } from '../components/ui/CmaFooter';
+import { CmaNavbar } from '../components/ui/CmaNavbar';
 import { useAcademyStore } from '../store/useAcademyStore';
 
 export const CoursesPage: React.FC = () => {
@@ -90,69 +90,7 @@ export const CoursesPage: React.FC = () => {
       </Helmet>
 
       {/* 1. TOP NAVBAR - Matching reference */}
-      <header className="sticky top-0 z-50 bg-black/85 backdrop-blur-md border-b border-[#1A1A1A]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
-          {/* Brand Logo */}
-          <Link to="/" className="flex items-center group select-none">
-            <CmaLogo size="lg" showText={true} />
-          </Link>
-
-          {/* Nav Links */}
-          <nav className="hidden md:flex items-center gap-8 text-[13px] font-medium tracking-wide">
-            <Link to="/" className="text-[#A0A0A0] hover:text-white transition-colors">
-              Home
-            </Link>
-            <Link
-              to="/courses"
-              className="text-[#FF6B00] font-bold relative py-1 border-b-2 border-[#FF6B00]"
-            >
-              Courses
-            </Link>
-            <Link to="/instructors" className="text-[#A0A0A0] hover:text-white transition-colors">
-              Mentors
-            </Link>
-            <Link to="/about" className="text-[#A0A0A0] hover:text-white transition-colors">
-              About Us
-            </Link>
-            <Link to="/courses" className="text-[#A0A0A0] hover:text-white transition-colors">
-              Events
-            </Link>
-            <Link to="/contact" className="text-[#A0A0A0] hover:text-white transition-colors">
-              Contact
-            </Link>
-          </nav>
-
-          {/* Right Search Button */}
-          <div className="flex items-center gap-3">
-            {searchOpen ? (
-              <div className="flex items-center bg-[#0A0A0A] border border-[#FF6B00] rounded-full px-3 py-1 text-xs">
-                <input
-                  type="text"
-                  placeholder="Search courses..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="bg-transparent text-white focus:outline-none w-32 sm:w-44 text-xs"
-                  autoFocus
-                />
-                <button
-                  onClick={() => setSearchOpen(false)}
-                  className="text-white/60 hover:text-white ml-1 text-xs"
-                >
-                  ✕
-                </button>
-              </div>
-            ) : (
-              <button
-                onClick={() => setSearchOpen(true)}
-                className="w-9 h-9 rounded-full bg-[#0A0A0A] border border-[#1A1A1A] hover:border-[#FF6B00] text-[#A0A0A0] hover:text-white flex items-center justify-center transition-colors cursor-pointer"
-                aria-label="Search Courses"
-              >
-                <Search className="w-4 h-4" />
-              </button>
-            )}
-          </div>
-        </div>
-      </header>
+      <CmaNavbar />
 
       {/* 2. HERO / PAGE TITLE BANNER */}
       <section className="relative pt-10 pb-12 lg:pt-14 lg:pb-16 overflow-hidden border-b border-[#1A1A1A]">

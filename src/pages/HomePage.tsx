@@ -23,8 +23,7 @@ import { PillarCard } from '../components/home/PillarCard';
 import { MentorCard } from '../components/home/MentorCard';
 import { TestimonialCard } from '../components/home/TestimonialCard';
 import { CmaFooter } from '../components/ui/CmaFooter';
-
-import { CmaLogo } from '../components/ui/CmaLogo';
+import { CmaNavbar } from '../components/ui/CmaNavbar';
 
 export const HomePage: React.FC = () => {
   const mentorsScrollRef = useRef<HTMLDivElement>(null);
@@ -47,41 +46,7 @@ export const HomePage: React.FC = () => {
       </Helmet>
 
       {/* 1. NAVBAR - Matching reference UI */}
-      <header className="sticky top-0 z-50 bg-black/85 backdrop-blur-md border-b border-[#1A1A1A]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
-          {/* Exact Brand Logo */}
-          <Link to="/" className="flex items-center group">
-            <CmaLogo size="lg" showText={true} />
-          </Link>
-
-          {/* Centered Nav Links */}
-          <nav className="hidden md:flex items-center gap-8 text-[13px] font-medium tracking-wide">
-            <Link
-              to="/"
-              className="text-[#FF6B00] font-bold relative py-1 border-b-2 border-[#FF6B00]"
-            >
-              Home
-            </Link>
-            <Link to="/courses" className="text-[#A0A0A0] hover:text-white transition-colors">
-              Courses
-            </Link>
-            <Link to="/instructors" className="text-[#A0A0A0] hover:text-white transition-colors">
-              Mentors
-            </Link>
-            <Link to="/about" className="text-[#A0A0A0] hover:text-white transition-colors">
-              About Us
-            </Link>
-            <Link to="/courses" className="text-[#A0A0A0] hover:text-white transition-colors">
-              Events
-            </Link>
-            <Link to="/contact" className="text-[#A0A0A0] hover:text-white transition-colors">
-              Contact
-            </Link>
-          </nav>
-
-          <div className="w-12 hidden md:block" />
-        </div>
-      </header>
+      <CmaNavbar />
 
       {/* 2. HERO SECTION */}
       <section className="relative pt-12 pb-14 lg:pt-16 lg:pb-20 overflow-hidden">

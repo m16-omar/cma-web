@@ -184,6 +184,10 @@ interface AcademyState {
   openWaitlistModal: (courseId?: string) => void;
   closeWaitlistModal: () => void;
 
+  isLoginModalOpen: boolean;
+  openLoginModal: () => void;
+  closeLoginModal: () => void;
+
   isPreviewVideoOpen: boolean;
   previewLesson: Lesson | null;
   openPreviewModal: (lesson: Lesson) => void;
@@ -249,6 +253,10 @@ export const useAcademyStore = create<AcademyState>((set, get) => ({
   openWaitlistModal: (courseId) =>
     set({ isWaitlistOpen: true, activeCourseIdForModal: courseId || 'broadcast-media-pro-2026' }),
   closeWaitlistModal: () => set({ isWaitlistOpen: false, activeCourseIdForModal: null }),
+
+  isLoginModalOpen: false,
+  openLoginModal: () => set({ isLoginModalOpen: true }),
+  closeLoginModal: () => set({ isLoginModalOpen: false }),
 
   isPreviewVideoOpen: false,
   previewLesson: null,
