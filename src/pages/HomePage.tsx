@@ -23,6 +23,8 @@ import { PillarCard } from '../components/home/PillarCard';
 import { MentorCard } from '../components/home/MentorCard';
 import { TestimonialCard } from '../components/home/TestimonialCard';
 
+import { CmaLogo } from '../components/ui/CmaLogo';
+
 export const HomePage: React.FC = () => {
   const mentorsScrollRef = useRef<HTMLDivElement>(null);
 
@@ -46,14 +48,9 @@ export const HomePage: React.FC = () => {
       {/* 1. NAVBAR - Matching reference UI */}
       <header className="sticky top-0 z-50 bg-black/85 backdrop-blur-md border-b border-[#1A1A1A]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex flex-col group select-none">
-            <span className="text-2xl sm:text-3xl font-serif italic text-[#FF6B00] leading-none font-bold tracking-wide drop-shadow-sm">
-              City
-            </span>
-            <span className="text-[11px] sm:text-xs font-black tracking-widest text-white uppercase mt-0.5 font-display">
-              MEDIA ACADEMY
-            </span>
+          {/* Exact Brand Logo */}
+          <Link to="/" className="flex items-center group">
+            <CmaLogo size="md" />
           </Link>
 
           {/* Centered Nav Links */}
