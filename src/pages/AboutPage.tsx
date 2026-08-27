@@ -1,191 +1,623 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import {
-  Sparkles,
-  Radio,
-  Award,
   Users,
-  CheckCircle2,
+  Radio,
+  GraduationCap,
+  Trophy,
+  Target,
+  Eye,
+  BookOpen,
+  Film,
+  Wrench,
+  Building,
+  Wifi,
+  UserCheck,
+  Award,
+  Sparkles,
+  ShieldCheck,
+  Lightbulb,
+  Heart,
+  Briefcase,
   MapPin,
   Phone,
   Mail,
   ArrowRight,
-  ShieldCheck,
-  Building2,
 } from 'lucide-react';
-import { companyDetails } from '../data/company';
-import { Button } from '../components/ui/Button';
-import { useAcademyStore } from '../store/useAcademyStore';
+import { CmaLogo } from '../components/ui/CmaLogo';
 
 export const AboutPage: React.FC = () => {
-  const { openWaitlistModal } = useAcademyStore();
-
-  const values = [
-    {
-      title: 'Practical Studio Rigour',
-      description: 'Zero theoretical fluff. Every student handles live broadcast consoles, teleprompters, and studio mics from day one.',
-    },
-    {
-      title: 'Active Industry Mentorship',
-      description: 'Taught exclusively by working on-air personalities, news directors, and commercial voice actors.',
-    },
-    {
-      title: 'Guaranteed Station Internship',
-      description: 'Direct 3-week transition into live radio production at City 105.1 FM and 93.5 Area FM.',
-    },
-    {
-      title: 'Modern Creator Monetization',
-      description: 'Equipping graduates not just for jobs, but to build lucrative independent media agencies and personal brands.',
-    },
-  ];
-
   return (
-    <>
+    <div className="min-h-screen bg-black text-white font-sans selection:bg-[#FF6B00] selection:text-white">
       <Helmet>
-        <title>About City Media Academy | Cardinal Broadcasting Network</title>
+        <title>About Us | City Media Academy</title>
         <meta
           name="description"
-          content="Learn about City Media Academy (CMA), Nigeria's premier broadcast and media training institution in Ikeja, Lagos, powered by Cardinal Broadcasting."
+          content="City Media Academy (CMA) is the training arm of City 105.1 FM. Nurturing the next generation of radio professionals and media entrepreneurs."
         />
       </Helmet>
 
-      <div className="py-12 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        {/* Hero Section */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FF6B00]/10 border border-[#FF6B00]/25 text-xs font-bold text-[#FF6B00] uppercase tracking-wider">
-            <Sparkles className="w-4 h-4" />
-            <span>Our Story & Mission</span>
-          </div>
+      {/* 1. TOP NAVBAR - Matching reference */}
+      <header className="sticky top-0 z-50 bg-black/85 backdrop-blur-md border-b border-[#1A1A1A]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
+          {/* Logo */}
+          <Link to="/" className="flex items-center group select-none">
+            <CmaLogo size="lg" showText={true} />
+          </Link>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black font-display text-slate-900 dark:text-white tracking-tight leading-tight">
-            Nurturing the Next Generation of Broadcast Leaders
-          </h1>
+          {/* Centered Nav Links */}
+          <nav className="hidden md:flex items-center gap-8 text-[13px] font-medium tracking-wide">
+            <Link to="/" className="text-[#A0A0A0] hover:text-white transition-colors">
+              Home
+            </Link>
+            <Link to="/courses" className="text-[#A0A0A0] hover:text-white transition-colors">
+              Courses
+            </Link>
+            <Link to="/instructors" className="text-[#A0A0A0] hover:text-white transition-colors">
+              Mentors
+            </Link>
+            <Link
+              to="/about"
+              className="text-[#FF6B00] font-bold relative py-1 border-b-2 border-[#FF6B00]"
+            >
+              About Us
+            </Link>
+            <Link to="/courses" className="text-[#A0A0A0] hover:text-white transition-colors">
+              Events
+            </Link>
+            <Link to="/contact" className="text-[#A0A0A0] hover:text-white transition-colors">
+              Contact
+            </Link>
+          </nav>
 
-          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-            City Media Academy (CMA) was founded by <strong>Cardinal Broadcasting Limited</strong> to bridge the critical gap between traditional media education and the practical demands of modern 21st-century broadcasting and digital content creation.
-          </p>
-        </div>
-
-        {/* Story Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          <div className="lg:col-span-6 rounded-3xl overflow-hidden aspect-[4/3] bg-slate-900 border border-slate-200 dark:border-white/10 relative shadow-2xl">
-            <img
-              src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=1200&auto=format&fit=crop"
-              alt="City FM Studios"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-            <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-black/70 backdrop-blur-md border border-white/10 text-white text-xs space-y-1">
-              <div className="font-bold text-sm text-[#FF6B00]">City 105.1 FM Broadcast Headquarters</div>
-              <div>Plot 11 Lateef Jakande Road, Agidingbi, Ikeja, Lagos</div>
+          {/* Right Badge / Pill */}
+          <div className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#0A0A0A] border border-[#1A1A1A] text-xs font-semibold text-white shadow-xs">
+            <div className="w-5 h-5 rounded-full bg-[#FF6B00]/15 text-[#FF6B00] flex items-center justify-center">
+              <GraduationCap className="w-3 h-3" />
             </div>
-          </div>
-
-          <div className="lg:col-span-6 space-y-5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-bold text-slate-700 dark:text-slate-300">
-              <Building2 className="w-4 h-4 text-[#FF6B00]" />
-              <span>Cardinal Broadcasting Network</span>
-            </div>
-
-            <h2 className="text-2xl sm:text-3xl font-bold font-display text-slate-900 dark:text-white">
-              From the Airwaves to the Academy Classroom
-            </h2>
-
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              Operating under the umbrella of Cardinal Broadcasting Limited — home to <strong>City 105.1 FM</strong>, <strong>93.5 Area FM</strong>, and <strong>Praise in the City</strong> — CMA has trained over 5,000 students who now anchor flagship morning drive shows, voice national commercials, produce chart-topping podcasts, and host prestigious corporate events across Africa.
-            </p>
-
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              Our unique 5-week model combines <strong>2 weeks of intensive, 5-hour daily masterclasses</strong> with <strong>3 weeks of hands-on station internship</strong>, ensuring our alumni enter the job market with verified live broadcast experience.
-            </p>
-
-            <div className="pt-2">
-              <Button
-                variant="primary"
-                size="md"
-                icon="arrow-up-right"
-                onClick={() => openWaitlistModal('broadcast-media-pro-2026')}
-              >
-                Join Next Cohort (July 06, 2026)
-              </Button>
+            <div className="flex flex-col text-left leading-none">
+              <span className="text-[10px] font-bold text-white uppercase tracking-wider">CMA</span>
+              <span className="text-[9px] text-[#A0A0A0]">Experience Excellence</span>
             </div>
           </div>
         </div>
+      </header>
 
-        {/* Core Pillars / Values Grid */}
-        <div className="space-y-6">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <h3 className="text-2xl sm:text-3xl font-bold font-display text-slate-900 dark:text-white">
-              The CMA Distinction
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-500">
-              Why Nigeria’s leading broadcasters trust City Media Academy for talent development.
-            </p>
-          </div>
+      {/* 2. HERO SECTION */}
+      <section className="relative pt-12 pb-14 lg:pt-16 lg:pb-20 overflow-hidden border-b border-[#1A1A1A]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            {/* Left Copy & Stats */}
+            <div className="lg:col-span-7 space-y-6">
+              {/* Pre-Heading */}
+              <span className="text-xs sm:text-sm font-bold text-[#FF6B00] uppercase tracking-widest block font-display">
+                ABOUT CITY MEDIA ACADEMY
+              </span>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map((val, idx) => (
-              <div
-                key={idx}
-                className="p-6 rounded-3xl bg-white dark:bg-[#131722] border border-slate-200 dark:border-white/10 shadow-sm space-y-3"
-              >
-                <div className="w-10 h-10 rounded-xl bg-[#FF6B00]/15 text-[#FF6B00] flex items-center justify-center font-black">
-                  0{idx + 1}
+              {/* Main Headline */}
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black font-display text-white tracking-tight leading-[1.08]">
+                Nurturing the Next<br />
+                Generation of Radio<br />
+                Professionals and<br />
+                <span className="text-[#FF6B00]">Media Entrepreneurs.</span>
+              </h1>
+
+              {/* Subtitle Paragraph */}
+              <p className="text-xs sm:text-sm text-[#A0A0A0] leading-relaxed font-normal max-w-xl">
+                City Media Academy (CMA) is the training arm of City 105.1 FM, one of Nigeria's leading urban contemporary radio stations. We are passionate about developing skilled, confident and industry-ready broadcast media professionals who will shape the future of media in Africa and beyond.
+              </p>
+
+              {/* Mentor Statistics Bar (4 Items) */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center text-[#FF6B00] flex-shrink-0">
+                    <Users className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="text-2xl font-black text-white leading-none font-display">8</div>
+                    <div className="text-[11px] text-[#A0A0A0] mt-0.5 leading-tight">Industry Mentors</div>
+                  </div>
                 </div>
-                <h4 className="text-base font-bold text-slate-900 dark:text-white">
-                  {val.title}
+
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center text-[#FF6B00] flex-shrink-0">
+                    <Radio className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="text-2xl font-black text-white leading-none font-display">150+</div>
+                    <div className="text-[11px] text-[#A0A0A0] mt-0.5 leading-tight">Years Combined Experience</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center text-[#FF6B00] flex-shrink-0">
+                    <GraduationCap className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="text-2xl font-black text-white leading-none font-display">1000+</div>
+                    <div className="text-[11px] text-[#A0A0A0] mt-0.5 leading-tight">Students Mentored</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center text-[#FF6B00] flex-shrink-0">
+                    <Trophy className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="text-base sm:text-lg font-black text-white leading-tight font-display">Top</div>
+                    <div className="text-[11px] text-[#A0A0A0] leading-tight">Industry Experts</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Campus / Lobby Visual */}
+            <div className="lg:col-span-5 relative rounded-3xl overflow-hidden bg-[#0A0A0A] border border-[#1A1A1A] aspect-[4/3] shadow-2xl">
+              <img
+                src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1200&auto=format&fit=crop"
+                alt="City Media Academy Campus"
+                className="w-full h-full object-cover filter brightness-75 contrast-125"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+
+              {/* Glowing Reception Logo Sign */}
+              <div className="absolute top-6 left-6 p-3 rounded-xl bg-black/80 backdrop-blur-md border border-white/10 shadow-lg">
+                <span className="font-serif italic font-bold text-[#FF6B00] text-xl block leading-none">
+                  City
+                </span>
+                <span className="text-[9px] font-black tracking-widest text-white uppercase font-display block mt-0.5">
+                  MEDIA ACADEMY
+                </span>
+              </div>
+
+              {/* Framed Poster Accent on Right */}
+              <div className="absolute top-6 right-6 p-2.5 rounded-lg border border-[#FF6B00]/40 bg-black/80 backdrop-blur-md text-[9px] font-mono leading-tight tracking-wider text-right shadow-md">
+                <span className="text-[#A0A0A0] block">WHERE</span>
+                <span className="text-[#FF6B00] font-black block">PASSION</span>
+                <span className="text-white block">MEETS</span>
+                <span className="text-[#FF6B00] font-black block">PURPOSE.</span>
+              </div>
+
+              {/* ON AIR Sign in background */}
+              <div className="absolute bottom-6 right-6 px-2.5 py-1 rounded-md border border-red-600 bg-red-950/90 flex items-center gap-1.5 shadow-[0_0_15px_rgba(220,38,38,0.7)]">
+                <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                <span className="text-[10px] font-black text-red-500 font-mono tracking-widest">
+                  ON AIR
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. MISSION, VISION & STORY (3 CARDS) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Our Mission */}
+          <div className="p-6 sm:p-7 rounded-2xl bg-[#0A0A0A] border border-[#1A1A1A] space-y-4 hover:border-[#FF6B00]/40 transition-all shadow-md group">
+            <span className="text-xs font-bold text-[#FF6B00] tracking-wider uppercase block font-display">
+              OUR MISSION
+            </span>
+            <div className="w-10 h-10 rounded-xl bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center text-[#FF6B00]">
+              <Target className="w-5 h-5" />
+            </div>
+            <p className="text-xs sm:text-[13px] text-[#A0A0A0] leading-relaxed">
+              To deliver world-class broadcast and media training that equips individuals with practical skills, confidence and values needed to excel in the media industry and build sustainable careers.
+            </p>
+          </div>
+
+          {/* Our Vision */}
+          <div className="p-6 sm:p-7 rounded-2xl bg-[#0A0A0A] border border-[#1A1A1A] space-y-4 hover:border-[#FF6B00]/40 transition-all shadow-md group">
+            <span className="text-xs font-bold text-[#FF6B00] tracking-wider uppercase block font-display">
+              OUR VISION
+            </span>
+            <div className="w-10 h-10 rounded-xl bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center text-[#FF6B00]">
+              <Eye className="w-5 h-5" />
+            </div>
+            <p className="text-xs sm:text-[13px] text-[#A0A0A0] leading-relaxed">
+              To be Africa's most respected media academy, empowering creatives and communicators to influence culture, drive innovation and transform communities through media.
+            </p>
+          </div>
+
+          {/* Our Story */}
+          <div className="p-6 sm:p-7 rounded-2xl bg-[#0A0A0A] border border-[#1A1A1A] space-y-4 hover:border-[#FF6B00]/40 transition-all shadow-md group">
+            <span className="text-xs font-bold text-[#FF6B00] tracking-wider uppercase block font-display">
+              OUR STORY
+            </span>
+            <div className="w-10 h-10 rounded-xl bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center text-[#FF6B00]">
+              <BookOpen className="w-5 h-5" />
+            </div>
+            <p className="text-xs sm:text-[13px] text-[#A0A0A0] leading-relaxed">
+              Born out of the desire to bridge the skills gap in the media industry, CMA was established to provide high-quality, practical and relevant media education. Today, we continue to raise a new generation of broadcast professionals, content creators and media entrepreneurs who are making impact across the world.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. WHY CHOOSE CMA & OUR CORE VALUES */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Left: Why Choose City Media Academy? (7 Cols) */}
+          <div className="lg:col-span-7 rounded-3xl bg-[#0A0A0A] border border-[#1A1A1A] p-6 sm:p-8 space-y-6 shadow-xl">
+            <h3 className="text-xs font-bold text-white tracking-widest uppercase font-display">
+              WHY CHOOSE CITY MEDIA ACADEMY?
+            </h3>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-2">
+              {/* Feature 1 */}
+              <div className="space-y-2">
+                <div className="w-8 h-8 rounded-lg bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center text-[#FF6B00]">
+                  <Film className="w-4 h-4" />
+                </div>
+                <h4 className="text-xs font-bold text-white font-display">
+                  Industry-Driven Curriculum
                 </h4>
-                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                  {val.description}
+                <p className="text-[11px] text-[#A0A0A0] leading-relaxed">
+                  Our courses are designed by industry experts and updated to reflect current trends.
                 </p>
               </div>
-            ))}
+
+              {/* Feature 2 */}
+              <div className="space-y-2">
+                <div className="w-8 h-8 rounded-lg bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center text-[#FF6B00]">
+                  <Wrench className="w-4 h-4" />
+                </div>
+                <h4 className="text-xs font-bold text-white font-display">
+                  Hands-On Training
+                </h4>
+                <p className="text-[11px] text-[#A0A0A0] leading-relaxed">
+                  Learn by doing with practical sessions, real projects and studio experience.
+                </p>
+              </div>
+
+              {/* Feature 3 */}
+              <div className="space-y-2">
+                <div className="w-8 h-8 rounded-lg bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center text-[#FF6B00]">
+                  <Building className="w-4 h-4" />
+                </div>
+                <h4 className="text-xs font-bold text-white font-display">
+                  City FM Internship
+                </h4>
+                <p className="text-[11px] text-[#A0A0A0] leading-relaxed">
+                  Gain real-world exposure with 3 weeks internship at City FM.
+                </p>
+              </div>
+
+              {/* Feature 4 */}
+              <div className="space-y-2">
+                <div className="w-8 h-8 rounded-lg bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center text-[#FF6B00]">
+                  <Wifi className="w-4 h-4" />
+                </div>
+                <h4 className="text-xs font-bold text-white font-display">
+                  Hybrid Learning
+                </h4>
+                <p className="text-[11px] text-[#A0A0A0] leading-relaxed">
+                  Flexible learning with both physical classes at Ikeja studio and live online access.
+                </p>
+              </div>
+
+              {/* Feature 5 */}
+              <div className="space-y-2">
+                <div className="w-8 h-8 rounded-lg bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center text-[#FF6B00]">
+                  <UserCheck className="w-4 h-4" />
+                </div>
+                <h4 className="text-xs font-bold text-white font-display">
+                  Expert Mentorship
+                </h4>
+                <p className="text-[11px] text-[#A0A0A0] leading-relaxed">
+                  Learn from seasoned professionals with proven industry experience.
+                </p>
+              </div>
+
+              {/* Feature 6 */}
+              <div className="space-y-2">
+                <div className="w-8 h-8 rounded-lg bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center text-[#FF6B00]">
+                  <Award className="w-4 h-4" />
+                </div>
+                <h4 className="text-xs font-bold text-white font-display">
+                  Certification
+                </h4>
+                <p className="text-[11px] text-[#A0A0A0] leading-relaxed">
+                  Earn recognized certificates that boost your credibility and career opportunities.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Our Core Values (5 Cols) */}
+          <div className="lg:col-span-5 rounded-3xl bg-[#0A0A0A] border border-[#1A1A1A] p-6 sm:p-8 space-y-6 shadow-xl">
+            <h3 className="text-xs font-bold text-white tracking-widest uppercase font-display">
+              OUR CORE VALUES
+            </h3>
+
+            <div className="space-y-4 pt-1">
+              {/* Value 1: Excellence */}
+              <div className="flex items-start gap-3.5 pb-3 border-b border-[#181818]">
+                <div className="w-9 h-9 rounded-full bg-[#FF6B00]/10 border border-[#FF6B00]/30 text-[#FF6B00] flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <GraduationCap className="w-4 h-4" />
+                </div>
+                <div>
+                  <h4 className="text-xs font-bold text-white font-display">Excellence</h4>
+                  <p className="text-[11px] text-[#A0A0A0] leading-relaxed mt-0.5">
+                    We are committed to delivering the highest standard of training and student experience.
+                  </p>
+                </div>
+              </div>
+
+              {/* Value 2: Integrity */}
+              <div className="flex items-start gap-3.5 pb-3 border-b border-[#181818]">
+                <div className="w-9 h-9 rounded-full bg-[#FF6B00]/10 border border-[#FF6B00]/30 text-[#FF6B00] flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <ShieldCheck className="w-4 h-4" />
+                </div>
+                <div>
+                  <h4 className="text-xs font-bold text-white font-display">Integrity</h4>
+                  <p className="text-[11px] text-[#A0A0A0] leading-relaxed mt-0.5">
+                    We uphold honesty, transparency and professionalism in all we do.
+                  </p>
+                </div>
+              </div>
+
+              {/* Value 3: Innovation */}
+              <div className="flex items-start gap-3.5 pb-3 border-b border-[#181818]">
+                <div className="w-9 h-9 rounded-full bg-[#FF6B00]/10 border border-[#FF6B00]/30 text-[#FF6B00] flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Lightbulb className="w-4 h-4" />
+                </div>
+                <div>
+                  <h4 className="text-xs font-bold text-white font-display">Innovation</h4>
+                  <p className="text-[11px] text-[#A0A0A0] leading-relaxed mt-0.5">
+                    We embrace creativity and technology to prepare students for the future.
+                  </p>
+                </div>
+              </div>
+
+              {/* Value 4: Impact */}
+              <div className="flex items-start gap-3.5">
+                <div className="w-9 h-9 rounded-full bg-[#FF6B00]/10 border border-[#FF6B00]/30 text-[#FF6B00] flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Award className="w-4 h-4" />
+                </div>
+                <div>
+                  <h4 className="text-xs font-bold text-white font-display">Impact</h4>
+                  <p className="text-[11px] text-[#A0A0A0] leading-relaxed mt-0.5">
+                    We exist to raise media professionals who create meaningful impact in society.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+      </section>
 
-        {/* Campus & Facilities Info */}
-        <div className="p-8 sm:p-12 rounded-3xl bg-slate-50 dark:bg-[#0E1017] border border-slate-200 dark:border-white/10 shadow-lg grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="space-y-2">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#FF6B00]">
-              <MapPin className="w-4 h-4" />
-              <span>Campus Address</span>
+      {/* 5. POWERED BY CITY FM BANNER */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="rounded-3xl bg-[#0A0A0A] border border-[#1A1A1A] p-6 sm:p-8 lg:p-10 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          {/* Left Studio Image + Badge */}
+          <div className="lg:col-span-6 relative rounded-2xl overflow-hidden aspect-[16/10] bg-black/60 border border-[#1A1A1A]">
+            <img
+              src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=1000&auto=format&fit=crop"
+              alt="City 105.1 FM Studio"
+              className="w-full h-full object-cover grayscale-[20%] contrast-125"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+
+            {/* City 105.1 FM Badge */}
+            <div className="absolute top-4 left-4 w-12 h-12 rounded-full bg-[#FF6B00] text-black font-black flex flex-col items-center justify-center border-2 border-white/30 shadow-lg">
+              <span className="text-[8px] text-white font-extrabold leading-none">CITY</span>
+              <span className="text-[10px] text-black bg-white px-1 rounded-[2px] leading-none mt-0.5 font-black">
+                105.1 FM
+              </span>
             </div>
-            <h4 className="text-base font-bold text-slate-900 dark:text-white">
-              Ikeja Studio Complex
-            </h4>
-            <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-              {companyDetails.address}, {companyDetails.state}, Nigeria
-            </p>
           </div>
 
-          <div className="space-y-2">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-cyan-400">
-              <Phone className="w-4 h-4" />
-              <span>Admissions Hotlines</span>
-            </div>
-            <h4 className="text-base font-bold text-slate-900 dark:text-white">
-              Direct Phone & WhatsApp
-            </h4>
-            <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-              {companyDetails.phone} • {companyDetails.altPhone}
-            </p>
-          </div>
+          {/* Right Copy & 4 Badges */}
+          <div className="lg:col-span-6 space-y-4">
+            <span className="text-xs font-bold text-[#FF6B00] uppercase tracking-wider font-display">
+              POWERED BY CITY FM
+            </span>
 
-          <div className="space-y-2">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-400">
-              <Mail className="w-4 h-4" />
-              <span>Email Enquiries</span>
-            </div>
-            <h4 className="text-base font-bold text-slate-900 dark:text-white">
-              Official Desk
-            </h4>
-            <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-              {companyDetails.email}
+            <h3 className="text-2xl sm:text-3xl font-black font-display text-white leading-tight">
+              Learn at the Home of Urban<br />
+              Contemporary Radio
+            </h3>
+
+            <p className="text-xs sm:text-sm text-[#A0A0A0] leading-relaxed">
+              As the training arm of City 105.1 FM, students at CMA benefit from access to state-of-the-art studios, industry-standard equipment and real broadcast environments. Our strong industry connection opens doors to opportunities that go beyond the classroom.
             </p>
+
+            <div className="grid grid-cols-2 gap-3 pt-2">
+              <div className="flex items-center gap-2 text-xs text-white">
+                <Trophy className="w-4 h-4 text-[#FF6B00] flex-shrink-0" />
+                <span className="text-[11px] sm:text-xs">Live Broadcast Experience</span>
+              </div>
+
+              <div className="flex items-center gap-2 text-xs text-white">
+                <Building className="w-4 h-4 text-[#FF6B00] flex-shrink-0" />
+                <span className="text-[11px] sm:text-xs">Professional Facilities</span>
+              </div>
+
+              <div className="flex items-center gap-2 text-xs text-white">
+                <Users className="w-4 h-4 text-[#FF6B00] flex-shrink-0" />
+                <span className="text-[11px] sm:text-xs">Industry Network</span>
+              </div>
+
+              <div className="flex items-center gap-2 text-xs text-white">
+                <Target className="w-4 h-4 text-[#FF6B00] flex-shrink-0" />
+                <span className="text-[11px] sm:text-xs">Real Projects & Opportunities</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </>
+      </section>
+
+      {/* 6. STATS BAR (5 METRICS) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="rounded-2xl bg-[#0A0A0A] border border-[#1A1A1A] grid grid-cols-2 sm:grid-cols-5 divide-y sm:divide-y-0 sm:divide-x divide-[#1A1A1A] p-4 sm:p-6 shadow-xl text-center">
+          <div className="p-4 space-y-1">
+            <div className="text-2xl sm:text-3xl font-black text-[#FF6B00] font-display">5000+</div>
+            <div className="text-xs text-[#A0A0A0]">Students Trained</div>
+          </div>
+
+          <div className="p-4 space-y-1">
+            <div className="text-2xl sm:text-3xl font-black text-[#FF6B00] font-display">35+</div>
+            <div className="text-xs text-[#A0A0A0]">Courses Offered</div>
+          </div>
+
+          <div className="p-4 space-y-1">
+            <div className="text-2xl sm:text-3xl font-black text-[#FF6B00] font-display">25+</div>
+            <div className="text-xs text-[#A0A0A0]">Industry Mentors</div>
+          </div>
+
+          <div className="p-4 space-y-1">
+            <div className="text-2xl sm:text-3xl font-black text-[#FF6B00] font-display">10+</div>
+            <div className="text-xs text-[#A0A0A0]">Years of Excellence</div>
+          </div>
+
+          <div className="p-4 space-y-1 col-span-2 sm:col-span-1">
+            <div className="text-2xl sm:text-3xl font-black text-[#FF6B00] font-display">94%</div>
+            <div className="text-xs text-[#A0A0A0]">Placement Success</div>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. RICH FOOTER - Matching reference */}
+      <footer className="border-t border-[#1A1A1A] bg-black text-xs text-[#A0A0A0] pt-14 pb-8 mt-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-8 border-b border-[#1A1A1A]">
+            {/* Col 1: Brand Logo & Socials */}
+            <div className="space-y-4">
+              <CmaLogo size="md" showText={true} />
+              <p className="text-xs text-[#A0A0A0] leading-relaxed max-w-xs">
+                Nurturing the next generation of radio professionals and media entrepreneurs.
+              </p>
+              <div className="flex items-center gap-2.5 pt-1">
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-7 h-7 rounded-full bg-[#0A0A0A] border border-[#1A1A1A] hover:border-[#FF6B00] text-white flex items-center justify-center transition-colors"
+                >
+                  <span className="font-bold text-xs">f</span>
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-7 h-7 rounded-full bg-[#0A0A0A] border border-[#1A1A1A] hover:border-[#FF6B00] text-white flex items-center justify-center transition-colors"
+                >
+                  <span className="font-bold text-[10px]">ig</span>
+                </a>
+                <a
+                  href="https://x.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-7 h-7 rounded-full bg-[#0A0A0A] border border-[#1A1A1A] hover:border-[#FF6B00] text-white flex items-center justify-center transition-colors"
+                >
+                  <span className="font-bold text-[10px]">𝕏</span>
+                </a>
+                <a
+                  href="https://youtube.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-7 h-7 rounded-full bg-[#0A0A0A] border border-[#1A1A1A] hover:border-[#FF6B00] text-white flex items-center justify-center transition-colors"
+                >
+                  <span className="font-bold text-[10px]">yt</span>
+                </a>
+                <a
+                  href="https://tiktok.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-7 h-7 rounded-full bg-[#0A0A0A] border border-[#1A1A1A] hover:border-[#FF6B00] text-white flex items-center justify-center transition-colors"
+                >
+                  <span className="font-bold text-[9px]">tk</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Col 2: Contact Us */}
+            <div className="space-y-3">
+              <div className="font-bold text-white uppercase tracking-wider text-xs font-display">
+                CONTACT US
+              </div>
+              <div className="space-y-2 text-xs">
+                <div className="flex items-start gap-2.5">
+                  <MapPin className="w-4 h-4 text-[#FF6B00] flex-shrink-0 mt-0.5" />
+                  <span className="text-[#A0A0A0]">
+                    Plot 11 Lateef Jakande Road, Agidingbi, Ikeja, Lagos
+                  </span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <Phone className="w-4 h-4 text-[#FF6B00] flex-shrink-0" />
+                  <span className="text-[#A0A0A0]">0810 968 8638</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <Mail className="w-4 h-4 text-[#FF6B00] flex-shrink-0" />
+                  <span className="text-[#A0A0A0]">academy@city1051fm.com</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Col 3: Quick Links */}
+            <div className="space-y-3">
+              <div className="font-bold text-white uppercase tracking-wider text-xs font-display">
+                QUICK LINKS
+              </div>
+              <ul className="space-y-1.5 text-xs text-[#A0A0A0]">
+                <li>
+                  <Link to="/courses" className="hover:text-[#FF6B00] transition-colors">
+                    Courses
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/instructors" className="hover:text-[#FF6B00] transition-colors">
+                    Mentors
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/courses" className="hover:text-[#FF6B00] transition-colors">
+                    Events
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/about" className="hover:text-[#FF6B00] transition-colors">
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/contact" className="hover:text-[#FF6B00] transition-colors">
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Col 4: Visit Our Campus */}
+            <div className="space-y-3">
+              <div className="font-bold text-white uppercase tracking-wider text-xs font-display">
+                VISIT OUR CAMPUS
+              </div>
+              <div className="rounded-xl overflow-hidden border border-[#1A1A1A] aspect-[16/10] bg-black/60 relative group shadow-md">
+                <img
+                  src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=600&auto=format&fit=crop"
+                  alt="City Media Academy Campus Complex"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                  <div className="px-3 py-1.5 rounded-lg bg-black/80 border border-[#FF6B00]/40 text-center">
+                    <span className="text-[10px] font-bold text-white block leading-tight">
+                      CMA CAMPUS
+                    </span>
+                    <span className="text-[8px] text-[#FF6B00] block">Ikeja, Lagos</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center text-[#A0A0A0] text-xs">
+            © 2026 City Media Academy. All Rights Reserved.
+          </div>
+        </div>
+      </footer>
+    </div>
   );
 };

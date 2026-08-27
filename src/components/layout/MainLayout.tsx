@@ -18,7 +18,8 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     location.pathname === '/courses' ||
     location.pathname.startsWith('/course') ||
     location.pathname === '/instructors' ||
-    location.pathname === '/mentors';
+    location.pathname === '/mentors' ||
+    location.pathname === '/about';
 
   if (isReplicaPage) {
     return (
