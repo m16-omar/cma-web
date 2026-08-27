@@ -6,7 +6,7 @@ import { useAcademyStore } from '../../store/useAcademyStore';
 
 export const CmaNavbar: React.FC = () => {
   const location = useLocation();
-  const { openLoginModal } = useAcademyStore();
+  const { openLoginModal, openWaitlistModal } = useAcademyStore();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
@@ -62,18 +62,18 @@ export const CmaNavbar: React.FC = () => {
           })}
         </nav>
 
-        {/* Right: Pill Badge + Login Button */}
-        <div className="flex items-center gap-3">
-          {/* CMA Badge */}
-          <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0A0A0A] border border-[#1A1A1A] text-xs font-semibold text-white shadow-xs">
-            <div className="w-5 h-5 rounded-full bg-[#FF6B00]/15 text-[#FF6B00] flex items-center justify-center">
+        {/* Right: Apply Now + Login Button */}
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          {/* Apply Now Button */}
+          <button
+            onClick={() => openWaitlistModal('broadcast-media-pro-2026')}
+            className="flex items-center gap-2 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-[#0A0A0A] border border-[#1E1E1E] hover:border-[#FF6B00]/60 text-white text-xs font-bold transition-all hover:bg-white/[0.04] shadow-xs cursor-pointer group flex-shrink-0"
+          >
+            <div className="w-5 h-5 rounded-full bg-[#FF6B00]/15 text-[#FF6B00] flex items-center justify-center group-hover:scale-110 transition-transform">
               <GraduationCap className="w-3 h-3" />
             </div>
-            <div className="flex flex-col text-left leading-none">
-              <span className="text-[10px] font-bold text-white uppercase tracking-wider">CMA</span>
-              <span className="text-[8.5px] text-[#A0A0A0]">Experience Excellence</span>
-            </div>
-          </div>
+            <span className="tracking-wide">Apply Now</span>
+          </button>
 
           {/* Login Button */}
           <button
@@ -118,7 +118,18 @@ export const CmaNavbar: React.FC = () => {
             })}
           </div>
 
-          <div className="pt-3 border-t border-[#1A1A1A]">
+          <div className="pt-3 border-t border-[#1A1A1A] space-y-2">
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                openWaitlistModal('broadcast-media-pro-2026');
+              }}
+              className="w-full py-2.5 px-4 rounded-xl bg-[#0A0A0A] border border-[#1E1E1E] text-white text-xs font-bold flex items-center justify-center gap-2 cursor-pointer shadow-sm hover:border-[#FF6B00]"
+            >
+              <GraduationCap className="w-4 h-4 text-[#FF6B00]" />
+              <span>Apply Now</span>
+            </button>
+
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
@@ -127,7 +138,7 @@ export const CmaNavbar: React.FC = () => {
               className="w-full py-2.5 px-4 rounded-xl bg-[#FF6B00] text-white text-xs font-bold flex items-center justify-center gap-2 cursor-pointer shadow-md"
             >
               <LogIn className="w-4 h-4" />
-              <span>Student / Facilitator Portal Login</span>
+              <span>Portal Login</span>
             </button>
           </div>
         </div>
