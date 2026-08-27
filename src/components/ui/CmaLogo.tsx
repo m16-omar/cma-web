@@ -6,35 +6,46 @@ interface LogoProps {
 }
 
 export const CmaLogo: React.FC<LogoProps> = ({ className = '', size = 'md' }) => {
-  const scale = size === 'sm' ? 0.75 : size === 'lg' ? 1.3 : 1;
+  const isSm = size === 'sm';
+  const isLg = size === 'lg';
 
   return (
-    <div className={`flex flex-col select-none group cursor-pointer ${className}`} style={{ transform: `scale(${scale})`, transformOrigin: 'left center' }}>
-      {/* City Script Wordmark in Orange */}
-      <svg
-        viewBox="0 0 160 52"
-        className="w-[110px] sm:w-[130px] h-auto overflow-visible"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <text
-          x="2"
-          y="42"
-          fill="#FF6B00"
-          fontFamily="'Playfair Display', 'Georgia', 'Times New Roman', serif"
-          fontSize="46"
-          fontStyle="italic"
-          fontWeight="900"
-          letterSpacing="-0.5px"
-        >
-          City
-        </text>
-      </svg>
-
-      {/* MEDIA ACADEMY in Crisp Bold White */}
+    <div className={`inline-flex flex-col items-start select-none group cursor-pointer ${className}`}>
+      {/* "City" in vibrant orange brand serif italics */}
       <span
-        className="text-[10px] sm:text-[11.5px] font-black tracking-[0.22em] text-white uppercase leading-none font-display -mt-1 pl-0.5"
-        style={{ fontFamily: "'Poppins', sans-serif", textShadow: '0 0 12px rgba(255,255,255,0.1)' }}
+        className={`font-serif italic font-extrabold text-[#FF6B00] tracking-tight leading-none ${
+          isSm
+            ? 'text-2xl'
+            : isLg
+            ? 'text-4xl sm:text-5xl'
+            : 'text-3xl sm:text-4xl'
+        }`}
+        style={{
+          fontFamily: "'Playfair Display', Georgia, serif",
+          fontStyle: 'italic',
+          fontWeight: 900,
+          letterSpacing: '-0.02em',
+          display: 'block',
+        }}
+      >
+        City
+      </span>
+
+      {/* "MEDIA ACADEMY" in clean bold white uppercase */}
+      <span
+        className={`font-sans font-black tracking-[0.22em] text-white uppercase leading-none font-display ${
+          isSm
+            ? 'text-[9px] -mt-0.5'
+            : isLg
+            ? 'text-[13px] sm:text-[15px] -mt-1'
+            : 'text-[11px] sm:text-[12.5px] -mt-1'
+        }`}
+        style={{
+          fontFamily: "'Poppins', 'Inter', system-ui, sans-serif",
+          fontWeight: 900,
+          letterSpacing: '0.22em',
+          display: 'block',
+        }}
       >
         MEDIA ACADEMY
       </span>
