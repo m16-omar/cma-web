@@ -50,7 +50,7 @@ export const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           {/* Exact Brand Logo */}
           <Link to="/" className="flex items-center group">
-            <CmaLogo size="md" />
+            <CmaLogo size="md" showText={true} />
           </Link>
 
           {/* Centered Nav Links */}

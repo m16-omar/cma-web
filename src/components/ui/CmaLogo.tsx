@@ -1,54 +1,46 @@
 import React from 'react';
+import cmaLogoSrc from '../../assets/CMA.png';
 
 interface LogoProps {
   className?: string;
   size?: 'sm' | 'md' | 'lg';
+  showText?: boolean;
 }
 
-export const CmaLogo: React.FC<LogoProps> = ({ className = '', size = 'md' }) => {
-  const isSm = size === 'sm';
-  const isLg = size === 'lg';
+export const CmaLogo: React.FC<LogoProps> = ({
+  className = '',
+  size = 'md',
+  showText = false,
+}) => {
+  const sizeClasses = {
+    sm: 'h-10 w-10',
+    md: 'h-12 w-12',
+    lg: 'h-16 w-16',
+  };
 
   return (
-    <div className={`inline-flex flex-col items-start select-none group cursor-pointer ${className}`}>
-      {/* "City" in vibrant orange brand serif italics */}
-      <span
-        className={`font-serif italic font-extrabold text-[#FF6B00] tracking-tight leading-none ${
-          isSm
-            ? 'text-2xl'
-            : isLg
-            ? 'text-4xl sm:text-5xl'
-            : 'text-3xl sm:text-4xl'
-        }`}
-        style={{
-          fontFamily: "'Playfair Display', Georgia, serif",
-          fontStyle: 'italic',
-          fontWeight: 900,
-          letterSpacing: '-0.02em',
-          display: 'block',
-        }}
-      >
-        City
-      </span>
+    <div className={`inline-flex items-center gap-3 select-none group cursor-pointer ${className}`}>
+      {/* Official CMA Logo Image */}
+      <img
+        src={cmaLogoSrc || '/CMA.png'}
+        alt="City Media Academy"
+        className={`${sizeClasses[size]} rounded-full object-cover drop-shadow-md transition-transform duration-200 group-hover:scale-105`}
+        loading="eager"
+      />
 
-      {/* "MEDIA ACADEMY" in clean bold white uppercase */}
-      <span
-        className={`font-sans font-black tracking-[0.22em] text-white uppercase leading-none font-display ${
-          isSm
-            ? 'text-[9px] -mt-0.5'
-            : isLg
-            ? 'text-[13px] sm:text-[15px] -mt-1'
-            : 'text-[11px] sm:text-[12.5px] -mt-1'
-        }`}
-        style={{
-          fontFamily: "'Poppins', 'Inter', system-ui, sans-serif",
-          fontWeight: 900,
-          letterSpacing: '0.22em',
-          display: 'block',
-        }}
-      >
-        MEDIA ACADEMY
-      </span>
+      {showText && (
+        <div className="flex flex-col">
+          <span
+            className="font-serif italic font-extrabold text-[#FF6B00] text-xl leading-none"
+            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+          >
+            City
+          </span>
+          <span className="text-[10px] font-black tracking-widest text-white uppercase font-display leading-tight mt-0.5">
+            MEDIA ACADEMY
+          </span>
+        </div>
+      )}
     </div>
   );
 };
