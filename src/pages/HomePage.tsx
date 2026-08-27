@@ -22,6 +22,7 @@ import { StatCard } from '../components/home/StatCard';
 import { PillarCard } from '../components/home/PillarCard';
 import { MentorCard } from '../components/home/MentorCard';
 import { TestimonialCard } from '../components/home/TestimonialCard';
+import { CmaFooter } from '../components/ui/CmaFooter';
 
 import { CmaLogo } from '../components/ui/CmaLogo';
 
@@ -398,97 +399,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 8. FOOTER */}
-      <footer className="border-t border-[#1A1A1A] bg-black text-xs text-[#A0A0A0] pt-12 pb-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-8 border-b border-[#1A1A1A]">
-            {/* Col 1: Physical Campus */}
-            <div className="flex items-start gap-3">
-              <div className="text-[#FF6B00] mt-0.5">
-                <MapPin className="w-4 h-4" />
-              </div>
-              <div className="space-y-1">
-                <div className="font-bold text-white">Physical Campus</div>
-                <div className="leading-relaxed text-[#A0A0A0]">
-                  Plot 11 Lateef Jakande Road, Agidingbi, Ikeja, Lagos
-                </div>
-              </div>
-            </div>
-
-            {/* Col 2: Phone */}
-            <div className="flex items-start gap-3">
-              <div className="text-[#FF6B00] mt-0.5">
-                <Phone className="w-4 h-4" />
-              </div>
-              <div className="space-y-1">
-                <div className="font-bold text-white">Phone</div>
-                <div className="text-[#A0A0A0]">0810 968 8638</div>
-              </div>
-            </div>
-
-            {/* Col 3: Email */}
-            <div className="flex items-start gap-3">
-              <div className="text-[#FF6B00] mt-0.5">
-                <Mail className="w-4 h-4" />
-              </div>
-              <div className="space-y-1">
-                <div className="font-bold text-white">Email</div>
-                <div className="text-[#A0A0A0]">academy@city1051fm.com</div>
-              </div>
-            </div>
-
-            {/* Col 4: Socials */}
-            <div className="space-y-2">
-              <div className="font-bold text-white">Follow Us</div>
-              <div className="flex items-center gap-2.5">
-                <a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-7 h-7 rounded-full bg-[#0A0A0A] border border-[#1A1A1A] hover:border-[#FF6B00] text-white flex items-center justify-center transition-colors"
-                >
-                  <span className="font-bold text-[11px]">f</span>
-                </a>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-7 h-7 rounded-full bg-[#0A0A0A] border border-[#1A1A1A] hover:border-[#FF6B00] text-white flex items-center justify-center transition-colors"
-                >
-                  <span className="font-bold text-[10px]">ig</span>
-                </a>
-                <a
-                  href="https://x.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-7 h-7 rounded-full bg-[#0A0A0A] border border-[#1A1A1A] hover:border-[#FF6B00] text-white flex items-center justify-center transition-colors"
-                >
-                  <span className="font-bold text-[10px]">𝕏</span>
-                </a>
-                <a
-                  href="https://youtube.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-7 h-7 rounded-full bg-[#0A0A0A] border border-[#1A1A1A] hover:border-[#FF6B00] text-white flex items-center justify-center transition-colors"
-                >
-                  <span className="font-bold text-[9px]">yt</span>
-                </a>
-                <a
-                  href="https://tiktok.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-7 h-7 rounded-full bg-[#0A0A0A] border border-[#1A1A1A] hover:border-[#FF6B00] text-white flex items-center justify-center transition-colors"
-                >
-                  <span className="font-bold text-[9px]">tk</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="text-center text-[#A0A0A0] text-xs">
-            © 2026 City Media Academy. All Rights Reserved.
-          </div>
-        </div>
-      </footer>
+      <CmaFooter />
     </div>
   );
 };

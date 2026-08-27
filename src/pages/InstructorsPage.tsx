@@ -29,6 +29,7 @@ import {
 } from 'lucide-react';
 import { industryMentorsList, IndustryMentor } from '../data/mentorsData';
 import { CmaLogo } from '../components/ui/CmaLogo';
+import { CmaFooter } from '../components/ui/CmaFooter';
 import { useAcademyStore } from '../store/useAcademyStore';
 
 const mentorIconLookup: Record<string, React.ElementType> = {
@@ -391,78 +392,7 @@ export const InstructorsPage: React.FC = () => {
       </section>
 
       {/* 6. FOOTER */}
-      <footer className="border-t border-[#1A1A1A] bg-black text-xs text-[#A0A0A0] pt-12 pb-8 mt-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-8 border-b border-[#1A1A1A]">
-            <div className="space-y-1">
-              <div className="font-bold text-white">Physical Campus</div>
-              <div className="leading-relaxed">
-                Plot 11 Lateef Jakande Road, Agidingbi, Ikeja, Lagos
-              </div>
-            </div>
-
-            <div className="space-y-1">
-              <div className="font-bold text-white">Phone</div>
-              <div>0810 968 8638</div>
-            </div>
-
-            <div className="space-y-1">
-              <div className="font-bold text-white">Email</div>
-              <div>academy@city1051fm.com</div>
-            </div>
-
-            <div className="space-y-2">
-              <div className="font-bold text-white">Follow Us</div>
-              <div className="flex items-center gap-3">
-                <a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-7 h-7 rounded-full bg-[#0A0A0A] border border-[#1A1A1A] hover:border-[#FF6B00] text-white flex items-center justify-center transition-colors"
-                >
-                  <span className="font-bold text-xs">f</span>
-                </a>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-7 h-7 rounded-full bg-[#0A0A0A] border border-[#1A1A1A] hover:border-[#FF6B00] text-white flex items-center justify-center transition-colors"
-                >
-                  <span className="font-bold text-xs">ig</span>
-                </a>
-                <a
-                  href="https://x.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-7 h-7 rounded-full bg-[#0A0A0A] border border-[#1A1A1A] hover:border-[#FF6B00] text-white flex items-center justify-center transition-colors"
-                >
-                  <span className="font-bold text-xs">𝕏</span>
-                </a>
-                <a
-                  href="https://youtube.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-7 h-7 rounded-full bg-[#0A0A0A] border border-[#1A1A1A] hover:border-[#FF6B00] text-white flex items-center justify-center transition-colors"
-                >
-                  <span className="font-bold text-xs">yt</span>
-                </a>
-                <a
-                  href="https://tiktok.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-7 h-7 rounded-full bg-[#0A0A0A] border border-[#1A1A1A] hover:border-[#FF6B00] text-white flex items-center justify-center transition-colors"
-                >
-                  <span className="font-bold text-xs">tk</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="text-center text-[#A0A0A0] text-xs">
-            © 2026 City Media Academy. All Rights Reserved.
-          </div>
-        </div>
-      </footer>
+      <CmaFooter />
     </div>
   );
 };
