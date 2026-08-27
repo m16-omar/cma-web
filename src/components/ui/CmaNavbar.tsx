@@ -62,26 +62,24 @@ export const CmaNavbar: React.FC = () => {
           })}
         </nav>
 
-        {/* Right: Apply Now + Login Button */}
+        {/* Right: Login + Apply Now Buttons */}
         <div className="flex items-center gap-2.5 sm:gap-3">
-          {/* Apply Now Button */}
-          <button
-            onClick={() => openWaitlistModal('broadcast-media-pro-2026')}
-            className="flex items-center gap-2 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-[#0A0A0A] border border-[#1E1E1E] hover:border-[#FF6B00]/60 text-white text-xs font-bold transition-all hover:bg-white/[0.04] shadow-xs cursor-pointer group flex-shrink-0"
-          >
-            <div className="w-5 h-5 rounded-full bg-[#FF6B00]/15 text-[#FF6B00] flex items-center justify-center group-hover:scale-110 transition-transform">
-              <GraduationCap className="w-3 h-3" />
-            </div>
-            <span className="tracking-wide">Apply Now</span>
-          </button>
-
-          {/* Login Button */}
+          {/* Login Button (Secondary Dark) */}
           <button
             onClick={openLoginModal}
+            className="flex items-center gap-1.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl bg-[#0A0A0A] border border-[#1E1E1E] hover:border-[#FF6B00]/60 text-[#D1D5DB] hover:text-white text-xs font-bold transition-all hover:bg-white/[0.04] shadow-xs cursor-pointer flex-shrink-0"
+          >
+            <LogIn className="w-3.5 h-3.5 text-[#FF6B00]" />
+            <span>Login</span>
+          </button>
+
+          {/* Apply Now Button (Primary Orange Gradient CTA) */}
+          <button
+            onClick={() => openWaitlistModal('broadcast-media-pro-2026')}
             className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-gradient-to-r from-[#FF6B00] to-[#E55F00] hover:brightness-110 active:scale-95 text-white text-xs font-bold transition-all shadow-md shadow-[#FF6B00]/25 flex items-center gap-1.5 cursor-pointer flex-shrink-0"
           >
-            <LogIn className="w-3.5 h-3.5" />
-            <span>Login</span>
+            <GraduationCap className="w-3.5 h-3.5" />
+            <span>Apply Now</span>
           </button>
 
           {/* Mobile menu hamburger toggle */}
@@ -124,9 +122,9 @@ export const CmaNavbar: React.FC = () => {
                 setMobileMenuOpen(false);
                 openWaitlistModal('broadcast-media-pro-2026');
               }}
-              className="w-full py-2.5 px-4 rounded-xl bg-[#0A0A0A] border border-[#1E1E1E] text-white text-xs font-bold flex items-center justify-center gap-2 cursor-pointer shadow-sm hover:border-[#FF6B00]"
+              className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#FF6B00] to-[#E55F00] text-white text-xs font-bold flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-[#FF6B00]/20"
             >
-              <GraduationCap className="w-4 h-4 text-[#FF6B00]" />
+              <GraduationCap className="w-4 h-4" />
               <span>Apply Now</span>
             </button>
 
@@ -135,9 +133,9 @@ export const CmaNavbar: React.FC = () => {
                 setMobileMenuOpen(false);
                 openLoginModal();
               }}
-              className="w-full py-2.5 px-4 rounded-xl bg-[#FF6B00] text-white text-xs font-bold flex items-center justify-center gap-2 cursor-pointer shadow-md"
+              className="w-full py-2.5 px-4 rounded-xl bg-[#0A0A0A] border border-[#1E1E1E] text-[#D1D5DB] hover:text-white text-xs font-bold flex items-center justify-center gap-2 cursor-pointer shadow-sm hover:border-[#FF6B00]"
             >
-              <LogIn className="w-4 h-4" />
+              <LogIn className="w-4 h-4 text-[#FF6B00]" />
               <span>Portal Login</span>
             </button>
           </div>
