@@ -1,180 +1,157 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import {
-  Clock,
-  Star,
-  Users,
-  Award,
-  Bookmark,
-  ArrowUpRight,
-  Radio,
-  Monitor,
-  Shuffle,
-  Play,
   Calendar,
+  MapPin,
+  Wifi,
+  Monitor,
+  Radio,
+  Mic2,
+  AudioWaveform,
+  Languages,
+  Share2,
+  UserCheck,
+  Headphones,
+  TrendingUp,
+  Volume2,
+  Users,
+  Star,
+  BarChart3,
+  Globe,
+  Presentation,
+  Award,
+  Smartphone,
+  Heart,
+  Tv,
 } from 'lucide-react';
-import { Course } from '../../types/course';
-import { FormatBadge, CategoryBadge } from '../ui/Badge';
+import { ReplicaCourse } from '../../data/replicaCourses';
 import { useAcademyStore } from '../../store/useAcademyStore';
+import cmaLogoSrc from '../../assets/CMA.png';
 
-interface CourseCardProps {
-  course: Course;
-  index?: number;
-}
+const iconLookup: Record<string, React.ElementType> = {
+  Radio,
+  Mic2,
+  AudioWaveform,
+  Languages,
+  Share2,
+  UserCheck,
+  Headphones,
+  TrendingUp,
+  Volume2,
+  Users,
+  Star,
+  BarChart3,
+  Globe,
+  Presentation,
+  Award,
+  Smartphone,
+  Heart,
+  Tv,
+};
 
-export const CourseCard: React.FC<CourseCardProps> = ({ course, index = 0 }) => {
-  const { savedCourseIds, toggleSaveCourse, openWaitlistModal } = useAcademyStore();
-  const isSaved = savedCourseIds.includes(course.id);
+export const CourseCard: React.FC<{ course: ReplicaCourse; index: number }> = ({
+  course,
+  index,
+}) => {
+  const { openWaitlistModal } = useAcademyStore();
+
+  const FormatIcon =
+    course.format === 'Physical'
+      ? MapPin
+      : course.format === 'Online'
+      ? Wifi
+      : Monitor;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.06 }}
-      className="group relative flex flex-col rounded-3xl bg-white dark:bg-[#131722] border border-slate-200/90 dark:border-white/10 overflow-hidden shadow-lg shadow-black/5 dark:shadow-black/40 hover:border-[#FF6B00]/40 transition-all duration-300 hover:-translate-y-1.5"
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.35, delay: index * 0.05 }}
+      className="flex flex-col justify-between p-3.5 sm:p-4 rounded-2xl bg-[#0A0A0A] border border-[#1A1A1A] hover:border-[#FF6B00]/50 transition-all duration-300 group shadow-md"
     >
-      {/* Card Thumbnail */}
-      <div className="relative aspect-[16/10] overflow-hidden bg-slate-900">
-        <img
-          src={course.thumbnail}
-          alt={course.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
-        />
+      <div>
+        {/* Thumbnail + Overlays */}
+        <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-black/60 border border-[#1A1A1A]">
+          <img
+            src={course.thumbnail}
+            alt={course.title}
+            className="w-full h-full object-cover grayscale-[15%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+          {/* Registration Closed Badge if applicable */}
+          {course.badge && (
+            <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-[#380b0f] border border-red-900/60 text-[#ff6b6b] text-[9px] font-black tracking-wider uppercase">
+              {course.badge}
+            </div>
+          )}
 
-        {/* Top Badges */}
-        <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2">
-          <CategoryBadge label={course.category} />
+          {/* Bottom Duration & Format Pills */}
+          <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between gap-2">
+            <div className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-black/75 backdrop-blur-md border border-white/10 text-[10px] font-medium text-white shadow-xs">
+              <Calendar className="w-3 h-3 text-[#FF6B00]" />
+              <span>{course.duration}</span>
+            </div>
 
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              toggleSaveCourse(course.id);
-            }}
-            className={`w-9 h-9 rounded-full flex items-center justify-center backdrop-blur-md border transition-all cursor-pointer ${
-              isSaved
-                ? 'bg-[#FF6B00] text-white border-[#FF6B00]'
-                : 'bg-black/40 hover:bg-black/60 text-white/80 hover:text-white border-white/20'
-            }`}
-            aria-label="Save Course"
-          >
-            <Bookmark className={`w-4 h-4 ${isSaved ? 'fill-current' : ''}`} />
-          </button>
+            <div className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-black/75 backdrop-blur-md border border-white/10 text-[10px] font-medium text-white shadow-xs">
+              <FormatIcon className="w-3 h-3 text-[#FF6B00]" />
+              <span>{course.format}</span>
+            </div>
+          </div>
         </div>
 
-        {/* Bottom Thumbnail Overlay Info */}
-        <div className="absolute bottom-3.5 left-3.5 right-3.5 flex items-center justify-between text-xs text-white">
-          <FormatBadge format={course.format} />
-          <div className="flex items-center gap-1 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 font-bold">
-            <Star className="w-3.5 h-3.5 text-[#FFA048] fill-current" />
-            <span>{course.rating.toFixed(2)}</span>
-            <span className="text-white/60 font-normal">({course.reviewCount})</span>
-          </div>
+        {/* Title */}
+        <Link to={`/course/${course.slug}`}>
+          <h3 className="text-sm sm:text-base font-bold font-display text-white group-hover:text-[#FF6B00] transition-colors line-clamp-1 mt-3.5 leading-snug">
+            {course.title}
+          </h3>
+        </Link>
+
+        {/* Short Description */}
+        <p className="text-[11px] sm:text-xs text-[#A0A0A0] leading-relaxed line-clamp-2 mt-1.5 font-normal">
+          {course.description}
+        </p>
+
+        {/* Course Skills / Pillar Icons Row */}
+        <div className="flex items-center gap-2 mt-3 pt-2 text-[#FF6B00]">
+          {course.iconNames.map((iconName, i) => {
+            const Icon = iconLookup[iconName] || Star;
+            return (
+              <div
+                key={i}
+                className="w-5 h-5 rounded-md bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center text-[#FF6B00]"
+                title={iconName}
+              >
+                <Icon className="w-3 h-3 stroke-[1.8]" />
+              </div>
+            );
+          })}
         </div>
       </div>
 
-      {/* Card Body */}
-      <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
-        <div className="space-y-2.5">
-          {/* Schedule / Cohort start badge */}
-          <div className="flex items-center gap-1.5 text-[11px] font-semibold text-[#FF6B00]">
-            <Calendar className="w-3.5 h-3.5" />
-            <span>Starts {course.schedule.startDate} • {course.durationWeeks} Weeks</span>
-          </div>
-
-          <Link to={`/courses/${course.slug}`}>
-            <h3 className="text-base sm:text-lg font-bold font-display text-slate-900 dark:text-white leading-snug group-hover:text-[#FF6B00] transition-colors line-clamp-2">
-              {course.title}
-            </h3>
-          </Link>
-
-          <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
-            {course.shortDescription}
-          </p>
+      {/* Footer Area */}
+      <div className="mt-4 pt-3 border-t border-[#181818] space-y-3">
+        {/* CMA Brand Author */}
+        <div className="flex items-center gap-2">
+          <img
+            src={cmaLogoSrc || '/CMA.png'}
+            alt="CMA"
+            className="w-5 h-5 rounded-full object-cover border border-[#333333]"
+          />
+          <span className="text-[11px] font-medium text-[#A0A0A0]">
+            City Media Academy
+          </span>
         </div>
 
-        {/* Feature Highlights Pills */}
-        <div className="pt-3 border-t border-slate-100 dark:border-white/5 grid grid-cols-2 gap-2 text-[11px] text-slate-600 dark:text-slate-400">
-          <div className="flex items-center gap-1.5">
-            <Clock className="w-3.5 h-3.5 text-[#FF6B00]" />
-            <span>{course.totalHours} Total Hours</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <Users className="w-3.5 h-3.5 text-cyan-400" />
-            <span>{course.studentsCount.toLocaleString()}+ Alumni</span>
-          </div>
-          <div className="flex items-center gap-1.5 col-span-2 text-emerald-600 dark:text-emerald-400 font-medium">
-            <Award className="w-3.5 h-3.5 flex-shrink-0" />
-            <span className="truncate">City FM Internship Included</span>
-          </div>
-        </div>
-
-        {/* Instructors Avatars Row */}
-        {course.instructors && course.instructors.length > 0 && (
-          <div className="flex items-center justify-between text-xs pt-2">
-            <div className="flex items-center -space-x-2">
-              {course.instructors.slice(0, 3).map((inst) => (
-                <img
-                  key={inst.id}
-                  src={inst.avatar}
-                  alt={inst.name}
-                  className="w-7 h-7 rounded-full object-cover border-2 border-white dark:border-[#131722]"
-                  title={inst.name}
-                />
-              ))}
-              {course.instructors.length > 3 && (
-                <div className="w-7 h-7 rounded-full bg-slate-200 dark:bg-white/10 text-slate-700 dark:text-slate-300 text-[10px] font-bold flex items-center justify-center border-2 border-white dark:border-[#131722]">
-                  +{course.instructors.length - 3}
-                </div>
-              )}
-            </div>
-            <span className="text-[11px] text-slate-500">
-              {course.instructors.length} Lead Mentors
-            </span>
-          </div>
-        )}
-
-        {/* Card Footer: Pricing & Action Button */}
-        <div className="pt-4 border-t border-slate-100 dark:border-white/10 flex items-center justify-between gap-3">
-          <div>
-            <div className="text-[10px] uppercase tracking-wider text-slate-500 font-bold">
-              Tuition Fee
-            </div>
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-base sm:text-lg font-black text-slate-900 dark:text-white">
-                {course.price.formatted}
-              </span>
-              {course.price.originalPrice && (
-                <span className="text-[11px] text-slate-400 line-through">
-                  ₦{course.price.originalPrice.toLocaleString()}
-                </span>
-              )}
-            </div>
-          </div>
-
-          <div className="flex items-center gap-1.5">
-            <Link
-              to={`/courses/${course.slug}`}
-              className="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-white/5 dark:hover:bg-white/10 text-slate-800 dark:text-slate-200 transition-colors"
-              title="View Curriculum Details"
-            >
-              <ArrowUpRight className="w-4 h-4" />
-            </Link>
-
-            <button
-              onClick={() => openWaitlistModal(course.id)}
-              className="px-3.5 py-2 text-xs font-bold rounded-xl bg-[#FF6B00] hover:bg-[#E55F00] text-white shadow-md shadow-[#FF6B00]/25 transition-all hover:scale-105 active:scale-95 cursor-pointer"
-            >
-              Join Waitlist
-            </button>
-          </div>
-        </div>
+        {/* CTA Button */}
+        <button
+          onClick={() => openWaitlistModal(course.id)}
+          className="w-full py-2 px-3 rounded-xl border border-[#FF6B00]/30 hover:border-[#FF6B00] bg-[#FF6B00]/5 hover:bg-[#FF6B00] text-[#FF6B00] hover:text-white text-xs font-bold transition-all duration-200 cursor-pointer text-center"
+        >
+          Join Waitlist
+        </button>
       </div>
     </motion.div>
   );

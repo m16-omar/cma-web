@@ -13,9 +13,9 @@ interface MainLayoutProps {
 
 export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   const location = useLocation();
-  const isHomePage = location.pathname === '/';
+  const isReplicaPage = location.pathname === '/' || location.pathname === '/courses';
 
-  if (isHomePage) {
+  if (isReplicaPage) {
     return (
       <div className="min-h-screen flex flex-col bg-black text-white relative overflow-x-hidden selection:bg-[#FF6B00] selection:text-white">
         <ScrollToTop />
