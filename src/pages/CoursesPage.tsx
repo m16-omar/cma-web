@@ -90,10 +90,10 @@ export const CoursesPage: React.FC = () => {
 
       {/* 1. TOP NAVBAR - Matching reference */}
       <header className="sticky top-0 z-50 bg-black/85 backdrop-blur-md border-b border-[#1A1A1A]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
           {/* Brand Logo */}
           <Link to="/" className="flex items-center group select-none">
-            <CmaLogo size="md" showText={true} />
+            <CmaLogo size="lg" showText={true} />
           </Link>
 
           {/* Nav Links */}
