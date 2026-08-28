@@ -30,7 +30,7 @@ export const HomePage: React.FC = () => {
 
   const scrollMentors = (direction: 'left' | 'right') => {
     if (mentorsScrollRef.current) {
-      const scrollAmount = direction === 'left' ? -320 : 320;
+      const scrollAmount = direction === 'left' ? -mentorsScrollRef.current.clientWidth * 0.75 : mentorsScrollRef.current.clientWidth * 0.75;
       mentorsScrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
@@ -326,13 +326,18 @@ export const HomePage: React.FC = () => {
           </button>
         </div>
 
-        {/* 8 Mentors in a Clean Grid / Row */}
+        {/* 4 Large Mentors Per View Slider */}
         <div
           ref={mentorsScrollRef}
-          className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 overflow-x-auto pb-4 scrollbar-none scroll-smooth"
+          className="flex gap-6 overflow-x-auto pb-6 scrollbar-none scroll-smooth snap-x snap-mandatory"
         >
           {mentorsData.map((mentor) => (
-            <MentorCard key={mentor.id} mentor={mentor} />
+            <div
+              key={mentor.id}
+              className="w-[85%] sm:w-[48%] lg:w-[calc(25%-1.15rem)] shrink-0 snap-start"
+            >
+              <MentorCard mentor={mentor} />
+            </div>
           ))}
         </div>
       </section>

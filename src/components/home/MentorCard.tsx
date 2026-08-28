@@ -5,13 +5,13 @@ import { MentorItem } from '../../data/mockData';
 export const MentorCard: React.FC<{ mentor: MentorItem }> = ({ mentor }) => {
   return (
     <motion.div
-      whileHover={{ y: -5, borderColor: 'rgba(255, 107, 0, 0.6)' }}
-      transition={{ duration: 0.2 }}
-      className="flex flex-col items-center text-center p-3 sm:p-4 rounded-2xl bg-[#0A0A0A] border border-[#1A1A1A] w-full min-w-[120px] shadow-lg group cursor-pointer"
+      whileHover={{ y: -6 }}
+      transition={{ duration: 0.25 }}
+      className="flex flex-col items-center text-center p-6 sm:p-7 rounded-3xl bg-[#0A0A0A] border border-[#1A1A1A] hover:border-[#FF6B00]/40 transition-all duration-300 w-full shrink-0 shadow-xl group cursor-pointer"
     >
-      {/* Circular Avatar with Glowing Orange Ring */}
-      <div className="relative w-16 h-16 sm:w-18 sm:h-18 rounded-full p-[2px] mb-3 transition-transform duration-300 group-hover:scale-105">
-        <div className="w-full h-full rounded-full overflow-hidden mentor-avatar-ring">
+      {/* Large Circular Portrait with Warm Copper/Orange Border Ring */}
+      <div className="relative w-32 h-32 sm:w-40 sm:h-40 lg:w-44 lg:h-44 rounded-full p-[3px] mb-5 transition-transform duration-300 group-hover:scale-105">
+        <div className="w-full h-full rounded-full overflow-hidden border-[3px] border-[#a8521c] shadow-[0_0_30px_rgba(255,107,0,0.2)] bg-black/50">
           <img
             src={mentor.avatar}
             alt={mentor.name}
@@ -22,14 +22,15 @@ export const MentorCard: React.FC<{ mentor: MentorItem }> = ({ mentor }) => {
       </div>
 
       {/* Name */}
-      <h4 className="text-xs sm:text-[13px] font-bold text-white leading-tight font-display tracking-tight text-center">
+      <h4 className="text-base sm:text-lg lg:text-xl font-extrabold text-white leading-tight font-display tracking-tight text-center group-hover:text-[#FF6B00] transition-colors">
         {mentor.name}
       </h4>
 
       {/* Role */}
-      <p className="text-[10px] sm:text-[11px] font-medium text-[#FF7300] mt-1 text-center leading-tight">
+      <p className="text-xs sm:text-sm lg:text-[15px] font-semibold text-[#FF6B00] mt-1.5 text-center leading-tight">
         {mentor.role}
       </p>
     </motion.div>
   );
 };
+
