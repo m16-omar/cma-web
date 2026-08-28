@@ -94,12 +94,12 @@ export const CoursesPage: React.FC = () => {
 
       {/* 2. HERO / PAGE TITLE BANNER */}
       <section className="relative pt-10 pb-12 lg:pt-14 lg:pb-16 overflow-hidden border-b border-[#1A1A1A]">
-        {/* Background dark studio mixer console */}
+        {/* Background CMA classroom photo */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2000&auto=format&fit=crop"
-            alt="Studio Background"
-            className="w-full h-full object-cover opacity-20 filter brightness-50 contrast-125"
+            src="/images/cma_classroom_real.jpg"
+            alt="Studio Classroom Background"
+            className="w-full h-full object-cover opacity-25 filter brightness-75 contrast-110"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60" />

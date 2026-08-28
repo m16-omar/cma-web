@@ -50,24 +50,16 @@ export const HomePage: React.FC = () => {
 
       {/* 2. HERO SECTION */}
       <section className="relative pt-12 pb-14 lg:pt-16 lg:pb-20 overflow-hidden">
-        {/* Background broadcast studio graphic & ON AIR neon light */}
+        {/* Background broadcast studio graphic */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2000&auto=format&fit=crop"
-            alt="Broadcast Studio"
-            className="w-full h-full object-cover object-right opacity-30 filter brightness-60 contrast-125"
+            src="/images/cma_classroom_real.jpg"
+            alt="City Media Academy Classroom Training"
+            className="w-full h-full object-cover object-right opacity-45 filter brightness-90 contrast-110"
           />
-          {/* Subtle Radial Vignette Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-transparent" />
+          {/* Subtle Gradient Vignette Overlay to ensure perfect text readability on the left */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60" />
-
-          {/* Glowing Red ON AIR Sign in background top-right */}
-          <div className="absolute top-8 right-8 sm:right-20 px-3.5 py-1 rounded-md border-2 border-red-600 bg-red-950/80 shadow-[0_0_25px_rgba(220,38,38,0.75)] hidden sm:flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-            <span className="text-xs sm:text-sm font-black tracking-widest text-red-500 font-mono">
-              ON AIR
-            </span>
-          </div>
         </div>
 
         <div className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
