@@ -214,43 +214,45 @@ export const InstructorsPage: React.FC = () => {
         </div>
 
         {/* 4. MENTORS GRID (4 Columns x 2 Rows = 8 Cards) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7 pt-8">
           {filteredMentors.map((mentor) => (
             <motion.div
               key={mentor.id}
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
-              className="rounded-2xl bg-[#0A0A0A] border border-[#1A1A1A] p-5 flex flex-col justify-between hover:border-[#FF6B00]/50 transition-all duration-300 shadow-md group"
+              whileHover={{ y: -6 }}
+              className="rounded-3xl bg-[#0A0A0A] border border-[#1A1A1A] hover:border-[#FF6B00]/40 p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 shadow-xl group"
             >
-              <div>
-                {/* Top: Avatar, Name & Specialty */}
-                <div className="flex items-center gap-3.5">
-                  <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-full overflow-hidden mentor-avatar-ring flex-shrink-0">
+              <div className="flex flex-col items-center text-center">
+                {/* Large Circular Portrait with Glowing Copper Border */}
+                <div className="relative w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full p-[3px] mb-5 transition-transform duration-300 group-hover:scale-105">
+                  <div className="w-full h-full rounded-full overflow-hidden border-[3px] border-[#a8521c] shadow-[0_0_30px_rgba(255,107,0,0.2)] bg-black/60">
                     <img
                       src={mentor.avatar}
                       alt={mentor.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
+                      loading="lazy"
                     />
-                  </div>
-                  <div className="min-w-0">
-                    <h3 className="text-sm sm:text-base font-bold text-white font-display leading-tight truncate">
-                      {mentor.name}
-                    </h3>
-                    <p className="text-xs font-semibold text-[#FF6B00] mt-0.5 truncate">
-                      {mentor.role}
-                    </p>
                   </div>
                 </div>
 
+                {/* Name & Specialty */}
+                <h3 className="text-base sm:text-lg lg:text-xl font-extrabold text-white font-display leading-tight tracking-tight group-hover:text-[#FF6B00] transition-colors">
+                  {mentor.name}
+                </h3>
+                <p className="text-xs sm:text-sm font-semibold text-[#FF6B00] mt-1 leading-tight">
+                  {mentor.role}
+                </p>
+
                 {/* Short Bio */}
-                <p className="text-[11px] sm:text-xs text-[#A0A0A0] leading-relaxed line-clamp-3 mt-3.5 font-normal">
+                <p className="text-xs sm:text-[13px] text-[#A0A0A0] leading-relaxed line-clamp-3 mt-4 font-normal text-center">
                   {mentor.bio}
                 </p>
               </div>
 
               {/* Bottom: Media Icons & View Profile Action */}
-              <div className="flex items-center justify-between pt-4 mt-4 border-t border-[#181818]">
+              <div className="flex items-center justify-between pt-5 mt-5 border-t border-[#181818]">
                 {/* Media Icons */}
                 <div className="flex items-center gap-1.5 text-[#FF6B00]">
                   {mentor.iconNames.map((iconName, i) => {
@@ -258,7 +260,7 @@ export const InstructorsPage: React.FC = () => {
                     return (
                       <div
                         key={i}
-                        className="w-6 h-6 rounded-md bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center"
+                        className="w-7 h-7 rounded-lg bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center"
                         title={iconName}
                       >
                         <Icon className="w-3.5 h-3.5 stroke-[1.8]" />
@@ -270,10 +272,10 @@ export const InstructorsPage: React.FC = () => {
                 {/* View Profile Action */}
                 <button
                   onClick={() => openWaitlistModal('broadcast-media-pro-2026')}
-                  className="inline-flex items-center gap-1 text-xs font-bold text-[#FF6B00] hover:text-white transition-colors cursor-pointer group-hover:translate-x-0.5 transition-transform"
+                  className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#FF6B00] hover:text-white transition-colors cursor-pointer group-hover:translate-x-0.5 transition-transform"
                 >
                   <span>View Profile</span>
-                  <ArrowRight className="w-3 h-3" />
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
             </motion.div>
