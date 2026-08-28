@@ -64,52 +64,52 @@ export const pillarsData: PillarItem[] = [
 
 export const mentorsData: MentorItem[] = [
   {
-    id: 'chukwudi',
-    name: 'Chukwudi Ezeugwu',
-    role: 'Broadcaster & Podcast',
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop',
-  },
-  {
-    id: 'shola',
-    name: 'Shola Thompson',
-    role: 'Radio & TV Host',
-    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop',
-  },
-  {
-    id: 'tope',
-    name: 'Tope Aghomatse',
-    role: 'Content Strategist',
-    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop',
-  },
-  {
     id: 'mazino',
     name: 'Mazino Appeal',
     role: 'Voice Over Expert',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop',
+    avatar: '/images/mentors/mazino-appeal.png',
   },
   {
     id: 'nyamgul',
     name: 'Nyamgul Agaji',
     role: 'Broadcast Journalist',
-    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop',
+    avatar: '/images/mentors/nyamgul-agaji.png',
   },
   {
     id: 'oludolapo',
     name: 'Oludolapo Adewale',
     role: 'Diction coach',
-    avatar: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=400&auto=format&fit=crop',
+    avatar: '/images/mentors/oludolapo-adewale.png',
   },
   {
     id: 'oscar',
     name: 'Oscar Oyinsan',
     role: 'Event Host',
-    avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&auto=format&fit=crop',
+    avatar: '/images/mentors/oscar-oyinsan.png',
   },
   {
     id: 'charles',
     name: 'Charles Ezerime',
     role: 'Brand Strategist',
-    avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400&auto=format&fit=crop',
+    avatar: '/images/mentors/charles-ezerime.png',
+  },
+  {
+    id: 'chukwudi',
+    name: 'Chukwudi Ezeugwu',
+    role: 'Broadcaster & Podcast',
+    avatar: '/images/mentors/chukwudi-ezeugwu.png',
+  },
+  {
+    id: 'shola',
+    name: 'Shola Thompson',
+    role: 'Radio & TV Host',
+    avatar: '/images/mentors/shola-thompson.png',
+  },
+  {
+    id: 'tope',
+    name: 'Tope Aghomatse',
+    role: 'Content Strategist',
+    avatar: '/images/mentors/tope-aghomatse.png',
   },
 ];
 

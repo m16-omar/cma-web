@@ -230,7 +230,7 @@ export const InstructorsPage: React.FC = () => {
                     <img
                       src={mentor.avatar}
                       alt={mentor.name}
-                      className="w-full h-full object-cover grayscale-[15%] group-hover:grayscale-0 transition-all duration-300"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
                     />
                   </div>
                   <div className="min-w-0">
