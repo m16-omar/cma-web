@@ -136,14 +136,6 @@ export const AboutPage: React.FC = () => {
                 <span className="text-white block">MEETS</span>
                 <span className="text-[#FF6B00] font-black block">PURPOSE.</span>
               </div>
-
-              {/* ON AIR Sign in background */}
-              <div className="absolute bottom-6 right-6 px-2.5 py-1 rounded-md border border-red-600 bg-red-950/90 flex items-center gap-1.5 shadow-[0_0_15px_rgba(220,38,38,0.7)]">
-                <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-                <span className="text-[10px] font-black text-red-500 font-mono tracking-widest">
-                  ON AIR
-                </span>
-              </div>
             </div>
           </div>
         </div>
