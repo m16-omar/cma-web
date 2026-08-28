@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { GraduationCap, LogIn, Menu, X, Radio } from 'lucide-react';
 import { CmaLogo } from './CmaLogo';
@@ -8,6 +8,17 @@ export const CmaNavbar: React.FC = () => {
   const location = useLocation();
   const { openLoginModal, openWaitlistModal } = useAcademyStore();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -35,7 +46,13 @@ export const CmaNavbar: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-black/85 backdrop-blur-md border-b border-[#1A1A1A]">
+    <header
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'bg-black/95 backdrop-blur-xl border-b border-[#242424] shadow-[0_12px_35px_rgba(0,0,0,0.85)]'
+          : 'bg-black/85 backdrop-blur-md border-b border-[#1A1A1A]'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
         {/* Left: Brand Logo */}
         <Link to="/" className="flex items-center group select-none flex-shrink-0">

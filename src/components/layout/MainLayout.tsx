@@ -27,7 +27,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 
   if (isReplicaPage) {
     return (
-      <div className="min-h-screen flex flex-col bg-black text-white relative overflow-x-hidden selection:bg-[#FF6B00] selection:text-white">
+      <div className="min-h-screen flex flex-col bg-black text-white relative selection:bg-[#FF6B00] selection:text-white">
         <ScrollToTop />
         <ToastContainer />
         <WaitlistModal />
@@ -39,7 +39,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F8F9FC] dark:bg-[#08090E] text-slate-900 dark:text-slate-100 selection:bg-[#FF6B00] selection:text-white relative overflow-x-hidden transition-colors duration-300">
+    <div className="min-h-screen flex flex-col bg-[#F8F9FC] dark:bg-[#08090E] text-slate-900 dark:text-slate-100 selection:bg-[#FF6B00] selection:text-white relative transition-colors duration-300">
       <ScrollToTop />
       <ToastContainer />
       <WaitlistModal />
