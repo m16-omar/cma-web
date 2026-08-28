@@ -238,7 +238,7 @@ export const HomePage: React.FC = () => {
                 8 Comprehensive Pillars
               </h4>
 
-              <div className="grid grid-cols-4 sm:grid-cols-4 gap-2.5 sm:gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {pillarsData.map((pillar) => (
                   <PillarCard key={pillar.id} pillar={pillar} />
                 ))}

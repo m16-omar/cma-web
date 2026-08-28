@@ -30,14 +30,14 @@ export const PillarCard: React.FC<{ pillar: PillarItem }> = ({ pillar }) => {
 
   return (
     <motion.div
-      whileHover={{ scale: 1.04, borderColor: 'rgba(255, 107, 0, 0.7)', backgroundColor: '#161616' }}
+      whileHover={{ y: -3, borderColor: '#FF6B00', backgroundColor: '#181818' }}
       transition={{ duration: 0.2 }}
-      className="flex flex-col items-center justify-center p-3 sm:p-4 text-center rounded-xl bg-[#0F0F0F] border border-[#222222] min-h-[98px] sm:min-h-[110px] shadow-sm group cursor-default"
+      className="flex items-center gap-3 p-3.5 sm:p-4 rounded-2xl bg-[#121212] border border-[#262626] shadow-md group cursor-pointer transition-all duration-300"
     >
-      <div className="text-[#FF6B00] mb-2 group-hover:scale-115 transition-transform">
-        <Icon className="w-5 h-5 sm:w-6 sm:h-6 stroke-[1.8]" />
+      <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-[#FF6B00]/15 border border-[#FF6B00]/30 text-[#FF6B00] flex items-center justify-center flex-shrink-0 group-hover:bg-[#FF6B00] group-hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(255,107,0,0.2)]">
+        <Icon className="w-5 h-5 stroke-[2]" />
       </div>
-      <span className="text-[11px] sm:text-xs leading-tight font-bold text-white/95">
+      <span className="text-xs sm:text-[13px] font-extrabold text-white leading-snug tracking-tight group-hover:text-[#FF6B00] transition-colors">
         {pillar.title}
       </span>
     </motion.div>
