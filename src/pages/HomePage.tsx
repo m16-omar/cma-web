@@ -30,8 +30,25 @@ export const HomePage: React.FC = () => {
 
   const scrollMentors = (direction: 'left' | 'right') => {
     if (mentorsScrollRef.current) {
-      const scrollAmount = direction === 'left' ? -mentorsScrollRef.current.clientWidth * 0.75 : mentorsScrollRef.current.clientWidth * 0.75;
-      mentorsScrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      const container = mentorsScrollRef.current;
+      const firstChild = container.firstElementChild as HTMLElement | null;
+      // Calculate dynamic step (1 card width + gap)
+      const step = firstChild ? firstChild.offsetWidth + 24 : 340;
+      const maxScroll = container.scrollWidth - container.clientWidth;
+
+      if (direction === 'right') {
+        if (container.scrollLeft >= maxScroll - 15) {
+          container.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          container.scrollBy({ left: step, behavior: 'smooth' });
+        }
+      } else {
+        if (container.scrollLeft <= 15) {
+          container.scrollTo({ left: maxScroll, behavior: 'smooth' });
+        } else {
+          container.scrollBy({ left: -step, behavior: 'smooth' });
+        }
+      }
     }
   };
 
@@ -307,10 +324,10 @@ export const HomePage: React.FC = () => {
         <div className="flex items-center justify-between mb-8">
           <button
             onClick={() => scrollMentors('left')}
-            className="w-9 h-9 rounded-full border border-[#1A1A1A] bg-[#0A0A0A] hover:border-[#FF6B00] text-white flex items-center justify-center transition-colors cursor-pointer"
+            className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-[#262626] bg-[#0E0E0E] hover:border-[#FF6B00] hover:bg-[#FF6B00]/10 text-white hover:text-[#FF6B00] flex items-center justify-center transition-all cursor-pointer shadow-lg active:scale-95 group"
             aria-label="Previous Mentors"
           >
-            <ChevronLeft className="w-4 h-4" />
+            <ChevronLeft className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform" />
           </button>
 
           <h2 className="text-2xl sm:text-3xl font-extrabold font-display text-white text-center">
@@ -319,10 +336,10 @@ export const HomePage: React.FC = () => {
 
           <button
             onClick={() => scrollMentors('right')}
-            className="w-9 h-9 rounded-full border border-[#1A1A1A] bg-[#0A0A0A] hover:border-[#FF6B00] text-white flex items-center justify-center transition-colors cursor-pointer"
+            className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-[#262626] bg-[#0E0E0E] hover:border-[#FF6B00] hover:bg-[#FF6B00]/10 text-white hover:text-[#FF6B00] flex items-center justify-center transition-all cursor-pointer shadow-lg active:scale-95 group"
             aria-label="Next Mentors"
           >
-            <ChevronRight className="w-4 h-4" />
+            <ChevronRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
           </button>
         </div>
 
