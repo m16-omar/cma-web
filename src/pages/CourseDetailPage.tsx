@@ -637,9 +637,9 @@ export const CourseDetailPage: React.FC = () => {
                 className="relative rounded-2xl overflow-hidden aspect-[16/10] bg-black/80 border border-[#1A1A1A] group cursor-pointer shadow-inner"
               >
                 <img
-                  src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=800&auto=format&fit=crop"
-                  alt="Video Preview"
-                  className="w-full h-full object-cover grayscale-[20%] group-hover:scale-105 transition-all duration-500"
+                  src="/images/cma_classroom_ai.jpg"
+                  alt="City Media Academy Broadcast Training Class"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
                 />
                 <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-colors flex flex-col items-center justify-center gap-2">
                   <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#FF6B00] text-white flex items-center justify-center shadow-[0_0_25px_rgba(255,107,0,0.5)] group-hover:scale-110 transition-transform">

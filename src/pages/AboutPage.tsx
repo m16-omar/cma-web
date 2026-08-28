@@ -111,13 +111,13 @@ export const AboutPage: React.FC = () => {
             </div>
 
             {/* Right Campus / Lobby Visual */}
-            <div className="lg:col-span-5 relative rounded-3xl overflow-hidden bg-[#0A0A0A] border border-[#1A1A1A] aspect-[4/3] shadow-2xl">
+            <div className="lg:col-span-5 relative rounded-3xl overflow-hidden bg-[#0A0A0A] border border-[#1A1A1A] aspect-[4/3] shadow-2xl group">
               <img
-                src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1200&auto=format&fit=crop"
-                alt="City Media Academy Campus"
-                className="w-full h-full object-cover filter brightness-75 contrast-125"
+                src="/images/cma_classroom_ai.jpg"
+                alt="City Media Academy Classroom Lecture"
+                className="w-full h-full object-cover filter contrast-[1.05] brightness-95 group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none" />
 
               {/* Glowing Reception Logo Sign */}
               <div className="absolute top-6 left-6 p-3 rounded-xl bg-black/80 backdrop-blur-md border border-white/10 shadow-lg">
