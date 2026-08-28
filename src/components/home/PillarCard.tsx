@@ -30,14 +30,14 @@ export const PillarCard: React.FC<{ pillar: PillarItem }> = ({ pillar }) => {
 
   return (
     <motion.div
-      whileHover={{ scale: 1.03, borderColor: 'rgba(255, 107, 0, 0.7)', backgroundColor: '#141414' }}
+      whileHover={{ scale: 1.04, borderColor: 'rgba(255, 107, 0, 0.7)', backgroundColor: '#161616' }}
       transition={{ duration: 0.2 }}
-      className="flex flex-col items-center justify-center p-2.5 sm:p-3 text-center rounded-xl bg-[#0F0F0F] border border-[#222222] min-h-[84px] shadow-sm group cursor-default"
+      className="flex flex-col items-center justify-center p-3 sm:p-4 text-center rounded-xl bg-[#0F0F0F] border border-[#222222] min-h-[98px] sm:min-h-[110px] shadow-sm group cursor-default"
     >
-      <div className="text-[#FF6B00] mb-1.5 group-hover:scale-110 transition-transform">
-        <Icon className="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.8]" />
+      <div className="text-[#FF6B00] mb-2 group-hover:scale-115 transition-transform">
+        <Icon className="w-5 h-5 sm:w-6 sm:h-6 stroke-[1.8]" />
       </div>
-      <span className="text-[10px] sm:text-[11px] leading-tight font-medium text-white/90">
+      <span className="text-[11px] sm:text-xs leading-tight font-bold text-white/95">
         {pillar.title}
       </span>
     </motion.div>

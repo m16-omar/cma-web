@@ -16,6 +16,7 @@ import {
   Headphones,
   Monitor,
   Hourglass,
+  ArrowRight,
 } from 'lucide-react';
 import { statsData, pillarsData, mentorsData, testimonialsData } from '../data/mockData';
 import { StatCard } from '../components/home/StatCard';
@@ -147,86 +148,97 @@ export const HomePage: React.FC = () => {
 
       {/* 4. FEATURED COURSE CONTAINER */}
       <section className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 mb-24">
-        <div className="rounded-2xl bg-[#0A0A0A] border border-[#1A1A1A] p-6 lg:p-8 shadow-2xl space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="rounded-3xl bg-[#0A0A0A] border border-[#1A1A1A] p-7 sm:p-9 lg:p-11 shadow-2xl space-y-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
             {/* Col 1: Course Title, Badge & Vintage Mic Image */}
-            <div className="lg:col-span-4 space-y-4">
-              <div className="inline-flex items-center px-3 py-1 rounded-md bg-[#380b0f] border border-red-900/60 text-[#ff6b6b] text-[10px] font-black tracking-wider uppercase">
+            <div className="lg:col-span-4 space-y-5">
+              <div className="inline-flex items-center px-3.5 py-1.5 rounded-lg bg-[#380b0f] border border-red-900/70 text-[#ff6b6b] text-xs font-black tracking-wider uppercase shadow-sm">
                 REGISTRATION CLOSED
               </div>
 
               <div>
-                <h3 className="text-2xl sm:text-3xl font-extrabold font-display leading-tight">
+                <h3 className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl font-black font-display leading-[1.05] tracking-tight">
                   <span className="text-white block">BROADCAST</span>
                   <span className="text-white">MEDIA </span>
                   <span className="text-[#FF6B00]">PRO </span>
                   <span className="text-[#FF6B00] block">COURSE 2026</span>
                 </h3>
-                <div className="flex items-center gap-1.5 text-xs text-[#A0A0A0] mt-2 font-medium">
-                  <Calendar className="w-3.5 h-3.5 text-[#FF6B00]" />
+                <div className="flex items-center gap-2 text-sm sm:text-base text-[#A0A0A0] mt-3 font-semibold">
+                  <Calendar className="w-4 h-4 text-[#FF6B00]" />
                   <span>5-Week Intensive Programme</span>
                 </div>
               </div>
 
               {/* Vintage Mic Thumbnail */}
-              <div className="rounded-xl overflow-hidden aspect-[4/3] bg-black/60 border border-[#1A1A1A] relative shadow-inner">
+              <div className="rounded-2xl overflow-hidden aspect-[16/10] sm:aspect-[4/3] bg-black/60 border border-[#1A1A1A] relative shadow-2xl group">
                 <img
-                  src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=800&auto=format&fit=crop"
-                  alt="Studio Microphone"
-                  className="w-full h-full object-cover grayscale brightness-90 contrast-125"
+                  src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=1000&auto=format&fit=crop"
+                  alt="Broadcast Studio Microphone"
+                  className="w-full h-full object-cover grayscale brightness-95 contrast-125 group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent" />
               </div>
             </div>
 
             {/* Col 2: Course Description & 4 Meta items in 2x2 grid */}
-            <div className="lg:col-span-4 space-y-6">
-              <p className="text-xs sm:text-[13px] text-[#A0A0A0] leading-relaxed font-normal">
+            <div className="lg:col-span-4 space-y-6 flex flex-col justify-between h-full">
+              <p className="text-sm sm:text-base text-[#C0C0C0] leading-relaxed font-normal">
                 Kickstart your career in broadcast media, public speaking, voiceover and content creation in just 5 weeks! Learn how to build a lucrative on-air presentation, event hosting, voiceover and digital media business with the Broadcast Media Pro Course.
               </p>
 
-              <div className="grid grid-cols-2 gap-4 pt-2">
-                <div className="space-y-1">
-                  <div className="flex items-center gap-1.5 text-[11px] text-[#A0A0A0]">
-                    <Calendar className="w-3.5 h-3.5 text-[#FF6B00]" />
+              <div className="grid grid-cols-2 gap-3.5 sm:gap-4">
+                <div className="p-3.5 sm:p-4 rounded-2xl bg-[#0F0F0F] border border-[#1E1E1E] space-y-1.5">
+                  <div className="flex items-center gap-1.5 text-xs font-semibold text-[#888888]">
+                    <Calendar className="w-4 h-4 text-[#FF6B00]" />
                     <span>Class Starts:</span>
                   </div>
-                  <div className="text-xs sm:text-sm font-bold text-white">July 06, 2026</div>
+                  <div className="text-sm sm:text-base font-extrabold text-white">July 06, 2026</div>
                 </div>
 
-                <div className="space-y-1">
-                  <div className="flex items-center gap-1.5 text-[11px] text-[#A0A0A0]">
-                    <Clock className="w-3.5 h-3.5 text-[#FF6B00]" />
+                <div className="p-3.5 sm:p-4 rounded-2xl bg-[#0F0F0F] border border-[#1E1E1E] space-y-1.5">
+                  <div className="flex items-center gap-1.5 text-xs font-semibold text-[#888888]">
+                    <Clock className="w-4 h-4 text-[#FF6B00]" />
                     <span>Time:</span>
                   </div>
-                  <div className="text-xs sm:text-sm font-bold text-white">9am - 2pm Daily</div>
+                  <div className="text-sm sm:text-base font-extrabold text-white">9am - 2pm Daily</div>
                 </div>
 
-                <div className="space-y-1">
-                  <div className="flex items-center gap-1.5 text-[11px] text-[#A0A0A0]">
-                    <Monitor className="w-3.5 h-3.5 text-[#FF6B00]" />
+                <div className="p-3.5 sm:p-4 rounded-2xl bg-[#0F0F0F] border border-[#1E1E1E] space-y-1.5">
+                  <div className="flex items-center gap-1.5 text-xs font-semibold text-[#888888]">
+                    <Monitor className="w-4 h-4 text-[#FF6B00]" />
                     <span>Format:</span>
                   </div>
-                  <div className="text-xs sm:text-sm font-bold text-white">Hybrid (Physical + Online)</div>
+                  <div className="text-sm sm:text-base font-extrabold text-white">Hybrid (Physical + Online)</div>
                 </div>
 
-                <div className="space-y-1">
-                  <div className="flex items-center gap-1.5 text-[11px] text-[#A0A0A0]">
-                    <Hourglass className="w-3.5 h-3.5 text-[#FF6B00]" />
+                <div className="p-3.5 sm:p-4 rounded-2xl bg-[#0F0F0F] border border-[#1E1E1E] space-y-1.5">
+                  <div className="flex items-center gap-1.5 text-xs font-semibold text-[#888888]">
+                    <Hourglass className="w-4 h-4 text-[#FF6B00]" />
                     <span>Duration:</span>
                   </div>
-                  <div className="text-xs sm:text-sm font-bold text-white">5 Weeks</div>
+                  <div className="text-sm sm:text-base font-extrabold text-white">5 Weeks</div>
                 </div>
+              </div>
+
+              {/* Action Button */}
+              <div className="pt-2">
+                <Link
+                  to="/courses/broadcast-media-pro-2026"
+                  className="inline-flex items-center justify-center gap-2 w-full py-3.5 px-6 rounded-xl bg-[#141414] hover:bg-[#FF6B00] border border-[#262626] hover:border-[#FF6B00] text-white font-bold text-sm transition-all duration-300 shadow-md group"
+                >
+                  <span>Explore Course Curriculum</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
               </div>
             </div>
 
             {/* Col 3: 8 Comprehensive Pillars Grid (4x2) */}
-            <div className="lg:col-span-4 space-y-3">
-              <h4 className="text-sm font-bold text-white font-display text-center lg:text-left">
+            <div className="lg:col-span-4 space-y-4">
+              <h4 className="text-base sm:text-lg font-extrabold text-white font-display text-center lg:text-left">
                 8 Comprehensive Pillars
               </h4>
 
-              <div className="grid grid-cols-4 sm:grid-cols-4 gap-2">
+              <div className="grid grid-cols-4 sm:grid-cols-4 gap-2.5 sm:gap-3">
                 {pillarsData.map((pillar) => (
                   <PillarCard key={pillar.id} pillar={pillar} />
                 ))}
@@ -235,14 +247,14 @@ export const HomePage: React.FC = () => {
           </div>
 
           {/* Bottom Bar: Structure Details */}
-          <div className="pt-4 border-t border-[#1A1A1A]">
-            <div className="p-3.5 rounded-xl bg-[#0F0F0F] border border-[#1A1A1A] flex items-center gap-3">
-              <div className="w-7 h-7 rounded-full border border-[#FF6B00]/40 bg-[#FF6B00]/10 flex items-center justify-center flex-shrink-0 text-[#FF6B00]">
-                <Headphones className="w-3.5 h-3.5" />
+          <div className="pt-6 border-t border-[#1A1A1A]">
+            <div className="p-5 sm:p-6 rounded-2xl bg-[#0F0F0F] border border-[#1E1E1E] flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <div className="w-10 h-10 rounded-full border border-[#FF6B00]/40 bg-[#FF6B00]/10 flex items-center justify-center flex-shrink-0 text-[#FF6B00]">
+                <Headphones className="w-5 h-5" />
               </div>
-              <p className="text-xs sm:text-sm leading-snug">
+              <p className="text-sm sm:text-base leading-relaxed">
                 <strong className="text-[#FF6B00] font-bold">Structure:</strong>{' '}
-                <span className="text-[#A0A0A0]">
+                <span className="text-[#CCCCCC]">
                   5 hour classes a day for 2 weeks and 3 weeks internship at City FM — a leading urban contemporary radio station
                 </span>
               </p>
