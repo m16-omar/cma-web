@@ -26,6 +26,10 @@ import {
   GraduationCap,
   Handshake,
   ArrowRight,
+  Instagram,
+  Facebook,
+  Linkedin,
+  Twitter,
 } from 'lucide-react';
 import { industryMentorsList, IndustryMentor } from '../data/mentorsData';
 import { CmaFooter } from '../components/ui/CmaFooter';
@@ -251,30 +255,61 @@ export const InstructorsPage: React.FC = () => {
                 </p>
               </div>
 
-              {/* Bottom: Media Icons & View Profile Action */}
+              {/* Bottom: Real Social Media Links & Connect Action */}
               <div className="flex items-center justify-between pt-5 mt-5 border-t border-[#181818]">
-                {/* Media Icons */}
-                <div className="flex items-center gap-1.5 text-[#FF6B00]">
-                  {mentor.iconNames.map((iconName, i) => {
-                    const Icon = mentorIconLookup[iconName] || Star;
-                    return (
-                      <div
-                        key={i}
-                        className="w-7 h-7 rounded-lg bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center"
-                        title={iconName}
-                      >
-                        <Icon className="w-3.5 h-3.5 stroke-[1.8]" />
-                      </div>
-                    );
-                  })}
+                {/* Real Social Media Links (Instagram, X, Facebook, LinkedIn) */}
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <a
+                    href={mentor.socials.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-lg bg-[#141414] border border-[#262626] hover:border-[#FF6B00] hover:bg-[#FF6B00]/15 text-[#A0A0A0] hover:text-[#FF6B00] flex items-center justify-center transition-all duration-200 shadow-sm group/social"
+                    title={`${mentor.name} on Instagram`}
+                    aria-label="Instagram"
+                  >
+                    <Instagram className="w-4 h-4 group-hover/social:scale-110 transition-transform" />
+                  </a>
+
+                  <a
+                    href={mentor.socials.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-lg bg-[#141414] border border-[#262626] hover:border-[#FF6B00] hover:bg-[#FF6B00]/15 text-[#A0A0A0] hover:text-[#FF6B00] flex items-center justify-center transition-all duration-200 shadow-sm group/social"
+                    title={`${mentor.name} on X (Twitter)`}
+                    aria-label="X (Twitter)"
+                  >
+                    <Twitter className="w-4 h-4 group-hover/social:scale-110 transition-transform" />
+                  </a>
+
+                  <a
+                    href={mentor.socials.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-lg bg-[#141414] border border-[#262626] hover:border-[#FF6B00] hover:bg-[#FF6B00]/15 text-[#A0A0A0] hover:text-[#FF6B00] flex items-center justify-center transition-all duration-200 shadow-sm group/social"
+                    title={`${mentor.name} on Facebook`}
+                    aria-label="Facebook"
+                  >
+                    <Facebook className="w-4 h-4 group-hover/social:scale-110 transition-transform" />
+                  </a>
+
+                  <a
+                    href={mentor.socials.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-lg bg-[#141414] border border-[#262626] hover:border-[#FF6B00] hover:bg-[#FF6B00]/15 text-[#A0A0A0] hover:text-[#FF6B00] flex items-center justify-center transition-all duration-200 shadow-sm group/social"
+                    title={`${mentor.name} on LinkedIn`}
+                    aria-label="LinkedIn"
+                  >
+                    <Linkedin className="w-4 h-4 group-hover/social:scale-110 transition-transform" />
+                  </a>
                 </div>
 
-                {/* View Profile Action */}
+                {/* Connect Action */}
                 <button
                   onClick={() => openWaitlistModal('broadcast-media-pro-2026')}
-                  className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#FF6B00] hover:text-white transition-colors cursor-pointer group-hover:translate-x-0.5 transition-transform"
+                  className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-[#FF6B00] hover:text-white transition-colors cursor-pointer group-hover:translate-x-0.5 transition-transform"
                 >
-                  <span>View Profile</span>
+                  <span>Connect</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>

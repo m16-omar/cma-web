@@ -5,7 +5,12 @@ export interface IndustryMentor {
   bio: string;
   category: 'Broadcasting' | 'Presentation' | 'Voiceover' | 'Content Creation' | 'Marketing & Branding' | 'Events & Hosting';
   avatar: string;
-  iconNames: string[];
+  socials: {
+    instagram: string;
+    twitter: string;
+    facebook: string;
+    linkedin: string;
+  };
 }
 
 export const industryMentorsList: IndustryMentor[] = [
@@ -16,7 +21,12 @@ export const industryMentorsList: IndustryMentor[] = [
     bio: 'Professional voiceover artist with a rich, versatile voice trusted by top brands across Africa.',
     category: 'Voiceover',
     avatar: '/images/mentors/mazino-appeal.png',
-    iconNames: ['Mic2', 'AudioWaveform', 'Volume2', 'Sparkles'],
+    socials: {
+      instagram: 'https://instagram.com/mazinoappeal',
+      twitter: 'https://x.com/mazinoappeal',
+      facebook: 'https://facebook.com/mazinoappeal',
+      linkedin: 'https://linkedin.com/in/mazinoappeal',
+    },
   },
   {
     id: 'nyamgul',
@@ -25,7 +35,12 @@ export const industryMentorsList: IndustryMentor[] = [
     bio: 'Experienced broadcast journalist and news anchor with a passion for storytelling and live coverage.',
     category: 'Broadcasting',
     avatar: '/images/mentors/nyamgul-agaji.png',
-    iconNames: ['Newspaper', 'Mic2', 'Radio', 'Tv'],
+    socials: {
+      instagram: 'https://instagram.com/nyamgulagaji',
+      twitter: 'https://x.com/nyamgulagaji',
+      facebook: 'https://facebook.com/nyamgulagaji',
+      linkedin: 'https://linkedin.com/in/nyamgulagaji',
+    },
   },
   {
     id: 'oludolapo',
@@ -34,7 +49,12 @@ export const industryMentorsList: IndustryMentor[] = [
     bio: 'Diction and speech coach helping professionals speak with clarity, resonance, and confidence.',
     category: 'Presentation',
     avatar: '/images/mentors/oludolapo-adewale.png',
-    iconNames: ['Languages', 'AudioWaveform', 'Mic2', 'Users'],
+    socials: {
+      instagram: 'https://instagram.com/oludolapoadewale',
+      twitter: 'https://x.com/oludolapoadewale',
+      facebook: 'https://facebook.com/oludolapoadewale',
+      linkedin: 'https://linkedin.com/in/oludolapoadewale',
+    },
   },
   {
     id: 'oscar',
@@ -43,7 +63,12 @@ export const industryMentorsList: IndustryMentor[] = [
     bio: 'Dynamic event host and television presenter who connects audiences and creates memorable experiences.',
     category: 'Events & Hosting',
     avatar: '/images/mentors/oscar-oyinsan.png',
-    iconNames: ['Mic2', 'Calendar', 'Users', 'Star'],
+    socials: {
+      instagram: 'https://instagram.com/oscaroyinsan',
+      twitter: 'https://x.com/oscaroyinsan',
+      facebook: 'https://facebook.com/oscaroyinsan',
+      linkedin: 'https://linkedin.com/in/oscaroyinsan',
+    },
   },
   {
     id: 'charles',
@@ -52,7 +77,12 @@ export const industryMentorsList: IndustryMentor[] = [
     bio: 'Brand strategist focused on helping media personalities and corporate brands build influence and market legacy.',
     category: 'Marketing & Branding',
     avatar: '/images/mentors/charles-ezerime.png',
-    iconNames: ['Target', 'TrendingUp', 'Megaphone', 'ShieldCheck'],
+    socials: {
+      instagram: 'https://instagram.com/charlesezerime',
+      twitter: 'https://x.com/charlesezerime',
+      facebook: 'https://facebook.com/charlesezerime',
+      linkedin: 'https://linkedin.com/in/charlesezerime',
+    },
   },
   {
     id: 'chukwudi',
@@ -61,7 +91,12 @@ export const industryMentorsList: IndustryMentor[] = [
     bio: 'Award-winning broadcaster and podcast host with over 15 years in radio presentation and digital media.',
     category: 'Broadcasting',
     avatar: '/images/mentors/chukwudi-ezeugwu.png',
-    iconNames: ['Mic2', 'Radio', 'Play', 'Building'],
+    socials: {
+      instagram: 'https://instagram.com/chukwudiezeugwu',
+      twitter: 'https://x.com/chukwudiezeugwu',
+      facebook: 'https://facebook.com/chukwudiezeugwu',
+      linkedin: 'https://linkedin.com/in/chukwudiezeugwu',
+    },
   },
   {
     id: 'shola',
@@ -70,7 +105,12 @@ export const industryMentorsList: IndustryMentor[] = [
     bio: 'Seasoned radio and TV host known for engaging prime-time audiences and compelling on-air presence.',
     category: 'Presentation',
     avatar: '/images/mentors/shola-thompson.png',
-    iconNames: ['Mic2', 'Radio', 'Calendar', 'Users'],
+    socials: {
+      instagram: 'https://instagram.com/sholathompson',
+      twitter: 'https://x.com/sholathompson',
+      facebook: 'https://facebook.com/sholathompson',
+      linkedin: 'https://linkedin.com/in/sholathompson',
+    },
   },
   {
     id: 'tope',
@@ -79,6 +119,11 @@ export const industryMentorsList: IndustryMentor[] = [
     bio: 'Content strategist and digital media creator helping modern broadcasters communicate with impact.',
     category: 'Content Creation',
     avatar: '/images/mentors/tope-aghomatse.png',
-    iconNames: ['PenTool', 'MessageSquare', 'Megaphone', 'TrendingUp'],
+    socials: {
+      instagram: 'https://instagram.com/topeaghomatse',
+      twitter: 'https://x.com/topeaghomatse',
+      facebook: 'https://facebook.com/topeaghomatse',
+      linkedin: 'https://linkedin.com/in/topeaghomatse',
+    },
   },
 ];
