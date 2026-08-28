@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   X,
-  Bell,
+  GraduationCap,
   Sparkles,
   CheckCircle2,
   Radio,
@@ -12,34 +12,44 @@ import {
   User,
   Mail,
   Phone,
-  MessageCircle,
-  Clock,
+  BookOpen,
+  Calendar,
   Building,
 } from 'lucide-react';
 import { useAcademyStore } from '../../store/useAcademyStore';
 import { coursesData } from '../../data/courses';
 import { CourseFormat } from '../../types/course';
 import confetti from 'canvas-confetti';
+import { CmaLogo } from '../ui/CmaLogo';
 
-export const WaitlistModal: React.FC = () => {
-  const { isWaitlistOpen, closeWaitlistModal, activeCourseIdForModal, addToast } =
+export const ApplyModal: React.FC = () => {
+  const { isApplyModalOpen, closeApplyModal, activeCourseIdForModal, addToast } =
     useAcademyStore();
 
-  const activeCourse =
-    coursesData.find((c) => c.id === activeCourseIdForModal) || coursesData[0];
-
   const [formData, setFormData] = useState({
+    selectedCourse: activeCourseIdForModal || 'broadcast-media-pro-2026',
+    selectedFormat: 'Hybrid' as CourseFormat,
     fullName: '',
     email: '',
     phone: '',
-    selectedFormat: 'Hybrid' as CourseFormat,
-    notifyVia: 'WhatsApp & Email',
+    experienceLevel: 'Beginner',
+    educationLevel: 'Undergraduate / Graduate',
+    careerGoal: '',
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  if (!isWaitlistOpen) return null;
+  if (!isApplyModalOpen) return null;
+
+  const coursesList = [
+    { id: 'broadcast-media-pro-2026', name: 'Broadcast Media Pro Course 2026 (Flagship)' },
+    { id: 'radio-presentation-mastery', name: 'Radio Presentation & On-Air Hosting' },
+    { id: 'voiceover-audio-production', name: 'Voiceover & Audio Production Masterclass' },
+    { id: 'event-hosting-public-speaking', name: 'Event Hosting, Moderation & Public Speaking' },
+    { id: 'digital-media-content-creation', name: 'Digital Media & Content Strategy' },
+    { id: 'broadcast-journalism-news', name: 'Broadcast Journalism & News Anchoring' },
+  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,23 +62,23 @@ export const WaitlistModal: React.FC = () => {
       setIsSubmitted(true);
 
       confetti({
-        particleCount: 80,
+        particleCount: 100,
         spread: 70,
         origin: { y: 0.6 },
         colors: ['#FF6B00', '#FFA048', '#FFFFFF', '#08090E'],
       });
 
       addToast(
-        '🔔 Added to Priority Waitlist!',
-        `You'll receive an early alert via ${formData.notifyVia} as soon as slots open for ${activeCourse.title}.`,
+        '🎓 Application Submitted Successfully!',
+        `Thank you ${formData.fullName}! Your admission application has been registered. An advisor will contact you within 24 hours.`,
         'success'
       );
-    }, 700);
+    }, 800);
   };
 
   const handleClose = () => {
     setIsSubmitted(false);
-    closeWaitlistModal();
+    closeApplyModal();
   };
 
   return (
@@ -89,10 +99,10 @@ export const WaitlistModal: React.FC = () => {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-          className="relative w-full max-w-lg rounded-3xl bg-[#0A0A0A] border border-[#1E1E1E] p-6 sm:p-8 shadow-2xl z-10 text-white my-8 overflow-hidden"
+          className="relative w-full max-w-xl rounded-3xl bg-[#0A0A0A] border border-[#1E1E1E] p-6 sm:p-8 shadow-2xl z-10 text-white my-8 overflow-hidden"
         >
           {/* Ambient Glow */}
-          <div className="absolute top-0 right-0 w-60 h-60 bg-[#FF6B00]/10 rounded-full blur-[90px] pointer-events-none" />
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF6B00]/10 rounded-full blur-[100px] pointer-events-none" />
 
           {/* Close Button */}
           <button
@@ -105,25 +115,44 @@ export const WaitlistModal: React.FC = () => {
           {!isSubmitted ? (
             <div className="space-y-5">
               {/* Header */}
-              <div className="space-y-1.5">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FF6B00]/15 border border-[#FF6B00]/30 text-[11px] font-bold uppercase tracking-wider text-[#FF6B00]">
-                  <Bell className="w-3.5 h-3.5" />
-                  <span>Cohort Waitlist Notification</span>
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#FF6B00]">
+                  <GraduationCap className="w-4 h-4" />
+                  <span>Academy Admissions Application</span>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-black font-display tracking-tight text-white">
-                  {activeCourse.title}
+                  Apply for Admission
                 </h3>
                 <p className="text-xs text-[#A0A0A0] leading-relaxed">
-                  Registration for the current batch is closed. Join the priority waitlist to get early-bird registration access before public announcement.
+                  Start your training with seasoned industry broadcasters at City 105.1 FM complex.
                 </p>
               </div>
 
               {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Learning Format */}
+                {/* Program Selection */}
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-[#A0A0A0] flex items-center gap-1.5">
+                    <BookOpen className="w-3.5 h-3.5 text-[#FF6B00]" />
+                    <span>Select Programme *</span>
+                  </label>
+                  <select
+                    value={formData.selectedCourse}
+                    onChange={(e) => setFormData({ ...formData, selectedCourse: e.target.value })}
+                    className="w-full bg-[#0F0F0F] border border-[#1E1E1E] focus:border-[#FF6B00] rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none transition-colors"
+                  >
+                    {coursesList.map((c) => (
+                      <option key={c.id} value={c.id} className="bg-[#141414] text-white">
+                        {c.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Mode Selection */}
                 <div className="space-y-1.5">
                   <label className="text-xs font-semibold text-[#A0A0A0] block">
-                    Preferred Learning Format *
+                    Preferred Study Mode *
                   </label>
                   <div className="grid grid-cols-3 gap-2">
                     {(['Physical', 'Online', 'Hybrid'] as CourseFormat[]).map((mode) => (
@@ -146,11 +175,11 @@ export const WaitlistModal: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Full Name */}
+                {/* Personal Information */}
                 <div className="space-y-1.5">
                   <label className="text-xs font-semibold text-[#A0A0A0] flex items-center gap-1.5">
                     <User className="w-3.5 h-3.5 text-[#FF6B00]" />
-                    <span>Full Name *</span>
+                    <span>Full Legal Name *</span>
                   </label>
                   <input
                     type="text"
@@ -162,7 +191,7 @@ export const WaitlistModal: React.FC = () => {
                   />
                 </div>
 
-                {/* Email & WhatsApp */}
+                {/* Email & Phone */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="space-y-1.5">
                     <label className="text-xs font-semibold text-[#A0A0A0] flex items-center gap-1.5">
@@ -182,7 +211,7 @@ export const WaitlistModal: React.FC = () => {
                   <div className="space-y-1.5">
                     <label className="text-xs font-semibold text-[#A0A0A0] flex items-center gap-1.5">
                       <Phone className="w-3.5 h-3.5 text-[#FF6B00]" />
-                      <span>WhatsApp Phone *</span>
+                      <span>Phone / WhatsApp *</span>
                     </label>
                     <input
                       type="tel"
@@ -195,22 +224,52 @@ export const WaitlistModal: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Notification Preference */}
+                {/* Experience Level & Background */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-semibold text-[#A0A0A0]">
+                      Broadcasting Experience
+                    </label>
+                    <select
+                      value={formData.experienceLevel}
+                      onChange={(e) => setFormData({ ...formData, experienceLevel: e.target.value })}
+                      className="w-full bg-[#0F0F0F] border border-[#1E1E1E] focus:border-[#FF6B00] rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none transition-colors"
+                    >
+                      <option value="Beginner" className="bg-[#141414]">Beginner (No prior experience)</option>
+                      <option value="Intermediate" className="bg-[#141414]">Intermediate (Some amateur/campus radio)</option>
+                      <option value="Professional" className="bg-[#141414]">Working Broadcaster / Media Professional</option>
+                    </select>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-semibold text-[#A0A0A0]">
+                      Education Level
+                    </label>
+                    <select
+                      value={formData.educationLevel}
+                      onChange={(e) => setFormData({ ...formData, educationLevel: e.target.value })}
+                      className="w-full bg-[#0F0F0F] border border-[#1E1E1E] focus:border-[#FF6B00] rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none transition-colors"
+                    >
+                      <option value="Secondary School" className="bg-[#141414]">SSCE / High School</option>
+                      <option value="Undergraduate" className="bg-[#141414]">Undergraduate Student</option>
+                      <option value="Graduate" className="bg-[#141414]">B.Sc / HND Graduate</option>
+                      <option value="Postgraduate" className="bg-[#141414]">Postgraduate / Working Exec</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Career Goal */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-[#A0A0A0] flex items-center gap-1.5">
-                    <MessageCircle className="w-3.5 h-3.5 text-[#FF6B00]" />
-                    <span>Preferred Notification Channel</span>
+                  <label className="text-xs font-semibold text-[#A0A0A0]">
+                    What is your media career aspiration? (Optional)
                   </label>
-                  <select
-                    value={formData.notifyVia}
-                    onChange={(e) => setFormData({ ...formData, notifyVia: e.target.value })}
-                    className="w-full bg-[#0F0F0F] border border-[#1E1E1E] focus:border-[#FF6B00] rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none transition-colors"
-                  >
-                    <option value="WhatsApp & Email" className="bg-[#141414]">WhatsApp & Email (Fastest)</option>
-                    <option value="WhatsApp Only" className="bg-[#141414]">WhatsApp Direct Message</option>
-                    <option value="Email Only" className="bg-[#141414]">Email Only</option>
-                    <option value="Phone Call" className="bg-[#141414]">Phone Call from Admissions Officer</option>
-                  </select>
+                  <textarea
+                    rows={2}
+                    placeholder="e.g. I want to become an on-air radio host at a national station, launch a podcast, or produce professional voiceovers..."
+                    value={formData.careerGoal}
+                    onChange={(e) => setFormData({ ...formData, careerGoal: e.target.value })}
+                    className="w-full bg-[#0F0F0F] border border-[#1E1E1E] focus:border-[#FF6B00] rounded-xl px-3.5 py-2 text-xs text-white placeholder-[#555] focus:outline-none transition-colors resize-none"
+                  />
                 </div>
 
                 {/* Submit Button */}
@@ -220,17 +279,17 @@ export const WaitlistModal: React.FC = () => {
                   className="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-[#FF6B00] to-[#E55F00] text-white font-bold text-xs shadow-lg shadow-[#FF6B00]/30 hover:brightness-110 active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 mt-2"
                 >
                   {isSubmitting ? (
-                    <span>Joining Waitlist...</span>
+                    <span>Submitting Application...</span>
                   ) : (
                     <>
-                      <Bell className="w-4 h-4" />
-                      <span>Join Priority Waitlist</span>
+                      <span>Submit Admission Application</span>
+                      <ArrowRight className="w-4 h-4" />
                     </>
                   )}
                 </button>
 
                 <p className="text-[10.5px] text-center text-[#777]">
-                  🔒 No spam. We only contact you when the new batch opens.
+                  🔒 Your information is confidential. An admissions advisor will reach out with cohort onboarding steps.
                 </p>
               </form>
             </div>
@@ -242,21 +301,25 @@ export const WaitlistModal: React.FC = () => {
               </div>
               <div className="space-y-1">
                 <h3 className="text-xl font-bold font-display text-white">
-                  You're on the Priority Waitlist! 🔔
+                  Admission Application Received! 🎉
                 </h3>
                 <p className="text-xs text-[#A0A0A0] max-w-sm mx-auto leading-relaxed">
-                  Thank you, <strong className="text-white">{formData.fullName}</strong>. You will be notified first via <strong className="text-[#FF6B00]">{formData.notifyVia}</strong> when registration opens for <strong>{activeCourse.title}</strong>.
+                  Thank you, <strong className="text-white">{formData.fullName}</strong>. Your application for the <strong className="text-[#FF6B00]">{formData.selectedFormat}</strong> track has been registered.
                 </p>
               </div>
 
               <div className="p-4 rounded-2xl bg-[#0F0F0F] border border-[#1E1E1E] text-xs text-left space-y-2 text-[#A0A0A0]">
-                <div className="flex items-center gap-2">
-                  <Clock className="w-3.5 h-3.5 text-[#FF6B00] flex-shrink-0" />
-                  <span><strong>Next Cohort Start:</strong> July 06, 2026</span>
+                <div className="flex items-start gap-2">
+                  <Building className="w-3.5 h-3.5 text-[#FF6B00] flex-shrink-0 mt-0.5" />
+                  <span><strong>Campus Location:</strong> Plot 11 Lateef Jakande Road, Agidingbi, Ikeja, Lagos (City FM Complex)</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Building className="w-3.5 h-3.5 text-[#FF6B00] flex-shrink-0" />
-                  <span><strong>Campus:</strong> Plot 11 Lateef Jakande Road, Agidingbi, Ikeja, Lagos</span>
+                  <Calendar className="w-3.5 h-3.5 text-[#FF6B00] flex-shrink-0" />
+                  <span><strong>Upcoming Cohort:</strong> July 06, 2026 (9:00 AM WAT)</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Phone className="w-3.5 h-3.5 text-[#FF6B00] flex-shrink-0" />
+                  <span><strong>Admissions Officer:</strong> 0810 968 8638 / academy@city1051fm.com</span>
                 </div>
               </div>
 
@@ -264,7 +327,7 @@ export const WaitlistModal: React.FC = () => {
                 onClick={handleClose}
                 className="px-6 py-2.5 rounded-xl bg-[#FF6B00] hover:bg-[#E55F00] text-white font-bold text-xs transition-all cursor-pointer shadow-md"
               >
-                Back to Academy
+                Back to CMA Website
               </button>
             </div>
           )}

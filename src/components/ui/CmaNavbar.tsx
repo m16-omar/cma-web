@@ -6,7 +6,7 @@ import { useAcademyStore } from '../../store/useAcademyStore';
 
 export const CmaNavbar: React.FC = () => {
   const location = useLocation();
-  const { openLoginModal, openWaitlistModal } = useAcademyStore();
+  const { openLoginModal, openApplyModal } = useAcademyStore();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -92,7 +92,7 @@ export const CmaNavbar: React.FC = () => {
 
           {/* Apply Now Button (Primary Orange Gradient CTA) */}
           <button
-            onClick={() => openWaitlistModal('broadcast-media-pro-2026')}
+            onClick={() => openApplyModal('broadcast-media-pro-2026')}
             className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-gradient-to-r from-[#FF6B00] to-[#E55F00] hover:brightness-110 active:scale-95 text-white text-xs font-bold transition-all shadow-md shadow-[#FF6B00]/25 flex items-center gap-1.5 cursor-pointer flex-shrink-0"
           >
             <GraduationCap className="w-3.5 h-3.5" />
@@ -137,7 +137,7 @@ export const CmaNavbar: React.FC = () => {
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
-                openWaitlistModal('broadcast-media-pro-2026');
+                openApplyModal('broadcast-media-pro-2026');
               }}
               className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#FF6B00] to-[#E55F00] text-white text-xs font-bold flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-[#FF6B00]/20"
             >

@@ -184,6 +184,10 @@ interface AcademyState {
   openWaitlistModal: (courseId?: string) => void;
   closeWaitlistModal: () => void;
 
+  isApplyModalOpen: boolean;
+  openApplyModal: (courseId?: string) => void;
+  closeApplyModal: () => void;
+
   isLoginModalOpen: boolean;
   openLoginModal: () => void;
   closeLoginModal: () => void;
@@ -253,6 +257,11 @@ export const useAcademyStore = create<AcademyState>((set, get) => ({
   openWaitlistModal: (courseId) =>
     set({ isWaitlistOpen: true, activeCourseIdForModal: courseId || 'broadcast-media-pro-2026' }),
   closeWaitlistModal: () => set({ isWaitlistOpen: false, activeCourseIdForModal: null }),
+
+  isApplyModalOpen: false,
+  openApplyModal: (courseId) =>
+    set({ isApplyModalOpen: true, activeCourseIdForModal: courseId || 'broadcast-media-pro-2026' }),
+  closeApplyModal: () => set({ isApplyModalOpen: false, activeCourseIdForModal: null }),
 
   isLoginModalOpen: false,
   openLoginModal: () => set({ isLoginModalOpen: true }),

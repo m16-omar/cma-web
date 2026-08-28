@@ -7,6 +7,7 @@ import { ToastContainer } from '../ui/ToastContainer';
 import { WaitlistModal } from '../modals/WaitlistModal';
 import { VideoPreviewModal } from '../modals/VideoPreviewModal';
 import { LoginModal } from '../modals/LoginModal';
+import { ApplyModal } from '../modals/ApplyModal';
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -31,6 +32,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         <ScrollToTop />
         <ToastContainer />
         <WaitlistModal />
+        <ApplyModal />
         <VideoPreviewModal />
         <LoginModal />
         <main className="flex-grow">{children}</main>
@@ -43,6 +45,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       <ScrollToTop />
       <ToastContainer />
       <WaitlistModal />
+      <ApplyModal />
       <VideoPreviewModal />
       <LoginModal />
 
