@@ -98,20 +98,12 @@ export const AdmissionsPage: React.FC = () => {
         {/* Studio Background Ambient */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2000&auto=format&fit=crop"
-            alt="Broadcast Studio"
-            className="w-full h-full object-cover object-right opacity-30 filter brightness-50 contrast-125"
+            src="/images/cma_classroom_real.jpg"
+            alt="City Media Academy Classroom"
+            className="w-full h-full object-cover object-right opacity-35 filter brightness-85 contrast-110"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60" />
-
-          {/* ON AIR Sign */}
-          <div className="absolute top-10 right-8 sm:right-24 px-3.5 py-1.5 rounded-md border-2 border-red-600 bg-red-950/80 shadow-[0_0_30px_rgba(220,38,38,0.7)] hidden sm:flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
-            <span className="text-xs sm:text-sm font-black tracking-widest text-red-500 font-mono">
-              ON AIR
-            </span>
-          </div>
         </div>
 
         <div className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">

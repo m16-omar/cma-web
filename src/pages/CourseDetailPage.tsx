@@ -74,20 +74,12 @@ export const CourseDetailPage: React.FC = () => {
               {/* Broadcast Studio Ambient Image */}
               <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2000&auto=format&fit=crop"
-                  alt="Studio Mixer"
-                  className="w-full h-full object-cover object-right opacity-25 filter brightness-50 contrast-125"
+                  src="/images/cma_classroom_real.jpg"
+                  alt="City Media Academy Classroom Training"
+                  className="w-full h-full object-cover object-right opacity-35 filter brightness-85 contrast-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/90 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/85 to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent" />
-
-                {/* Glowing Red ON AIR Sign */}
-                <div className="absolute top-6 right-6 px-3 py-1 rounded-md border-2 border-red-600 bg-red-950/80 shadow-[0_0_20px_rgba(220,38,38,0.7)] hidden sm:flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                  <span className="text-[11px] font-black tracking-widest text-red-500 font-mono">
-                    ON AIR
-                  </span>
-                </div>
               </div>
 
               <div className="relative z-10 space-y-5">
