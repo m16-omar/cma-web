@@ -53,7 +53,7 @@ export const CmaNavbar: React.FC = () => {
           : 'bg-black/85 backdrop-blur-md border-b border-[#1A1A1A]'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
+      <div className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 h-24 flex items-center justify-between">
         {/* Left: Brand Logo */}
         <Link to="/" className="flex items-center group select-none flex-shrink-0">
           <CmaLogo size="lg" showText={true} />

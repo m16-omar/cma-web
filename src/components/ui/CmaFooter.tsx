@@ -10,7 +10,7 @@ export const CmaFooter: React.FC = () => {
 
   return (
     <footer className="border-t border-[#1A1A1A] bg-black text-xs text-[#A0A0A0] pt-14 pb-8 mt-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <div className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 space-y-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-8 border-b border-[#1A1A1A]">
           {/* Col 1: Brand Logo & Socials */}
           <div className="space-y-4">

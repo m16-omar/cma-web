@@ -114,22 +114,22 @@ export const AdmissionsPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl space-y-6">
+        <div className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
+          <div className="max-w-4xl space-y-6">
             {/* Pre-Heading */}
             <span className="text-xs sm:text-sm font-bold text-[#FF6B00] uppercase tracking-widest block font-display">
               GET IN TOUCH WITH CMA
             </span>
 
             {/* Main Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black font-display text-white tracking-tight leading-[1.08]">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black font-display text-white tracking-tight leading-[1.06]">
               We're Here to Help<br />
               You Start Your<br />
               <span className="text-[#FF6B00]">Media Journey.</span>
             </h1>
 
             {/* Subtitle Copy */}
-            <p className="text-xs sm:text-sm text-[#A0A0A0] leading-relaxed font-normal max-w-xl">
+            <p className="text-sm sm:text-base text-[#A0A0A0] leading-relaxed font-normal max-w-2xl">
               Have questions about our 5-week broadcast courses, admissions, physical studio sessions or corporate training? Reach out to our admissions and academic advisory team.
             </p>
 
@@ -180,7 +180,7 @@ export const AdmissionsPage: React.FC = () => {
       </section>
 
       {/* 3. TWO-COLUMN MAIN SECTION: FORM + CAMPUS INFO */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <section className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column (7 Cols): Direct Inquiry Form */}
           <div className="lg:col-span-7 rounded-3xl bg-[#0A0A0A] border border-[#1A1A1A] p-6 sm:p-8 space-y-6 shadow-2xl">
@@ -463,7 +463,7 @@ export const AdmissionsPage: React.FC = () => {
       </section>
 
       {/* 4. CAMPUS TOUR BANNER */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <section className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 py-10">
         <div className="rounded-3xl bg-[#0A0A0A] border border-[#1A1A1A] p-6 sm:p-8 lg:p-10 shadow-2xl flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <div className="w-14 h-14 rounded-2xl bg-[#FF6B00]/10 border border-[#FF6B00]/30 text-[#FF6B00] flex items-center justify-center flex-shrink-0 shadow-[0_0_20px_rgba(255,107,0,0.25)]">

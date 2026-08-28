@@ -70,15 +70,15 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl space-y-5">
+        <div className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
+          <div className="max-w-5xl space-y-6">
             {/* Main Headline */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45 }}
             >
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold font-display tracking-tight leading-[1.06]">
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-[80px] font-extrabold font-display tracking-tight leading-[1.04]">
                 <span className="text-white block">Learn</span>
                 <span className="text-[#FF6B00] block">Broadcasting,</span>
                 <span className="text-[#FF6B00] block">Media &</span>
@@ -91,7 +91,7 @@ export const HomePage: React.FC = () => {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: 0.1 }}
-              className="text-sm sm:text-base text-[#A0A0A0] max-w-xl font-normal leading-relaxed"
+              className="text-base sm:text-lg text-[#A0A0A0] max-w-2xl font-normal leading-relaxed"
             >
               Nurturing the next generation of radio professionals and media entrepreneurs.
             </motion.p>
@@ -128,7 +128,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 3. STATS BAR */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+      <section className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 mb-16">
         <div className="rounded-2xl bg-[#0A0A0A] border border-[#1A1A1A] grid grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 lg:divide-x divide-[#1A1A1A] shadow-xl">
           {statsData.map((stat, idx) => (
             <StatCard key={stat.label} stat={stat} index={idx} />
@@ -137,7 +137,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 4. FEATURED COURSE CONTAINER */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+      <section className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 mb-24">
         <div className="rounded-2xl bg-[#0A0A0A] border border-[#1A1A1A] p-6 lg:p-8 shadow-2xl space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Col 1: Course Title, Badge & Vintage Mic Image */}
@@ -243,7 +243,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 5. HOW IT WORKS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+      <section className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 mb-24">
         <div className="text-center mb-12">
           <h2 className="text-2xl sm:text-3xl font-extrabold font-display text-white">
             How It Works
@@ -311,7 +311,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 6. MEET OUR INDUSTRY MENTORS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+      <section className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 mb-24">
         <div className="flex items-center justify-between mb-8">
           <button
             onClick={() => scrollMentors('left')}
@@ -337,7 +337,7 @@ export const HomePage: React.FC = () => {
         {/* 8 Mentors in a Clean Grid / Row */}
         <div
           ref={mentorsScrollRef}
-          className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 overflow-x-auto pb-4 scrollbar-none scroll-smooth"
+          className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 overflow-x-auto pb-4 scrollbar-none scroll-smooth"
         >
           {mentorsData.map((mentor) => (
             <MentorCard key={mentor.id} mentor={mentor} />
@@ -346,7 +346,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 7. SUCCESS STORIES / TESTIMONIALS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+      <section className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 mb-24">
         <div className="text-center space-y-1 mb-10">
           <span className="text-xs sm:text-sm font-bold text-[#FF6B00] uppercase tracking-wider">
             Success Stories

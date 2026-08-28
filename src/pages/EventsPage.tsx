@@ -137,22 +137,22 @@ export const EventsPage: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl space-y-6">
+        <div className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
+          <div className="max-w-4xl space-y-6">
             {/* Pre-Heading */}
             <span className="text-xs sm:text-sm font-bold text-[#FF6B00] uppercase tracking-widest block font-display">
               CMA EVENTS
             </span>
 
             {/* Main Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black font-display text-white tracking-tight leading-[1.08]">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black font-display text-white tracking-tight leading-[1.06]">
               Learn. Connect.<br />
               Be Inspired.<br />
               <span className="text-[#FF6B00]">Grow Your Future.</span>
             </h1>
 
             {/* Subtitle Copy */}
-            <p className="text-xs sm:text-sm text-[#A0A0A0] leading-relaxed font-normal max-w-xl">
+            <p className="text-sm sm:text-base text-[#A0A0A0] leading-relaxed font-normal max-w-2xl">
               From masterclasses and workshops to industry talks and graduation ceremonies — our events are designed to inspire, connect and accelerate your journey in broadcast media.
             </p>
 
@@ -203,7 +203,7 @@ export const EventsPage: React.FC = () => {
       </section>
 
       {/* 3. UPCOMING EVENTS (4-CARD GRID) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <section className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 py-12">
         <div className="flex items-center justify-between pb-6 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3">
             <h2 className="text-sm sm:text-base font-bold text-white uppercase tracking-wider font-display">
@@ -221,7 +221,7 @@ export const EventsPage: React.FC = () => {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 pt-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-6">
           {upcomingEventsData.map((evt) => (
             <motion.div
               key={evt.id}
@@ -252,27 +252,27 @@ export const EventsPage: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Title */}
-                <h3 className="text-sm sm:text-base font-bold text-white font-display mt-3.5 leading-snug line-clamp-2">
-                  {evt.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-[11px] sm:text-xs text-[#A0A0A0] leading-relaxed line-clamp-2 mt-1.5 font-normal">
-                  {evt.description}
-                </p>
+                {/* Event Details */}
+                <div className="pt-4 space-y-2">
+                  <h3 className="text-sm font-bold text-white font-display line-clamp-2 group-hover:text-[#FF6B00] transition-colors">
+                    {evt.title}
+                  </h3>
+                  <p className="text-[11px] text-[#A0A0A0] line-clamp-2 leading-relaxed">
+                    {evt.description}
+                  </p>
+                </div>
               </div>
 
-              {/* Meta & Button */}
-              <div className="pt-3 mt-3 border-t border-[#181818] space-y-3">
-                <div className="space-y-1 text-[11px] text-[#A0A0A0]">
+              {/* Event Time, Location & CTA */}
+              <div className="pt-4 mt-3 border-t border-[#181818] space-y-3">
+                <div className="space-y-1 text-[10px] text-[#888]">
                   <div className="flex items-center gap-1.5">
-                    <Clock className="w-3.5 h-3.5 text-[#FF6B00] flex-shrink-0" />
+                    <Clock className="w-3 h-3 text-[#FF6B00]" />
                     <span>{evt.time}</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <MapPin className="w-3.5 h-3.5 text-[#FF6B00] flex-shrink-0" />
-                    <span className="truncate">{evt.location}</span>
+                    <MapPin className="w-3 h-3 text-[#FF6B00]" />
+                    <span>{evt.location}</span>
                   </div>
                 </div>
 
@@ -289,12 +289,12 @@ export const EventsPage: React.FC = () => {
       </section>
 
       {/* 4. EVENT CATEGORIES (7 CARDS) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <section className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 py-10">
         <h2 className="text-sm font-bold text-white uppercase tracking-wider font-display mb-6">
           EVENT CATEGORIES
         </h2>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4">
           <div className="p-4 rounded-xl bg-[#0A0A0A] border border-[#1A1A1A] text-center space-y-2 hover:border-[#FF6B00]/40 transition-all group">
             <div className="w-8 h-8 rounded-lg bg-[#FF6B00]/10 text-[#FF6B00] flex items-center justify-center mx-auto">
               <Mic className="w-4 h-4" />
@@ -368,7 +368,7 @@ export const EventsPage: React.FC = () => {
       </section>
 
       {/* 5. PAST EVENTS HIGHLIGHTS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <section className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 py-10">
         <div className="flex items-center justify-between pb-6">
           <h2 className="text-sm font-bold text-white uppercase tracking-wider font-display">
             PAST EVENTS HIGHLIGHTS
@@ -384,7 +384,7 @@ export const EventsPage: React.FC = () => {
 
         {/* 5 Photos Row */}
         <div className="relative">
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 overflow-hidden rounded-2xl">
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 overflow-hidden rounded-2xl">
             {pastGalleryImages.map((img, idx) => (
               <div
                 key={idx}
@@ -402,7 +402,7 @@ export const EventsPage: React.FC = () => {
         </div>
 
         {/* Testimonial Quote Box Below */}
-        <div className="mt-8 rounded-2xl bg-[#0F0F0F] border border-[#1A1A1A] p-6 sm:p-7 text-center max-w-3xl mx-auto space-y-3 shadow-lg">
+        <div className="mt-8 rounded-2xl bg-[#0F0F0F] border border-[#1A1A1A] p-6 sm:p-7 text-center max-w-4xl mx-auto space-y-3 shadow-lg">
           <div className="text-3xl font-serif text-[#FF6B00] leading-none font-black select-none">
             “
           </div>
@@ -425,7 +425,7 @@ export const EventsPage: React.FC = () => {
       </section>
 
       {/* 6. NEWSLETTER / EVENT NOTIFICATION BANNER */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <section className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 py-10">
         <div className="rounded-3xl bg-[#0A0A0A] border border-[#1A1A1A] p-6 sm:p-8 lg:p-10 shadow-2xl flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <div className="w-14 h-14 rounded-2xl bg-[#FF6B00]/10 border border-[#FF6B00]/30 text-[#FF6B00] flex items-center justify-center flex-shrink-0 shadow-[0_0_20px_rgba(255,107,0,0.25)]">

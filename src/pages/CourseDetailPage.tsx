@@ -55,7 +55,7 @@ export const CourseDetailPage: React.FC = () => {
 
       {/* 2. BREADCRUMBS */}
       <div className="border-b border-[#1A1A1A]/80 bg-black/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center gap-2 text-xs text-[#A0A0A0]">
+        <div className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 py-3 flex items-center gap-2 text-xs text-[#A0A0A0]">
           <Link to="/" className="hover:text-[#FF6B00] transition-colors">Home</Link>
           <ChevronRight className="w-3.5 h-3.5 text-[#444]" />
           <Link to="/courses" className="hover:text-[#FF6B00] transition-colors">Courses</Link>
@@ -65,7 +65,7 @@ export const CourseDetailPage: React.FC = () => {
       </div>
 
       {/* 3. MAIN PAGE CONTAINER (2 Columns) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-10">
+      <div className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 py-8 lg:py-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* ================= LEFT MAIN CONTENT (8 Cols) ================= */}
           <div className="lg:col-span-8 space-y-8">

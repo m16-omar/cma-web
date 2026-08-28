@@ -44,7 +44,7 @@ export const AboutPage: React.FC = () => {
 
       {/* 2. HERO SECTION */}
       <section className="relative pt-12 pb-14 lg:pt-16 lg:pb-20 overflow-hidden border-b border-[#1A1A1A]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             {/* Left Copy & Stats */}
             <div className="lg:col-span-7 space-y-6">
@@ -54,7 +54,7 @@ export const AboutPage: React.FC = () => {
               </span>
 
               {/* Main Headline */}
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black font-display text-white tracking-tight leading-[1.08]">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-display text-white tracking-tight leading-[1.08]">
                 Nurturing the Next<br />
                 Generation of Radio<br />
                 Professionals and<br />
@@ -62,7 +62,7 @@ export const AboutPage: React.FC = () => {
               </h1>
 
               {/* Subtitle Paragraph */}
-              <p className="text-xs sm:text-sm text-[#A0A0A0] leading-relaxed font-normal max-w-xl">
+              <p className="text-sm sm:text-base text-[#A0A0A0] leading-relaxed font-normal max-w-2xl">
                 City Media Academy (CMA) is the training arm of City 105.1 FM, one of Nigeria's leading urban contemporary radio stations. We are passionate about developing skilled, confident and industry-ready broadcast media professionals who will shape the future of media in Africa and beyond.
               </p>
 
@@ -150,7 +150,7 @@ export const AboutPage: React.FC = () => {
       </section>
 
       {/* 3. MISSION, VISION & STORY (3 CARDS) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <section className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 py-14">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Our Mission */}
           <div className="p-6 sm:p-7 rounded-2xl bg-[#0A0A0A] border border-[#1A1A1A] space-y-4 hover:border-[#FF6B00]/40 transition-all shadow-md group">
@@ -194,90 +194,95 @@ export const AboutPage: React.FC = () => {
       </section>
 
       {/* 4. WHY CHOOSE CMA & OUR CORE VALUES */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <section className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 py-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left: Why Choose City Media Academy? (7 Cols) */}
           <div className="lg:col-span-7 rounded-3xl bg-[#0A0A0A] border border-[#1A1A1A] p-6 sm:p-8 space-y-6 shadow-xl">
-            <h3 className="text-xs font-bold text-white tracking-widest uppercase font-display">
-              WHY CHOOSE CITY MEDIA ACADEMY?
-            </h3>
+            <div className="space-y-1">
+              <span className="text-xs font-bold text-[#FF6B00] uppercase tracking-wider font-display">
+                WHY CHOOSE CMA
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-black font-display text-white">
+                Why City Media Academy?
+              </h3>
+            </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Feature 1 */}
-              <div className="space-y-2">
-                <div className="w-8 h-8 rounded-lg bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center text-[#FF6B00]">
-                  <Film className="w-4 h-4" />
+              <div className="p-4 rounded-xl bg-[#0F0F0F] border border-[#1A1A1A] space-y-2 hover:border-[#FF6B00]/30 transition-all">
+                <div className="w-8 h-8 rounded-lg bg-[#FF6B00]/10 text-[#FF6B00] flex items-center justify-center">
+                  <Radio className="w-4 h-4" />
                 </div>
-                <h4 className="text-xs font-bold text-white font-display">
-                  Industry-Driven Curriculum
+                <h4 className="text-xs sm:text-sm font-bold text-white font-display">
+                  Live Studio Training
                 </h4>
                 <p className="text-[11px] text-[#A0A0A0] leading-relaxed">
-                  Our courses are designed by industry experts and updated to reflect current trends.
+                  Train in real radio studios with professional mixing consoles and microphones.
                 </p>
               </div>
 
               {/* Feature 2 */}
-              <div className="space-y-2">
-                <div className="w-8 h-8 rounded-lg bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center text-[#FF6B00]">
-                  <Wrench className="w-4 h-4" />
+              <div className="p-4 rounded-xl bg-[#0F0F0F] border border-[#1A1A1A] space-y-2 hover:border-[#FF6B00]/30 transition-all">
+                <div className="w-8 h-8 rounded-lg bg-[#FF6B00]/10 text-[#FF6B00] flex items-center justify-center">
+                  <Users className="w-4 h-4" />
                 </div>
-                <h4 className="text-xs font-bold text-white font-display">
-                  Hands-On Training
+                <h4 className="text-xs sm:text-sm font-bold text-white font-display">
+                  Industry Mentors
                 </h4>
                 <p className="text-[11px] text-[#A0A0A0] leading-relaxed">
-                  Learn by doing with practical sessions, real projects and studio experience.
+                  Learn directly from experienced on-air personalities and media professionals.
                 </p>
               </div>
 
               {/* Feature 3 */}
-              <div className="space-y-2">
-                <div className="w-8 h-8 rounded-lg bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center text-[#FF6B00]">
-                  <Building className="w-4 h-4" />
+              <div className="p-4 rounded-xl bg-[#0F0F0F] border border-[#1A1A1A] space-y-2 hover:border-[#FF6B00]/30 transition-all">
+                <div className="w-8 h-8 rounded-lg bg-[#FF6B00]/10 text-[#FF6B00] flex items-center justify-center">
+                  <Briefcase className="w-4 h-4" />
                 </div>
-                <h4 className="text-xs font-bold text-white font-display">
-                  City FM Internship
+                <h4 className="text-xs sm:text-sm font-bold text-white font-display">
+                  Guaranteed Internship
                 </h4>
                 <p className="text-[11px] text-[#A0A0A0] leading-relaxed">
-                  Gain real-world exposure with 3 weeks internship at City FM.
+                  3-week hands-on internship at City 105.1 FM for practical industry experience.
                 </p>
               </div>
 
               {/* Feature 4 */}
-              <div className="space-y-2">
-                <div className="w-8 h-8 rounded-lg bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center text-[#FF6B00]">
-                  <Wifi className="w-4 h-4" />
+              <div className="p-4 rounded-xl bg-[#0F0F0F] border border-[#1A1A1A] space-y-2 hover:border-[#FF6B00]/30 transition-all">
+                <div className="w-8 h-8 rounded-lg bg-[#FF6B00]/10 text-[#FF6B00] flex items-center justify-center">
+                  <Award className="w-4 h-4" />
                 </div>
-                <h4 className="text-xs font-bold text-white font-display">
-                  Hybrid Learning
+                <h4 className="text-xs sm:text-sm font-bold text-white font-display">
+                  Recognized Certificate
                 </h4>
                 <p className="text-[11px] text-[#A0A0A0] leading-relaxed">
-                  Flexible learning with both physical classes at Ikeja studio and live online access.
+                  Earn a verified certificate valued across the Nigerian broadcast industry.
                 </p>
               </div>
 
               {/* Feature 5 */}
-              <div className="space-y-2">
-                <div className="w-8 h-8 rounded-lg bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center text-[#FF6B00]">
-                  <UserCheck className="w-4 h-4" />
+              <div className="p-4 rounded-xl bg-[#0F0F0F] border border-[#1A1A1A] space-y-2 hover:border-[#FF6B00]/30 transition-all">
+                <div className="w-8 h-8 rounded-lg bg-[#FF6B00]/10 text-[#FF6B00] flex items-center justify-center">
+                  <ShieldCheck className="w-4 h-4" />
                 </div>
-                <h4 className="text-xs font-bold text-white font-display">
-                  Expert Mentorship
+                <h4 className="text-xs sm:text-sm font-bold text-white font-display">
+                  Small Class Sizes
                 </h4>
                 <p className="text-[11px] text-[#A0A0A0] leading-relaxed">
-                  Learn from seasoned professionals with proven industry experience.
+                  Limited slots per cohort to ensure personalized attention and maximum studio time.
                 </p>
               </div>
 
               {/* Feature 6 */}
-              <div className="space-y-2">
-                <div className="w-8 h-8 rounded-lg bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center text-[#FF6B00]">
-                  <Award className="w-4 h-4" />
+              <div className="p-4 rounded-xl bg-[#0F0F0F] border border-[#1A1A1A] space-y-2 hover:border-[#FF6B00]/30 transition-all">
+                <div className="w-8 h-8 rounded-lg bg-[#FF6B00]/10 text-[#FF6B00] flex items-center justify-center">
+                  <Sparkles className="w-4 h-4" />
                 </div>
-                <h4 className="text-xs font-bold text-white font-display">
-                  Certification
+                <h4 className="text-xs sm:text-sm font-bold text-white font-display">
+                  Career Support
                 </h4>
                 <p className="text-[11px] text-[#A0A0A0] leading-relaxed">
-                  Earn recognized certificates that boost your credibility and career opportunities.
+                  Audition preparation, demo tape production and media job placement guidance.
                 </p>
               </div>
             </div>
@@ -285,58 +290,63 @@ export const AboutPage: React.FC = () => {
 
           {/* Right: Our Core Values (5 Cols) */}
           <div className="lg:col-span-5 rounded-3xl bg-[#0A0A0A] border border-[#1A1A1A] p-6 sm:p-8 space-y-6 shadow-xl">
-            <h3 className="text-xs font-bold text-white tracking-widest uppercase font-display">
-              OUR CORE VALUES
-            </h3>
+            <div className="space-y-1">
+              <span className="text-xs font-bold text-[#FF6B00] uppercase tracking-wider font-display">
+                WHAT DRIVES US
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-black font-display text-white">
+                Our Core Values
+              </h3>
+            </div>
 
-            <div className="space-y-4 pt-1">
-              {/* Value 1: Excellence */}
-              <div className="flex items-start gap-3.5 pb-3 border-b border-[#181818]">
-                <div className="w-9 h-9 rounded-full bg-[#FF6B00]/10 border border-[#FF6B00]/30 text-[#FF6B00] flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <GraduationCap className="w-4 h-4" />
+            <div className="space-y-4">
+              {/* Value 1 */}
+              <div className="p-3.5 rounded-xl bg-[#0F0F0F] border border-[#1A1A1A] flex items-start gap-3">
+                <div className="w-8 h-8 rounded-lg bg-[#FF6B00]/10 text-[#FF6B00] flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Trophy className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-white font-display">Excellence</h4>
-                  <p className="text-[11px] text-[#A0A0A0] leading-relaxed mt-0.5">
-                    We are committed to delivering the highest standard of training and student experience.
+                  <h4 className="text-xs sm:text-sm font-bold text-white font-display">Excellence</h4>
+                  <p className="text-[11px] text-[#A0A0A0] mt-0.5 leading-snug">
+                    We maintain the highest standards in broadcast training, curriculum and delivery.
                   </p>
                 </div>
               </div>
 
-              {/* Value 2: Integrity */}
-              <div className="flex items-start gap-3.5 pb-3 border-b border-[#181818]">
-                <div className="w-9 h-9 rounded-full bg-[#FF6B00]/10 border border-[#FF6B00]/30 text-[#FF6B00] flex items-center justify-center flex-shrink-0 mt-0.5">
+              {/* Value 2 */}
+              <div className="p-3.5 rounded-xl bg-[#0F0F0F] border border-[#1A1A1A] flex items-start gap-3">
+                <div className="w-8 h-8 rounded-lg bg-[#FF6B00]/10 text-[#FF6B00] flex items-center justify-center flex-shrink-0 mt-0.5">
                   <ShieldCheck className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-white font-display">Integrity</h4>
-                  <p className="text-[11px] text-[#A0A0A0] leading-relaxed mt-0.5">
-                    We uphold honesty, transparency and professionalism in all we do.
+                  <h4 className="text-xs sm:text-sm font-bold text-white font-display">Integrity</h4>
+                  <p className="text-[11px] text-[#A0A0A0] mt-0.5 leading-snug">
+                    We instill strong journalistic ethics, authenticity and professional conduct.
                   </p>
                 </div>
               </div>
 
-              {/* Value 3: Innovation */}
-              <div className="flex items-start gap-3.5 pb-3 border-b border-[#181818]">
-                <div className="w-9 h-9 rounded-full bg-[#FF6B00]/10 border border-[#FF6B00]/30 text-[#FF6B00] flex items-center justify-center flex-shrink-0 mt-0.5">
+              {/* Value 3 */}
+              <div className="p-3.5 rounded-xl bg-[#0F0F0F] border border-[#1A1A1A] flex items-start gap-3">
+                <div className="w-8 h-8 rounded-lg bg-[#FF6B00]/10 text-[#FF6B00] flex items-center justify-center flex-shrink-0 mt-0.5">
                   <Lightbulb className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-white font-display">Innovation</h4>
-                  <p className="text-[11px] text-[#A0A0A0] leading-relaxed mt-0.5">
-                    We embrace creativity and technology to prepare students for the future.
+                  <h4 className="text-xs sm:text-sm font-bold text-white font-display">Innovation</h4>
+                  <p className="text-[11px] text-[#A0A0A0] mt-0.5 leading-snug">
+                    We embrace digital media trends, new broadcasting tools and modern formats.
                   </p>
                 </div>
               </div>
 
-              {/* Value 4: Impact */}
-              <div className="flex items-start gap-3.5">
-                <div className="w-9 h-9 rounded-full bg-[#FF6B00]/10 border border-[#FF6B00]/30 text-[#FF6B00] flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <Award className="w-4 h-4" />
+              {/* Value 4 */}
+              <div className="p-3.5 rounded-xl bg-[#0F0F0F] border border-[#1A1A1A] flex items-start gap-3">
+                <div className="w-8 h-8 rounded-lg bg-[#FF6B00]/10 text-[#FF6B00] flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Heart className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-white font-display">Impact</h4>
-                  <p className="text-[11px] text-[#A0A0A0] leading-relaxed mt-0.5">
+                  <h4 className="text-xs sm:text-sm font-bold text-white font-display">Impact</h4>
+                  <p className="text-[11px] text-[#A0A0A0] mt-0.5 leading-snug">
                     We exist to raise media professionals who create meaningful impact in society.
                   </p>
                 </div>
@@ -347,7 +357,7 @@ export const AboutPage: React.FC = () => {
       </section>
 
       {/* 5. POWERED BY CITY FM BANNER */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <section className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 py-10">
         <div className="rounded-3xl bg-[#0A0A0A] border border-[#1A1A1A] p-6 sm:p-8 lg:p-10 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left Studio Image + Badge */}
           <div className="lg:col-span-6 relative rounded-2xl overflow-hidden aspect-[16/10] bg-black/60 border border-[#1A1A1A]">
@@ -408,7 +418,7 @@ export const AboutPage: React.FC = () => {
       </section>
 
       {/* 6. STATS BAR (5 METRICS) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <section className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 py-10">
         <div className="rounded-2xl bg-[#0A0A0A] border border-[#1A1A1A] grid grid-cols-2 sm:grid-cols-5 divide-y sm:divide-y-0 sm:divide-x divide-[#1A1A1A] p-4 sm:p-6 shadow-xl text-center">
           <div className="p-4 space-y-1">
             <div className="text-2xl sm:text-3xl font-black text-[#FF6B00] font-display">5000+</div>

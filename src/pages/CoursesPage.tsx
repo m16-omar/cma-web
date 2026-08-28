@@ -105,7 +105,7 @@ export const CoursesPage: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
             {/* Left Title & Subtitle */}
             <div className="space-y-3 max-w-xl">
@@ -154,7 +154,7 @@ export const CoursesPage: React.FC = () => {
       </section>
 
       {/* 3. MAIN CATALOG BODY (2 Columns: Left Filter Sidebar + Right Courses Grid) */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <main className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 py-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* LEFT SIDEBAR FILTERS (col-span-3) */}
           <aside className="lg:col-span-3 space-y-6">

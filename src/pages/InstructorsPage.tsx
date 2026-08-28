@@ -121,21 +121,21 @@ export const InstructorsPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl space-y-6">
+        <div className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
+          <div className="max-w-4xl space-y-6">
             {/* Pre-Heading */}
             <span className="text-xs sm:text-sm font-bold text-[#FF6B00] uppercase tracking-widest block font-display">
               MEET OUR INDUSTRY MENTORS
             </span>
 
             {/* Main Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black font-display text-white tracking-tight leading-[1.08]">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black font-display text-white tracking-tight leading-[1.06]">
               Learn From the Best<br />
               in the Industry
             </h1>
 
             {/* Subtitle Copy */}
-            <p className="text-xs sm:text-sm text-[#A0A0A0] leading-relaxed font-normal max-w-xl">
+            <p className="text-sm sm:text-base text-[#A0A0A0] leading-relaxed font-normal max-w-2xl">
               Our facilitators are seasoned broadcast media professionals with years of on-air and industry experience, ready to guide your transformation.
             </p>
 
@@ -186,7 +186,7 @@ export const InstructorsPage: React.FC = () => {
       </section>
 
       {/* 3. FILTERS & SEARCH BAR */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <section className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 py-8">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-[#1A1A1A]">
           {/* Category Filter Pills */}
           <div className="flex flex-wrap items-center gap-2">
@@ -222,7 +222,7 @@ export const InstructorsPage: React.FC = () => {
         </div>
 
         {/* 4. MENTORS GRID (4 Columns x 2 Rows = 8 Cards) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 pt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-8">
           {filteredMentors.map((mentor) => (
             <motion.div
               key={mentor.id}
@@ -290,7 +290,7 @@ export const InstructorsPage: React.FC = () => {
       </section>
 
       {/* 5. BOTTOM SECTION: "Learn. Connect. Be Inspired." */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <section className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 py-12">
         <div className="rounded-3xl bg-[#0A0A0A] border border-[#1A1A1A] p-6 sm:p-8 lg:p-10 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left Side: Brand Promise */}
           <div className="lg:col-span-5 flex items-start gap-4">
