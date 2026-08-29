@@ -380,13 +380,13 @@ export const AdmissionsPage: React.FC = () => {
               </div>
 
               {/* Photo */}
-              <div className="rounded-2xl overflow-hidden aspect-[16/10] relative border border-[#1A1A1A] bg-black/60">
+              <div className="rounded-2xl overflow-hidden aspect-[16/10] relative border border-[#1A1A1A] bg-black/60 shadow-lg group">
                 <img
-                  src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=800&auto=format&fit=crop"
-                  alt="City Media Academy Campus Complex"
-                  className="w-full h-full object-cover grayscale-[15%]"
+                  src="/images/cityfm_building_real.jpg"
+                  alt="City 105.1 FM Broadcast Complex & Academy Campus"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent flex items-end p-4">
                   <span className="text-xs font-bold text-white">
                     Plot 11 Lateef Jakande Road, Agidingbi, Ikeja, Lagos
                   </span>

@@ -61,7 +61,7 @@ const upcomingEventsData: EventItem[] = [
     description: 'Industry leaders discuss trends shaping broadcasting, podcasting and digital content creation.',
     time: '11:00 AM – 2:00 PM',
     location: 'City 105.1 FM Studio',
-    image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=800&auto=format&fit=crop',
+    image: '/images/cityfm_building_real.jpg',
   },
   {
     id: 'evt-3',
