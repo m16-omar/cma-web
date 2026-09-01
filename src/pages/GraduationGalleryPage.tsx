@@ -86,7 +86,7 @@ const galleryItems: GalleryItem[] = [
     cohort: 'Cohort 28',
     date: 'March 2026',
     location: 'Eko Hotel Grand Hall, Lagos',
-    image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1200&auto=format&fit=crop',
     description: 'Valedictorians and graduates receiving their official CMA certification and media broadcast credentials.',
     aspect: 'col-span-1 lg:col-span-2 aspect-[16/10]',
   },
