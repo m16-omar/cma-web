@@ -40,7 +40,7 @@ export const CourseDetailPage: React.FC = () => {
   const course = coursesData.find((c) => c.slug === slug) || coursesData[0];
   const { openWaitlistModal, openPreviewModal } = useAcademyStore();
 
-  const [activeTab, setActiveTab] = useState<'overview' | 'pillars' | 'schedule' | 'mentors' | 'reviews'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'pillars' | 'schedule' | 'facilitators' | 'reviews'>('overview');
   const [expandedPillar, setExpandedPillar] = useState<string | null>('pillar-1');
 
   return (
@@ -207,15 +207,15 @@ export const CourseDetailPage: React.FC = () => {
               </button>
 
               <button
-                onClick={() => setActiveTab('mentors')}
+                onClick={() => setActiveTab('facilitators')}
                 className={`flex items-center gap-2 py-3 px-2 text-xs sm:text-sm font-bold border-b-2 transition-all cursor-pointer whitespace-nowrap ${
-                  activeTab === 'mentors'
+                  activeTab === 'facilitators'
                     ? 'border-[#FF6B00] text-[#FF6B00]'
                     : 'border-transparent text-[#A0A0A0] hover:text-white'
                 }`}
               >
                 <Users className="w-4 h-4" />
-                <span>Mentors</span>
+                <span>Facilitators</span>
               </button>
 
               <button
@@ -520,15 +520,15 @@ export const CourseDetailPage: React.FC = () => {
               </motion.div>
             )}
 
-            {/* TAB 4: MENTORS */}
-            {activeTab === 'mentors' && (
+            {/* TAB 4: FACILITATORS */}
+            {activeTab === 'facilitators' && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="rounded-3xl bg-[#0A0A0A] border border-[#1A1A1A] p-6 sm:p-8 space-y-6 shadow-xl"
               >
                 <h2 className="text-xl sm:text-2xl font-bold font-display text-white">
-                  Meet Your Industry Mentors
+                  Meet Your Industry Facilitators
                 </h2>
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">

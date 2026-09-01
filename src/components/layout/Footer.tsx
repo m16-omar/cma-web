@@ -144,7 +144,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link to="/instructors" className="hover:text-white transition-colors">
-                  Faculty & Mentors
+                  Faculty & Facilitators
                 </Link>
               </li>
               <li>

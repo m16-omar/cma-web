@@ -42,7 +42,7 @@ export const statsData: StatItem[] = [
   {
     icon: 'Users',
     value: '25+',
-    label: 'Industry Mentors',
+    label: 'Industry Facilitators',
   },
   {
     icon: 'TrendingUp',

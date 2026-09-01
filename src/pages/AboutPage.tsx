@@ -74,7 +74,7 @@ export const AboutPage: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-2xl font-black text-white leading-none font-display">8</div>
-                    <div className="text-[11px] text-[#A0A0A0] mt-0.5 leading-tight">Industry Mentors</div>
+                    <div className="text-[11px] text-[#A0A0A0] mt-0.5 leading-tight">Industry Facilitators</div>
                   </div>
                 </div>
 
@@ -94,7 +94,7 @@ export const AboutPage: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-2xl font-black text-white leading-none font-display">1000+</div>
-                    <div className="text-[11px] text-[#A0A0A0] mt-0.5 leading-tight">Students Mentored</div>
+                    <div className="text-[11px] text-[#A0A0A0] mt-0.5 leading-tight">Students Trained</div>
                   </div>
                 </div>
 
@@ -219,7 +219,7 @@ export const AboutPage: React.FC = () => {
                   <Users className="w-4 h-4" />
                 </div>
                 <h4 className="text-xs sm:text-sm font-bold text-white font-display">
-                  Industry Mentors
+                  Industry Facilitators
                 </h4>
                 <p className="text-[11px] text-[#A0A0A0] leading-relaxed">
                   Learn directly from experienced on-air personalities and media professionals.
@@ -424,7 +424,7 @@ export const AboutPage: React.FC = () => {
 
           <div className="p-4 space-y-1">
             <div className="text-2xl sm:text-3xl font-black text-[#FF6B00] font-display">25+</div>
-            <div className="text-xs text-[#A0A0A0]">Industry Mentors</div>
+            <div className="text-xs text-[#A0A0A0]">Industry Facilitators</div>
           </div>
 
           <div className="p-4 space-y-1">

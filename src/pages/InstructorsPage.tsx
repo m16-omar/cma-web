@@ -59,12 +59,12 @@ const mentorIconLookup: Record<string, React.ElementType> = {
 };
 
 export const InstructorsPage: React.FC = () => {
-  const [selectedFilter, setSelectedFilter] = useState<string>('All Mentors');
+  const [selectedFilter, setSelectedFilter] = useState<string>('All Facilitators');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const { openWaitlistModal } = useAcademyStore();
 
   const filterCategories = [
-    'All Mentors',
+    'All Facilitators',
     'Broadcasting',
     'Presentation',
     'Voiceover',
@@ -76,7 +76,7 @@ export const InstructorsPage: React.FC = () => {
   const filteredMentors = useMemo(() => {
     return industryMentorsList.filter((mentor) => {
       // Category filter
-      if (selectedFilter !== 'All Mentors' && mentor.category !== selectedFilter) {
+      if (selectedFilter !== 'All Facilitators' && mentor.category !== selectedFilter) {
         return false;
       }
       // Search query filter
@@ -135,7 +135,7 @@ export const InstructorsPage: React.FC = () => {
               Our facilitators are seasoned broadcast media professionals with years of on-air and industry experience, ready to guide your transformation.
             </p>
 
-            {/* Mentor Statistics Bar (4 Items) */}
+            {/* Facilitator Statistics Bar (4 Items) */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center text-[#FF6B00] flex-shrink-0">
@@ -143,7 +143,7 @@ export const InstructorsPage: React.FC = () => {
                 </div>
                 <div>
                   <div className="text-2xl font-black text-white leading-none font-display">8</div>
-                  <div className="text-[11px] text-[#A0A0A0] mt-0.5 leading-tight">Industry Mentors</div>
+                  <div className="text-[11px] text-[#A0A0A0] mt-0.5 leading-tight">Industry Facilitators</div>
                 </div>
               </div>
 
@@ -163,7 +163,7 @@ export const InstructorsPage: React.FC = () => {
                 </div>
                 <div>
                   <div className="text-2xl font-black text-white leading-none font-display">1000+</div>
-                  <div className="text-[11px] text-[#A0A0A0] mt-0.5 leading-tight">Students Mentored</div>
+                  <div className="text-[11px] text-[#A0A0A0] mt-0.5 leading-tight">Students Trained</div>
                 </div>
               </div>
 
@@ -208,7 +208,7 @@ export const InstructorsPage: React.FC = () => {
           <div className="relative">
             <input
               type="text"
-              placeholder="Search mentors..."
+              placeholder="Search facilitators..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full sm:w-64 bg-[#0A0A0A] border border-[#1A1A1A] focus:border-[#FF6B00] rounded-xl pl-9 pr-4 py-2 text-xs text-white placeholder-[#666] focus:outline-none transition-colors"
@@ -331,7 +331,7 @@ export const InstructorsPage: React.FC = () => {
                 Learn. Connect. Be Inspired.
               </h3>
               <p className="text-xs sm:text-sm text-[#A0A0A0] leading-relaxed">
-                Our mentors are more than teachers — they are industry leaders who are passionate about raising the next generation of media professionals.
+                Our facilitators are more than teachers — they are industry leaders who are passionate about raising the next generation of media professionals.
               </p>
             </div>
           </div>
@@ -346,7 +346,7 @@ export const InstructorsPage: React.FC = () => {
                 One-on-One Guidance
               </h4>
               <p className="text-[11px] text-[#A0A0A0] leading-relaxed">
-                Get personalized advice and mentorship from industry experts.
+                Get personalized advice and guidance from industry experts.
               </p>
             </div>
 

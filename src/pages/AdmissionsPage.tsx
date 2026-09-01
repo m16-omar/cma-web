@@ -45,7 +45,7 @@ export const AdmissionsPage: React.FC = () => {
     },
     {
       q: 'Can I participate 100% online from outside Lagos or Nigeria?',
-      a: 'Yes! All lectures are broadcast live via our HD student portal and Zoom with interactive breakout rooms and mentor feedback.',
+      a: 'Yes! All lectures are broadcast live via our HD student portal and Zoom with interactive breakout rooms and facilitator feedback.',
     },
     {
       q: 'Is the 3-week City FM internship guaranteed?',

@@ -13,7 +13,7 @@ export const InstructorsSection: React.FC = () => {
           <div className="space-y-3 max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FF6B00]/10 border border-[#FF6B00]/25 text-xs font-bold text-[#FF6B00] uppercase tracking-wider">
               <Sparkles className="w-4 h-4" />
-              <span>Broadcast Pioneers & Mentors</span>
+              <span>Broadcast Pioneers & Facilitators</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-display text-slate-900 dark:text-white tracking-tight">
               Learn from the Voices You Listen to Daily

@@ -47,7 +47,7 @@ export const FacilitatorDashboardPage: React.FC = () => {
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-cyan-500/15 text-cyan-400 border border-cyan-500/30 flex items-center gap-1">
                     <ShieldCheck className="w-3.5 h-3.5" />
-                    <span>Faculty Lead & Mentor</span>
+                    <span>Faculty Lead & Facilitator</span>
                   </span>
                   <span className="text-xs font-semibold text-slate-500">
                     City 105.1 FM

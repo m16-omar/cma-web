@@ -71,7 +71,7 @@ export const companyDetails: CompanyDetails = {
     },
     {
       value: '25+',
-      label: 'Industry Mentors',
+      label: 'Industry Facilitators',
       description: 'Active on-air hosts & media executives'
     },
     {
