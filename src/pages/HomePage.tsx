@@ -27,60 +27,48 @@ import { CmaFooter } from '../components/ui/CmaFooter';
 import { CmaNavbar } from '../components/ui/CmaNavbar';
 
 export const HomePage: React.FC = () => {
-  const mentorsScrollRef = useRef<HTMLDivElement>(null);
   const [mentorIndex, setMentorIndex] = useState<number>(0);
+  const [visibleCount, setVisibleCount] = useState<number>(4);
   const [isPaused, setIsPaused] = useState<boolean>(false);
 
-  const scrollMentors = (direction: 'left' | 'right') => {
-    if (!mentorsScrollRef.current) return;
-    const container = mentorsScrollRef.current;
-    const firstCard = container.querySelector<HTMLElement>('[data-mentor-card]');
-    const cardWidth = firstCard ? firstCard.offsetWidth : 300;
-    const gap = 24; // 24px gap between cards
-    const step = cardWidth + gap;
+  // Dynamically track visible cards per screen width
+  useEffect(() => {
+    const handleResize = () => {
+      if (typeof window === 'undefined') return;
+      if (window.innerWidth < 640) {
+        setVisibleCount(1);
+      } else if (window.innerWidth < 1024) {
+        setVisibleCount(2);
+      } else {
+        setVisibleCount(4);
+      }
+    };
 
-    // Calculate maximum scrollable index based on visible items
-    const visibleCount = Math.max(1, Math.floor(container.clientWidth / step));
-    const maxIndex = Math.max(0, mentorsData.length - visibleCount);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-    let nextIndex = direction === 'right' ? mentorIndex + 1 : mentorIndex - 1;
-    if (nextIndex > maxIndex) nextIndex = 0;
-    if (nextIndex < 0) nextIndex = maxIndex;
+  const maxIndex = Math.max(0, mentorsData.length - visibleCount);
 
-    setMentorIndex(nextIndex);
-    container.scrollTo({
-      left: nextIndex * step,
-      behavior: 'smooth',
-    });
-  };
-
-  // Continuous Auto-sliding effect
+  // Auto-sliding interval (every 3 seconds)
   useEffect(() => {
     if (isPaused) return;
 
     const timer = setInterval(() => {
-      if (!mentorsScrollRef.current) return;
-      const container = mentorsScrollRef.current;
-      const firstCard = container.querySelector<HTMLElement>('[data-mentor-card]');
-      const cardWidth = firstCard ? firstCard.offsetWidth : 300;
-      const gap = 24;
-      const step = cardWidth + gap;
-
-      const visibleCount = Math.max(1, Math.floor(container.clientWidth / step));
-      const maxIndex = Math.max(0, mentorsData.length - visibleCount);
-
-      setMentorIndex((prev) => {
-        const next = prev >= maxIndex ? 0 : prev + 1;
-        container.scrollTo({
-          left: next * step,
-          behavior: 'smooth',
-        });
-        return next;
-      });
-    }, 3200);
+      setMentorIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+    }, 3000);
 
     return () => clearInterval(timer);
-  }, [isPaused]);
+  }, [isPaused, maxIndex]);
+
+  const handlePrev = () => {
+    setMentorIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
+  };
+
+  const handleNext = () => {
+    setMentorIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+  };
 
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-[#FF6B00] selection:text-white">
@@ -370,7 +358,7 @@ export const HomePage: React.FC = () => {
       >
         <div className="flex items-center justify-between mb-8">
           <button
-            onClick={() => scrollMentors('left')}
+            onClick={handlePrev}
             className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-[#262626] bg-[#0E0E0E] hover:border-[#FF6B00] hover:bg-[#FF6B00]/10 text-white hover:text-[#FF6B00] flex items-center justify-center transition-all cursor-pointer shadow-lg active:scale-95 group"
             aria-label="Previous Mentors"
           >
@@ -382,7 +370,7 @@ export const HomePage: React.FC = () => {
           </h2>
 
           <button
-            onClick={() => scrollMentors('right')}
+            onClick={handleNext}
             className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-[#262626] bg-[#0E0E0E] hover:border-[#FF6B00] hover:bg-[#FF6B00]/10 text-white hover:text-[#FF6B00] flex items-center justify-center transition-all cursor-pointer shadow-lg active:scale-95 group"
             aria-label="Next Mentors"
           >
@@ -390,19 +378,44 @@ export const HomePage: React.FC = () => {
           </button>
         </div>
 
-        {/* 4 Large Mentors Per View Slider */}
-        <div
-          ref={mentorsScrollRef}
-          className="flex gap-6 overflow-x-auto pb-6 scrollbar-none"
-        >
-          {mentorsData.map((mentor) => (
-            <div
-              key={mentor.id}
-              data-mentor-card
-              className="w-[85%] sm:w-[48%] lg:w-[calc(25%-1.15rem)] shrink-0"
-            >
-              <MentorCard mentor={mentor} />
-            </div>
+        {/* Ultra-Smooth Framer Motion Animated Slider Track */}
+        <div className="overflow-hidden w-full py-2">
+          <motion.div
+            className="flex gap-6"
+            animate={{
+              x: `calc(-${mentorIndex} * (${100 / visibleCount}% + ${24 / visibleCount}px))`,
+            }}
+            transition={{
+              type: 'spring',
+              stiffness: 220,
+              damping: 26,
+              mass: 0.8,
+            }}
+          >
+            {mentorsData.map((mentor) => (
+              <div
+                key={mentor.id}
+                className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0"
+              >
+                <MentorCard mentor={mentor} />
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Interactive Indicator Dots */}
+        <div className="flex items-center justify-center gap-2 mt-6">
+          {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setMentorIndex(idx)}
+              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                mentorIndex === idx
+                  ? 'w-7 bg-[#FF6B00]'
+                  : 'w-2 bg-[#2A2A2A] hover:bg-[#444444]'
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
           ))}
         </div>
       </section>
