@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Calendar,
   Users,
@@ -20,6 +20,11 @@ import {
   Phone,
   Mail,
   Send,
+  X,
+  Check,
+  Award,
+  Radio,
+  ExternalLink,
 } from 'lucide-react';
 import { CmaFooter } from '../components/ui/CmaFooter';
 import { CmaNavbar } from '../components/ui/CmaNavbar';
@@ -33,6 +38,8 @@ interface EventItem {
   year: string;
   title: string;
   description: string;
+  longDescription?: string;
+  highlights?: string[];
   time: string;
   location: string;
   image: string;
@@ -47,6 +54,14 @@ const upcomingEventsData: EventItem[] = [
     year: '2026',
     title: 'Broadcast Media Pro Cohort 31',
     description: 'Celebrating 38 newly certified radio presentation and broadcast media specialists entering top stations.',
+    longDescription: 'The grand convocation and certification ceremony for Cohort 31 (2026 Set 2) at City Media Academy. Students successfully completed 5 weeks of rigorous hands-on studio training in on-air presentation, vocal dynamics, audio console operations, news writing, and commercial voice acting, followed by a guaranteed 3-week live station internship at City 105.1 FM.',
+    highlights: [
+      '38 Certified Broadcast Media Professionals',
+      '5 Weeks Intensive In-Studio & Diction Masterclasses',
+      '3 Weeks Guaranteed On-Air Radio Internship at City 105.1 FM',
+      'Live Studio Production & Audio Console Operation Mastery',
+      'Official Certificate of Professional Competence Issued',
+    ],
     time: 'Convocation Ceremony (2026 Set 2)',
     location: 'Plot 11 Lateef Jakande Road, Agidingbin Ikeja, Lagos Nigeria',
     image: '/images/cohort_31_graduation.png',
@@ -59,6 +74,13 @@ const upcomingEventsData: EventItem[] = [
     year: '2026',
     title: 'Broadcast Media Pro Cohort 30',
     description: 'Graduating set of on-air presenters, podcast producers, and broadcast journalists.',
+    longDescription: 'Cohort 30 (2026 Set 1) celebrated their graduation following 5 weeks of intensive broadcast media instruction, podcast pilot productions, and live radio broadcasting at City 105.1 FM studios.',
+    highlights: [
+      '35 Certified Radio & TV Presenters',
+      'Prime-Time Radio Pilot Productions',
+      'Commercial Voiceover Demos Produced',
+      'Guaranteed Station Internship at City 105.1 FM',
+    ],
     time: 'Certification Ceremony (2026 Set 1)',
     location: 'Plot 11 Lateef Jakande Road, Agidingbin Ikeja, Lagos Nigeria',
     image: '/images/cma_classroom_real.jpg',
@@ -70,7 +92,14 @@ const upcomingEventsData: EventItem[] = [
     day: '30',
     year: '2025',
     title: 'Executive Voiceover & Media Cohort 29',
-    description: 'Trained and mentored by premier industry voice talents and live studio directors.',
+    description: 'Trained and guided by premier industry voice talents and live studio directors.',
+    longDescription: 'Cohort 29 (2025 Set 2) specialized in commercial voice acting, audiobook narration, documentary voiceover, and broadcast presentation with personalized feedback from leading on-air personalities.',
+    highlights: [
+      '32 Certified Voiceover Specialists',
+      'Studio Demo Reel Recordings Produced',
+      'Live Radio Commercial Audio Direction',
+      'Hands-on Internship Placements at City 105.1 FM',
+    ],
     time: 'Commencement Event (2025 Set 2)',
     location: 'Plot 11 Lateef Jakande Road, Agidingbin Ikeja, Lagos Nigeria',
     image: '/images/cityfm_building_real.jpg',
@@ -83,6 +112,13 @@ const upcomingEventsData: EventItem[] = [
     year: '2025',
     title: 'Broadcast Media Pro Cohort 28',
     description: 'Graduating set honored with industry excellence awards and radio station placements.',
+    longDescription: 'Cohort 28 (2025 Set 1) marked a benchmark in live studio broadcasting excellence with graduates accepted into leading media agencies and broadcast stations across Nigeria.',
+    highlights: [
+      '40 Certified Media Specialists',
+      'Live Studio Presentation Projects',
+      'Academic & On-Air Excellence Honors',
+      'Direct Placements into Broadcast Teams',
+    ],
     time: 'Grand Ceremony (2025 Set 1)',
     location: 'Plot 11 Lateef Jakande Road, Agidingbin Ikeja, Lagos Nigeria',
     image: '/images/cma_classroom_ai.jpg',
@@ -98,9 +134,32 @@ const pastGalleryImages = [
 ];
 
 export const EventsPage: React.FC = () => {
-  const { openWaitlistModal } = useAcademyStore();
+  const { openWaitlistModal, openApplyModal } = useAcademyStore();
+  const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
+  const [copied, setCopied] = useState<boolean>(false);
   const [emailInput, setEmailInput] = useState<string>('');
   const [subscribed, setSubscribed] = useState<boolean>(false);
+
+  const handleShareEvent = async (evt: EventItem) => {
+    const shareData = {
+      title: `${evt.title} | City Media Academy`,
+      text: evt.description,
+      url: window.location.href,
+    };
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        navigator.clipboard.writeText(window.location.href);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2500);
+      }
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    }
+  };
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -227,11 +286,14 @@ export const EventsPage: React.FC = () => {
               key={evt.id}
               whileHover={{ y: -4, borderColor: 'rgba(255, 107, 0, 0.5)' }}
               transition={{ duration: 0.2 }}
-              className="rounded-2xl bg-[#0A0A0A] border border-[#1A1A1A] p-4 flex flex-col justify-between shadow-lg group"
+              className="rounded-2xl bg-[#0A0A0A] border border-[#1A1A1A] p-4 flex flex-col justify-between shadow-lg group hover:border-[#FF6B00]/40 transition-colors"
             >
               <div>
                 {/* Image + Badges */}
-                <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-black/60 border border-[#1A1A1A]">
+                <div
+                  onClick={() => setSelectedEvent(evt)}
+                  className="relative aspect-[16/10] rounded-xl overflow-hidden bg-black/60 border border-[#1A1A1A] cursor-pointer"
+                >
                   <img
                     src={evt.image}
                     alt={evt.title}
@@ -254,7 +316,10 @@ export const EventsPage: React.FC = () => {
 
                 {/* Event Details */}
                 <div className="pt-4 space-y-2">
-                  <h3 className="text-sm font-bold text-white font-display line-clamp-2 group-hover:text-[#FF6B00] transition-colors">
+                  <h3
+                    onClick={() => setSelectedEvent(evt)}
+                    className="text-sm font-bold text-white font-display line-clamp-2 group-hover:text-[#FF6B00] transition-colors cursor-pointer"
+                  >
                     {evt.title}
                   </h3>
                   <p className="text-[11px] text-[#A0A0A0] line-clamp-2 leading-relaxed">
@@ -277,10 +342,12 @@ export const EventsPage: React.FC = () => {
                 </div>
 
                 <button
-                  onClick={() => openWaitlistModal(evt.id)}
-                  className="w-full py-2 px-3 rounded-xl border border-[#FF6B00]/30 hover:border-[#FF6B00] bg-[#FF6B00]/5 hover:bg-[#FF6B00] text-[#FF6B00] hover:text-white text-xs font-bold transition-all cursor-pointer text-center"
+                  type="button"
+                  onClick={() => setSelectedEvent(evt)}
+                  className="w-full py-2.5 px-3 rounded-xl border border-[#FF6B00]/40 hover:border-[#FF6B00] bg-[#FF6B00]/10 hover:bg-[#FF6B00] text-[#FF6B00] hover:text-white text-xs font-bold transition-all cursor-pointer text-center shadow-md active:scale-95 flex items-center justify-center gap-1.5"
                 >
-                  View Details
+                  <span>View Details</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                 </button>
               </div>
             </motion.div>
@@ -461,7 +528,175 @@ export const EventsPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 7. RICH 4-COLUMN FOOTER */}
+      {/* 7. EVENT DETAILS LIGHTBOX MODAL */}
+      <AnimatePresence>
+        {selectedEvent && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/85 backdrop-blur-md">
+            {/* Backdrop click */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedEvent(null)}
+              className="fixed inset-0"
+            />
+
+            {/* Modal Box */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              className="relative w-full max-w-2xl bg-[#0A0A0A] border border-[#222222] rounded-3xl overflow-hidden shadow-2xl z-10 my-8 max-h-[90vh] flex flex-col"
+            >
+              {/* Sticky Top Header */}
+              <div className="flex items-center justify-between p-4 sm:p-5 border-b border-[#1A1A1A] bg-[#0A0A0A]/90 backdrop-blur-md z-20">
+                <div className="flex items-center gap-2">
+                  <span className="px-3 py-1 rounded-full bg-[#FF6B00] text-black font-black text-xs uppercase tracking-wider">
+                    {selectedEvent.tag}
+                  </span>
+                  <span className="text-xs text-[#A0A0A0] font-semibold">
+                    {selectedEvent.time}
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => handleShareEvent(selectedEvent)}
+                    className="p-2 rounded-xl bg-[#141414] hover:bg-[#222] text-[#A0A0A0] hover:text-white transition-colors cursor-pointer flex items-center gap-1.5 text-xs font-bold"
+                    title="Share Event"
+                  >
+                    {copied ? (
+                      <>
+                        <Check className="w-4 h-4 text-emerald-400" />
+                        <span className="text-emerald-400 text-xs">Copied!</span>
+                      </>
+                    ) : (
+                      <>
+                        <Share2 className="w-4 h-4" />
+                        <span className="hidden sm:inline">Share</span>
+                      </>
+                    )}
+                  </button>
+
+                  <button
+                    onClick={() => setSelectedEvent(null)}
+                    className="p-2 rounded-xl bg-[#141414] hover:bg-[#222] text-[#A0A0A0] hover:text-white transition-colors cursor-pointer"
+                    aria-label="Close Modal"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Scrollable Modal Content */}
+              <div className="overflow-y-auto p-5 sm:p-7 space-y-6 scrollbar-thin">
+                {/* Hero Image */}
+                <div className="relative aspect-[16/9] rounded-2xl overflow-hidden bg-black/60 border border-[#1A1A1A] shadow-inner">
+                  <img
+                    src={selectedEvent.image}
+                    alt={selectedEvent.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
+                    <span className="text-xs font-bold px-2.5 py-1 rounded-lg bg-black/70 backdrop-blur-sm border border-white/10">
+                      City Media Academy Convocation
+                    </span>
+                    <span className="text-xs font-bold px-2.5 py-1 rounded-lg bg-[#FF6B00]/90 text-black">
+                      {selectedEvent.month} {selectedEvent.day}, {selectedEvent.year}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Title & Description */}
+                <div className="space-y-3">
+                  <h2 className="text-xl sm:text-2xl font-black font-display text-white">
+                    {selectedEvent.title}
+                  </h2>
+                  <p className="text-sm text-[#CCCCCC] leading-relaxed">
+                    {selectedEvent.longDescription || selectedEvent.description}
+                  </p>
+                </div>
+
+                {/* Meta details cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 rounded-2xl bg-[#0F0F0F] border border-[#1A1A1A]">
+                  <div className="flex items-start gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-[#FF6B00]/10 text-[#FF6B00] flex items-center justify-center shrink-0">
+                      <Calendar className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <div className="text-[11px] text-[#A0A0A0] uppercase font-bold">Date & Cohort</div>
+                      <div className="text-xs font-bold text-white mt-0.5">
+                        {selectedEvent.month} {selectedEvent.day}, {selectedEvent.year} ({selectedEvent.tag})
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-[#FF6B00]/10 text-[#FF6B00] flex items-center justify-center shrink-0">
+                      <MapPin className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <div className="text-[11px] text-[#A0A0A0] uppercase font-bold">Venue & Studios</div>
+                      <div className="text-xs font-bold text-white mt-0.5 leading-snug">
+                        {selectedEvent.location}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Key Highlights */}
+                {selectedEvent.highlights && (
+                  <div className="space-y-3">
+                    <h4 className="text-xs font-black uppercase tracking-wider text-[#FF6B00] font-display">
+                      Program & Convocation Highlights
+                    </h4>
+                    <div className="grid grid-cols-1 gap-2.5">
+                      {selectedEvent.highlights.map((item, idx) => (
+                        <div
+                          key={idx}
+                          className="flex items-start gap-2.5 p-3 rounded-xl bg-[#0F0F0F] border border-[#181818] text-xs text-white"
+                        >
+                          <Check className="w-4 h-4 text-[#FF6B00] shrink-0 mt-0.5" />
+                          <span className="leading-relaxed">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Bottom Sticky Action Bar */}
+              <div className="p-4 sm:p-5 border-t border-[#1A1A1A] bg-[#0A0A0A] flex flex-col sm:flex-row items-center justify-between gap-3">
+                <Link
+                  to="/graduation-gallery"
+                  onClick={() => setSelectedEvent(null)}
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-[#333] hover:border-[#FF6B00] text-[#CCCCCC] hover:text-white text-xs font-bold transition-all text-center flex items-center justify-center gap-1.5 group"
+                >
+                  <span>View Graduation Gallery</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+
+                <div className="flex items-center gap-2.5 w-full sm:w-auto">
+                  <button
+                    onClick={() => {
+                      setSelectedEvent(null);
+                      openApplyModal();
+                    }}
+                    className="flex-1 sm:flex-none px-6 py-2.5 rounded-xl bg-[#FF6B00] hover:bg-[#E55F00] text-white font-bold text-xs transition-all shadow-lg flex items-center justify-center gap-2 cursor-pointer active:scale-95"
+                  >
+                    <GraduationCap className="w-4 h-4" />
+                    <span>Apply for Next Cohort</span>
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* 8. RICH 4-COLUMN FOOTER */}
       <CmaFooter />
     </div>
   );
