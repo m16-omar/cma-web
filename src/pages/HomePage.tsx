@@ -29,6 +29,7 @@ import { CmaNavbar } from '../components/ui/CmaNavbar';
 export const HomePage: React.FC = () => {
   const mentorsScrollRef = useRef<HTMLDivElement>(null);
   const [mentorIndex, setMentorIndex] = useState<number>(0);
+  const [isPaused, setIsPaused] = useState<boolean>(false);
 
   const scrollMentors = (direction: 'left' | 'right') => {
     if (!mentorsScrollRef.current) return;
@@ -52,6 +53,34 @@ export const HomePage: React.FC = () => {
       behavior: 'smooth',
     });
   };
+
+  // Continuous Auto-sliding effect
+  useEffect(() => {
+    if (isPaused) return;
+
+    const timer = setInterval(() => {
+      if (!mentorsScrollRef.current) return;
+      const container = mentorsScrollRef.current;
+      const firstCard = container.querySelector<HTMLElement>('[data-mentor-card]');
+      const cardWidth = firstCard ? firstCard.offsetWidth : 300;
+      const gap = 24;
+      const step = cardWidth + gap;
+
+      const visibleCount = Math.max(1, Math.floor(container.clientWidth / step));
+      const maxIndex = Math.max(0, mentorsData.length - visibleCount);
+
+      setMentorIndex((prev) => {
+        const next = prev >= maxIndex ? 0 : prev + 1;
+        container.scrollTo({
+          left: next * step,
+          behavior: 'smooth',
+        });
+        return next;
+      });
+    }, 3200);
+
+    return () => clearInterval(timer);
+  }, [isPaused]);
 
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-[#FF6B00] selection:text-white">
@@ -332,7 +361,13 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 6. MEET OUR INDUSTRY MENTORS */}
-      <section className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 mb-24">
+      <section
+        className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 mb-24"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onTouchStart={() => setIsPaused(true)}
+        onTouchEnd={() => setIsPaused(false)}
+      >
         <div className="flex items-center justify-between mb-8">
           <button
             onClick={() => scrollMentors('left')}
