@@ -85,7 +85,7 @@ export const CmaFooter: React.FC = () => {
               </li>
               <li>
                 <Link to="/instructors" className="hover:text-[#FF6B00] transition-colors">
-                  Mentors
+                  Facilitators
                 </Link>
               </li>
               <li>

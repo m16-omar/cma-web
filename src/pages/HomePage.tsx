@@ -366,7 +366,7 @@ export const HomePage: React.FC = () => {
           </button>
 
           <h2 className="text-2xl sm:text-3xl font-extrabold font-display text-white text-center">
-            Meet Our Industry Mentors
+            Meet Our Industry Facilitators
           </h2>
 
           <button

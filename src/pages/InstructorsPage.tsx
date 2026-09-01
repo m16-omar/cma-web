@@ -94,10 +94,10 @@ export const InstructorsPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-[#FF6B00] selection:text-white">
       <Helmet>
-        <title>Industry Mentors | City Media Academy</title>
+        <title>Industry Facilitators | City Media Academy</title>
         <meta
           name="description"
-          content="Meet Our Industry Mentors - Learn from seasoned broadcast media professionals, on-air personalities, and voiceover artists at City Media Academy."
+          content="Meet Our Industry Facilitators - Learn from seasoned broadcast media professionals, on-air personalities, and voiceover artists at City Media Academy."
         />
       </Helmet>
 
@@ -121,7 +121,7 @@ export const InstructorsPage: React.FC = () => {
           <div className="max-w-4xl space-y-6">
             {/* Pre-Heading */}
             <span className="text-xs sm:text-sm font-bold text-[#FF6B00] uppercase tracking-widest block font-display">
-              MEET OUR INDUSTRY MENTORS
+              MEET OUR INDUSTRY FACILITATORS
             </span>
 
             {/* Main Headline */}

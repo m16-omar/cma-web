@@ -23,7 +23,7 @@ export const CmaNavbar: React.FC = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Courses', path: '/courses', matchPrefix: true },
-    { name: 'Mentors', path: '/instructors', alias: '/mentors' },
+    { name: 'Facilitators', path: '/instructors', alias: '/mentors', extraAlias: '/facilitators' },
     { name: 'Events', path: '/events' },
     { name: 'About Us', path: '/about', alias: '/admissions' },
   ];
@@ -39,6 +39,9 @@ export const CmaNavbar: React.FC = () => {
       return true;
     }
     if (link.alias && location.pathname === link.alias) {
+      return true;
+    }
+    if (link.extraAlias && location.pathname === link.extraAlias) {
       return true;
     }
     return false;
