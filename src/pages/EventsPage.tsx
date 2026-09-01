@@ -126,15 +126,15 @@ export const EventsPage: React.FC = () => {
 
       {/* 2. HERO SECTION */}
       <section className="relative pt-12 pb-14 lg:pt-16 lg:pb-20 overflow-hidden border-b border-[#1A1A1A]">
-        {/* Stage Lighting & Auditorium Visual Background */}
+        {/* Authentic CMA Students Classroom Background */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2000&auto=format&fit=crop"
-            alt="CMA Stage Events"
-            className="w-full h-full object-cover object-right opacity-35 filter brightness-75 contrast-125"
+            src="/images/cma_students_classroom.jpg"
+            alt="City Media Academy Students Classroom Session"
+            className="w-full h-full object-cover object-right sm:object-center opacity-40 filter brightness-90 contrast-110"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/50" />
         </div>
 
         <div className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
