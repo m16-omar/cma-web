@@ -98,11 +98,6 @@ export const CmaFooter: React.FC = () => {
                   Events
                 </Link>
               </li>
-              <li>
-                <Link to="/contact" className="hover:text-[#FF6B00] transition-colors">
-                  Contact
-                </Link>
-              </li>
             </ul>
           </div>
 

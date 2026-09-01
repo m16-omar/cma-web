@@ -24,9 +24,8 @@ export const CmaNavbar: React.FC = () => {
     { name: 'Home', path: '/' },
     { name: 'Courses', path: '/courses', matchPrefix: true },
     { name: 'Mentors', path: '/instructors', alias: '/mentors' },
-    { name: 'About Us', path: '/about' },
     { name: 'Events', path: '/events' },
-    { name: 'Contact', path: '/contact', alias: '/admissions' },
+    { name: 'About Us', path: '/about', alias: '/admissions' },
   ];
 
   const isLinkActive = (link: (typeof navLinks)[0]) => {
