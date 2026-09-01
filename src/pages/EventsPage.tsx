@@ -213,7 +213,7 @@ export const EventsPage: React.FC = () => {
           </div>
 
           <Link
-            to="/courses"
+            to="/graduation-gallery"
             className="text-xs font-bold text-[#FF6B00] hover:text-white transition-colors flex items-center gap-1"
           >
             <span>View All Graduants</span>
@@ -374,7 +374,7 @@ export const EventsPage: React.FC = () => {
             PAST GRADUATION HIGHLIGHTS
           </h2>
           <Link
-            to="/courses"
+            to="/graduation-gallery"
             className="text-xs font-bold text-[#FF6B00] hover:text-white transition-colors flex items-center gap-1"
           >
             <span>View Graduation Gallery</span>

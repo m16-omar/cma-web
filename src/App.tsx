@@ -10,6 +10,7 @@ import { FacilitatorDashboardPage } from './pages/FacilitatorDashboardPage';
 import { AboutPage } from './pages/AboutPage';
 import { EventsPage } from './pages/EventsPage';
 import { AdmissionsPage } from './pages/AdmissionsPage';
+import { GraduationGalleryPage } from './pages/GraduationGalleryPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 export const App: React.FC = () => {
@@ -24,6 +25,8 @@ export const App: React.FC = () => {
         <Route path="/mentors" element={<InstructorsPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/events" element={<EventsPage />} />
+        <Route path="/graduation-gallery" element={<GraduationGalleryPage />} />
+        <Route path="/gallery" element={<GraduationGalleryPage />} />
         <Route path="/admissions" element={<AdmissionsPage />} />
         <Route path="/contact" element={<AdmissionsPage />} />
         <Route path="/dashboard" element={<StudentDashboardPage />} />
