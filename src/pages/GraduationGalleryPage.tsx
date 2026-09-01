@@ -42,8 +42,8 @@ const galleryItems: GalleryItem[] = [
     cohort: 'Cohort 31',
     date: 'August 2026',
     location: 'Plot 11 Lateef Jakande Road, Agidingbin Ikeja, Lagos Nigeria',
-    image: '/images/cma_students_classroom.jpg',
-    description: 'The graduating set of Cohort 31 (2026 Set 2) celebrating their completion of the 5-week intensive broadcast media program.',
+    image: '/images/cohort_31_graduation.png',
+    description: 'The graduating set of Cohort 31 (2026 Set 2) celebrating their completion of the 5-week intensive broadcast media program with certificate presentations and cake cutting.',
     aspect: 'col-span-1 lg:col-span-2 aspect-[16/10]',
   },
   {

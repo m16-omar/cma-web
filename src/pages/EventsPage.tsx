@@ -49,7 +49,7 @@ const upcomingEventsData: EventItem[] = [
     description: 'Celebrating 38 newly certified radio presentation and broadcast media specialists entering top stations.',
     time: 'Convocation Ceremony (2026 Set 2)',
     location: 'Plot 11 Lateef Jakande Road, Agidingbin Ikeja, Lagos Nigeria',
-    image: '/images/cma_students_classroom.jpg',
+    image: '/images/cohort_31_graduation.png',
   },
   {
     id: 'grad-30',
