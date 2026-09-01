@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -28,29 +28,29 @@ import { CmaNavbar } from '../components/ui/CmaNavbar';
 
 export const HomePage: React.FC = () => {
   const mentorsScrollRef = useRef<HTMLDivElement>(null);
+  const [mentorIndex, setMentorIndex] = useState<number>(0);
 
   const scrollMentors = (direction: 'left' | 'right') => {
-    if (mentorsScrollRef.current) {
-      const container = mentorsScrollRef.current;
-      const firstChild = container.firstElementChild as HTMLElement | null;
-      // Calculate dynamic step (1 card width + gap)
-      const step = firstChild ? firstChild.offsetWidth + 24 : 340;
-      const maxScroll = container.scrollWidth - container.clientWidth;
+    if (!mentorsScrollRef.current) return;
+    const container = mentorsScrollRef.current;
+    const firstCard = container.querySelector<HTMLElement>('[data-mentor-card]');
+    const cardWidth = firstCard ? firstCard.offsetWidth : 300;
+    const gap = 24; // 24px gap between cards
+    const step = cardWidth + gap;
 
-      if (direction === 'right') {
-        if (container.scrollLeft >= maxScroll - 15) {
-          container.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-          container.scrollBy({ left: step, behavior: 'smooth' });
-        }
-      } else {
-        if (container.scrollLeft <= 15) {
-          container.scrollTo({ left: maxScroll, behavior: 'smooth' });
-        } else {
-          container.scrollBy({ left: -step, behavior: 'smooth' });
-        }
-      }
-    }
+    // Calculate maximum scrollable index based on visible items
+    const visibleCount = Math.max(1, Math.floor(container.clientWidth / step));
+    const maxIndex = Math.max(0, mentorsData.length - visibleCount);
+
+    let nextIndex = direction === 'right' ? mentorIndex + 1 : mentorIndex - 1;
+    if (nextIndex > maxIndex) nextIndex = 0;
+    if (nextIndex < 0) nextIndex = maxIndex;
+
+    setMentorIndex(nextIndex);
+    container.scrollTo({
+      left: nextIndex * step,
+      behavior: 'smooth',
+    });
   };
 
   return (
@@ -358,12 +358,13 @@ export const HomePage: React.FC = () => {
         {/* 4 Large Mentors Per View Slider */}
         <div
           ref={mentorsScrollRef}
-          className="flex gap-6 overflow-x-auto pb-6 scrollbar-none scroll-smooth snap-x snap-mandatory"
+          className="flex gap-6 overflow-x-auto pb-6 scrollbar-none"
         >
           {mentorsData.map((mentor) => (
             <div
               key={mentor.id}
-              className="w-[85%] sm:w-[48%] lg:w-[calc(25%-1.15rem)] shrink-0 snap-start"
+              data-mentor-card
+              className="w-[85%] sm:w-[48%] lg:w-[calc(25%-1.15rem)] shrink-0"
             >
               <MentorCard mentor={mentor} />
             </div>
