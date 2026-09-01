@@ -144,7 +144,7 @@ export const CmaFooter: React.FC = () => {
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#FF6B00] flex-shrink-0 mt-0.5" />
                 <span className="text-[#A0A0A0]">
-                  Plot 11 Lateef Jakande Road, Agidingbi, Ikeja, Lagos.
+                  Plot 11 Lateef Jakande Road, Agidingbin Ikeja, Lagos Nigeria.
                 </span>
               </div>
               <div className="flex items-center gap-2.5">

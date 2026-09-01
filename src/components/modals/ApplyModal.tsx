@@ -311,7 +311,7 @@ export const ApplyModal: React.FC = () => {
               <div className="p-4 rounded-2xl bg-[#0F0F0F] border border-[#1E1E1E] text-xs text-left space-y-2 text-[#A0A0A0]">
                 <div className="flex items-start gap-2">
                   <Building className="w-3.5 h-3.5 text-[#FF6B00] flex-shrink-0 mt-0.5" />
-                  <span><strong>Campus Location:</strong> Plot 11 Lateef Jakande Road, Agidingbi, Ikeja, Lagos (City FM Complex)</span>
+                  <span><strong>Campus Location:</strong> Plot 11 Lateef Jakande Road, Agidingbin Ikeja, Lagos Nigeria (City FM Complex)</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Calendar className="w-3.5 h-3.5 text-[#FF6B00] flex-shrink-0" />

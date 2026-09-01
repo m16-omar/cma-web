@@ -716,7 +716,7 @@ export const CourseDetailPage: React.FC = () => {
                   <MapPin className="w-4 h-4 text-[#FF6B00] flex-shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-white font-semibold block">Physical Campus:</strong>
-                    Plot 11 Lateef Jakande Road, Agidingbi, Ikeja, Lagos.
+                    Plot 11 Lateef Jakande Road, Agidingbin Ikeja, Lagos Nigeria.
                   </div>
                 </div>
 

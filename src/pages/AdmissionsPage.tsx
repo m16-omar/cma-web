@@ -41,7 +41,7 @@ export const AdmissionsPage: React.FC = () => {
   const faqs = [
     {
       q: 'Where do physical classes hold?',
-      a: 'Physical studio classes take place at the City 105.1 FM Complex, Plot 11 Lateef Jakande Road, Agidingbi, Ikeja, Lagos.',
+      a: 'Physical studio classes take place at the City 105.1 FM Complex, Plot 11 Lateef Jakande Road, Agidingbin Ikeja, Lagos Nigeria.',
     },
     {
       q: 'Can I participate 100% online from outside Lagos or Nigeria?',
@@ -388,7 +388,7 @@ export const AdmissionsPage: React.FC = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent flex items-end p-4">
                   <span className="text-xs font-bold text-white">
-                    Plot 11 Lateef Jakande Road, Agidingbi, Ikeja, Lagos
+                    Plot 11 Lateef Jakande Road, Agidingbin Ikeja, Lagos Nigeria
                   </span>
                 </div>
               </div>

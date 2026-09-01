@@ -148,7 +148,7 @@ export const StudioFacilities: React.FC = () => {
               {current.tag}
             </div>
             <div className="absolute bottom-4 left-4 right-4 bg-black/75 backdrop-blur-md p-3 rounded-xl border border-white/10 text-xs text-slate-300">
-              📍 Plot 11 Lateef Jakande Road, Agidingbi, Ikeja, Lagos
+              📍 Plot 11 Lateef Jakande Road, Agidingbin Ikeja, Lagos Nigeria
             </div>
           </div>
 

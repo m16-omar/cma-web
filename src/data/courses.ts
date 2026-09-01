@@ -35,7 +35,7 @@ export const coursesData: Course[] = [
       durationWeeks: 5,
       dailyHours: '9:00 AM – 2:00 PM (5 hours daily)',
       classDays: 'Monday to Friday',
-      physicalLocation: 'Plot 11 Lateef Jakande Road, Agidingbi, Ikeja, Lagos (City 105.1 FM Complex)',
+      physicalLocation: 'Plot 11 Lateef Jakande Road, Agidingbin Ikeja, Lagos Nigeria (City 105.1 FM Complex)',
       onlinePlatform: 'CMA Interactive LMS + Live Zoom HD Broadcast Studio',
       internshipDuration: '3 Weeks Guaranteed Hands-on Internship at City 105.1 FM / 93.5 Area FM',
       registrationStatus: 'Waitlist',

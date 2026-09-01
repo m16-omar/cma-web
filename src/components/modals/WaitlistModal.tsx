@@ -256,7 +256,7 @@ export const WaitlistModal: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <Building className="w-3.5 h-3.5 text-[#FF6B00] flex-shrink-0" />
-                  <span><strong>Campus:</strong> Plot 11 Lateef Jakande Road, Agidingbi, Ikeja, Lagos</span>
+                  <span><strong>Campus:</strong> Plot 11 Lateef Jakande Road, Agidingbin Ikeja, Lagos Nigeria</span>
                 </div>
               </div>
 

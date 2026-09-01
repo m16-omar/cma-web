@@ -27,7 +27,7 @@ export const companyDetails: CompanyDetails = {
   name: 'City Media Academy',
   tagline: 'Nurturing the next generation of radio professionals and media entrepreneurs.',
   subheadline: 'Nigeria’s premier broadcast presentation, voiceover, podcasting, and media entrepreneurship academy.',
-  address: 'Plot 11 Lateef Jakande Road, Agidingbi, Ikeja',
+  address: 'Plot 11 Lateef Jakande Road, Agidingbin Ikeja, Lagos Nigeria',
   city: 'Ikeja',
   state: 'Lagos',
   country: 'Nigeria',

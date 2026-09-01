@@ -68,7 +68,7 @@ export const FeaturedCourseSpotlight: React.FC = () => {
 
             <div className="flex items-center gap-2 text-xs font-semibold text-slate-600 dark:text-slate-300">
               <MapPin className="w-4 h-4 text-[#FF6B00]" />
-              <span>Plot 11 Lateef Jakande Road, Ikeja, Lagos + Online LMS</span>
+              <span>Plot 11 Lateef Jakande Road, Agidingbin Ikeja, Lagos Nigeria + Online LMS</span>
             </div>
           </div>
 
