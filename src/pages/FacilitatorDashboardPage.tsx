@@ -1,8 +1,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { FacilitatorAttendanceTool } from '../components/lms/FacilitatorAttendanceTool';
 import { ShieldCheck } from 'lucide-react';
+import { FacilitatorAttendanceTool } from '../components/lms/FacilitatorAttendanceTool';
 import { useAcademyStore } from '../store/useAcademyStore';
+import { CmaNavbar } from '../components/ui/CmaNavbar';
+import { CmaFooter } from '../components/ui/CmaFooter';
 
 export const FacilitatorDashboardPage: React.FC = () => {
   const { roster } = useAcademyStore();
@@ -15,7 +17,7 @@ export const FacilitatorDashboardPage: React.FC = () => {
   );
 
   return (
-    <>
+    <div className="min-h-screen bg-black text-white flex flex-col justify-between selection:bg-[#FF6B00] selection:text-white">
       <Helmet>
         <title>Facilitator Hub | City Media Academy</title>
         <meta
@@ -23,6 +25,8 @@ export const FacilitatorDashboardPage: React.FC = () => {
           content="City Media Academy Facilitator Hub. Manage cohort class rosters, mark live physical and online attendance, and publish session notes."
         />
       </Helmet>
+
+      <CmaNavbar />
 
       <div className="py-10 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Facilitator Header */}
@@ -87,6 +91,7 @@ export const FacilitatorDashboardPage: React.FC = () => {
         {/* Live Attendance Tool Component */}
         <FacilitatorAttendanceTool />
       </div>
-    </>
+      <CmaFooter />
+    </div>
   );
 };

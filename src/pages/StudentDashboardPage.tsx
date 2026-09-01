@@ -19,9 +19,9 @@ import {
   Radio,
   FileText,
   Download,
-  Sparkles,
-  ExternalLink,
 } from 'lucide-react';
+import { CmaNavbar } from '../components/ui/CmaNavbar';
+import { CmaFooter } from '../components/ui/CmaFooter';
 
 export const StudentDashboardPage: React.FC = () => {
   const { studentEnrollment, addToast } = useAcademyStore();
@@ -50,7 +50,7 @@ export const StudentDashboardPage: React.FC = () => {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-black text-white flex flex-col justify-between selection:bg-[#FF6B00] selection:text-white">
       <Helmet>
         <title>Student Portal (LMS) | City Media Academy</title>
         <meta
@@ -58,6 +58,8 @@ export const StudentDashboardPage: React.FC = () => {
           content="City Media Academy Student Portal. Track your live physical and online sessions, attendance records, curriculum progress, and City FM internship."
         />
       </Helmet>
+
+      <CmaNavbar />
 
       <div className="py-10 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Student Welcome Header */}
@@ -336,6 +338,7 @@ export const StudentDashboardPage: React.FC = () => {
           )}
         </div>
       </div>
-    </>
+      <CmaFooter />
+    </div>
   );
 };
