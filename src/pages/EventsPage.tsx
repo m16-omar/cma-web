@@ -40,52 +40,52 @@ interface EventItem {
 
 const upcomingEventsData: EventItem[] = [
   {
-    id: 'evt-1',
-    tag: 'MASTERCLASS',
-    month: 'JUN',
-    day: '15',
-    year: '2026',
-    title: 'The Art of On-Air Presentation',
-    description: 'A practical masterclass on building a powerful on-air presence and connecting with your audience.',
-    time: '10:00 AM – 1:00 PM',
-    location: 'Ikeja Studio + Online',
-    image: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 'evt-2',
-    tag: 'INDUSTRY TALK',
-    month: 'JUN',
-    day: '22',
-    year: '2026',
-    title: 'The Future of Radio & Digital Media',
-    description: 'Industry leaders discuss trends shaping broadcasting, podcasting and digital content creation.',
-    time: '11:00 AM – 2:00 PM',
-    location: 'City 105.1 FM Studio',
-    image: '/images/cityfm_building_real.jpg',
-  },
-  {
-    id: 'evt-3',
-    tag: 'WORKSHOP',
-    month: 'JUL',
-    day: '06',
-    year: '2026',
-    title: 'Voiceover & Audio Production Workshop',
-    description: 'Hands-on training on recording, editing and producing professional voiceovers and audio content.',
-    time: '9:00 AM – 2:00 PM',
-    location: 'Ikeja Studio',
-    image: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?q=80&w=800&auto=format&fit=crop',
-  },
-  {
-    id: 'evt-4',
-    tag: 'CEREMONY',
+    id: 'grad-1',
+    tag: 'CLASS OF 2026',
     month: 'AUG',
     day: '29',
     year: '2026',
-    title: 'CMA Graduation Ceremony 2026',
-    description: 'Celebrating a new generation of broadcast media professionals and media entrepreneurs.',
-    time: '10:00 AM – 1:00 PM',
-    location: 'Eko Hotel & Suites, Lagos',
+    title: 'Broadcast Media Pro Cohort 24',
+    description: 'Celebrating 35 newly certified radio presentation and broadcast media specialists entering the industry.',
+    time: 'Convocation Ceremony',
+    location: 'City FM Complex / Eko Hotel',
+    image: '/images/cma_classroom_real.jpg',
+  },
+  {
+    id: 'grad-2',
+    tag: 'EXECUTIVE SET',
+    month: 'JUL',
+    day: '18',
+    year: '2026',
+    title: 'Executive Voiceover & Audio Masters',
+    description: 'Graduating set of commercial voice talents, audio directors, and studio sound engineers.',
+    time: 'Certification Ceremony',
+    location: 'City 105.1 FM Studios',
+    image: '/images/cityfm_building_real.jpg',
+  },
+  {
+    id: 'grad-3',
+    tag: 'COHORT 23',
+    month: 'JUN',
+    day: '20',
+    year: '2026',
+    title: 'On-Air Presentation & Talk Show Set',
+    description: 'Trained and mentored by prime-time radio personalities and certified for national broadcast roles.',
+    time: 'Commencement Event',
+    location: 'Ikeja Campus Studio',
     image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800&auto=format&fit=crop',
+  },
+  {
+    id: 'grad-4',
+    tag: 'ANNUAL SET',
+    month: 'MAY',
+    day: '30',
+    year: '2026',
+    title: 'Grand Convocation Ceremony 2026',
+    description: 'Annual commencement celebration featuring industry keynotes, station hiring, and excellence awards.',
+    time: 'Grand Ceremony',
+    location: 'Lagos Conference Hall',
+    image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=800&auto=format&fit=crop',
   },
 ];
 
@@ -202,12 +202,12 @@ export const EventsPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 3. UPCOMING EVENTS (4-CARD GRID) */}
+      {/* 3. RECENT GRADUANTS (4-CARD GRID) */}
       <section className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 py-12">
         <div className="flex items-center justify-between pb-6 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3">
             <h2 className="text-sm sm:text-base font-bold text-white uppercase tracking-wider font-display">
-              UPCOMING EVENTS
+              RECENT GRADUANTS
             </h2>
             <div className="w-12 h-[2px] bg-[#FF6B00]" />
           </div>
@@ -216,7 +216,7 @@ export const EventsPage: React.FC = () => {
             to="/courses"
             className="text-xs font-bold text-[#FF6B00] hover:text-white transition-colors flex items-center gap-1"
           >
-            <span>View All Events</span>
+            <span>View All Graduants</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
@@ -367,17 +367,17 @@ export const EventsPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. PAST EVENTS HIGHLIGHTS */}
+      {/* 5. PAST GRADUATION HIGHLIGHTS */}
       <section className="max-w-[1520px] mx-auto px-4 sm:px-8 lg:px-12 py-10">
         <div className="flex items-center justify-between pb-6">
           <h2 className="text-sm font-bold text-white uppercase tracking-wider font-display">
-            PAST EVENTS HIGHLIGHTS
+            PAST GRADUATION HIGHLIGHTS
           </h2>
           <Link
             to="/courses"
             className="text-xs font-bold text-[#FF6B00] hover:text-white transition-colors flex items-center gap-1"
           >
-            <span>View Gallery</span>
+            <span>View Graduation Gallery</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
